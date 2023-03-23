@@ -1,0 +1,2 @@
+class AdminSubscription < Subscription
+end
