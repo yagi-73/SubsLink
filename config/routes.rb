@@ -9,9 +9,15 @@ Rails.application.routes.draw do
     passwords: 'public/passwords'
   }
 
+  namespace :admin do
+    resources :companies, only: [:new, :create, :edit, :update, :destroy]
+  end
+
   scope module: :public do
     root to: 'homes#top'
     get 'about' => 'homes/about', as: 'about'
     resources :users, only: [:show, :edit]
+    resources :subscriptions
+    resources :companies, only: [:index, :show]
   end
 end
