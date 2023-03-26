@@ -6,8 +6,8 @@ class CreateSubscriptions < ActiveRecord::Migration[6.1]
       t.string :name, null:false
       t.text :description
       t.integer :price, null: false
+      t.date :contract_day
       t.integer :update_cycle, null: false
-      t.date :start_time
       t.string :type
 
       t.timestamps

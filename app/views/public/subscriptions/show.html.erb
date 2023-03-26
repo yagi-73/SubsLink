@@ -10,7 +10,7 @@
           <td><%= image_tag @subsc.get_image(100,100) %><br></td>
           <td><%= @subsc.name %></td>
           <td><%= @subsc.price %></td>
-          <% if @subsc.start_time.present? %>
+          <% if @subsc.contract_day.present? %>
             <td><%= @subsc.next_update_day %></td>
           <% end %>
           <td><%= @subsc.update_cycle %></td>

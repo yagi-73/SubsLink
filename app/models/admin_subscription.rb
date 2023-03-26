@@ -1,4 +1,4 @@
 class AdminSubscription < Subscription
-  belongs_to :user, optional: true
   belongs_to :company
+  has_many :admin_subscriptions_users
 end

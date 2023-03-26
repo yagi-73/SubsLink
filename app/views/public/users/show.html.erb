@@ -7,10 +7,10 @@
       <%= render 'public/subscriptions/form', subsc: @subsc %>
     </div>
     <div class='col-md-8 offset-md-1'>
-      <%= month_calendar events: @subscriptions do |date, subscriptions| %>
+      <%= month_calendar attribute: :contract_day, events: @subscriptions do |date, subscriptions| %>
         <%= date.day %><br>
         <% subscriptions.each do |subsc| %>
-          <%= subsc.name %>
+          <%= link_to subsc.name, subscription_path(subsc) %>
         <% end %>
       <% end %>
     </div>

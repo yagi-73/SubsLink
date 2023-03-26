@@ -5,7 +5,7 @@ class Admin::SubscriptionsController < ApplicationController
 
   def create
     @subsc = AdminSubscription.new(subsc_params)
-    @subsc.save
+    @subsc.save!
     redirect_to subscription_path(@subsc)
   end
 
@@ -27,6 +27,6 @@ class Admin::SubscriptionsController < ApplicationController
 
   private
   def subsc_params
-    params.require(:subsc).permit(:name, :description, :price)
+    params.require(:admin_subscription).permit(:name,:image, :description, :price, :company_id, :update_cycle)
   end
 end

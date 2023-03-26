@@ -4,6 +4,12 @@ class User < ApplicationRecord
   devise :database_authenticatable, :registerable,
          :recoverable, :rememberable, :validatable
 
-  has_many :subscriptions
+  has_many :user_subscriptions
+  has_many :admin_subscriptions_users
+  has_many :admin_subscriptions, through: :admin_subscriptions_users
+
+  def subscriptions
+    self.user_subscriptions + self.admin_subscriptions
+  end
   
 end

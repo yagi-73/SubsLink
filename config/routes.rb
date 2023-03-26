@@ -11,6 +11,7 @@ Rails.application.routes.draw do
 
   namespace :admin do
     resources :companies, only: [:new, :create, :edit, :update, :destroy]
+    resources :subscriptions, only: [:new, :create, :edit, :update, :destroy]
   end
 
   scope module: :public do
