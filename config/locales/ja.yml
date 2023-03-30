@@ -1,4 +1,8 @@
 ja:
+  time:
+    formats:
+      default: "%Y/%m/%d %H:%M:%S"
+      date: "%Y/%m/%d"
   simple_calendar:
     previous: "<<"
     next: ">>"

@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2023_03_26_161743) do
+ActiveRecord::Schema.define(version: 2023_03_30_115341) do
 
   create_table "active_storage_attachments", force: :cascade do |t|
     t.string "name", null: false
@@ -67,9 +67,15 @@ ActiveRecord::Schema.define(version: 2023_03_26_161743) do
     t.datetime "updated_at", precision: 6, null: false
   end
 
+  create_table "groups", force: :cascade do |t|
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+  end
+
   create_table "subscriptions", force: :cascade do |t|
     t.integer "user_id"
     t.integer "company_id"
+    t.integer "group_id"
     t.string "name", null: false
     t.text "description"
     t.integer "price", null: false
@@ -79,6 +85,7 @@ ActiveRecord::Schema.define(version: 2023_03_26_161743) do
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
     t.index ["company_id"], name: "index_subscriptions_on_company_id"
+    t.index ["group_id"], name: "index_subscriptions_on_group_id"
     t.index ["user_id"], name: "index_subscriptions_on_user_id"
   end
 
@@ -100,5 +107,6 @@ ActiveRecord::Schema.define(version: 2023_03_26_161743) do
   add_foreign_key "admin_subscriptions_users", "admin_subscriptions"
   add_foreign_key "admin_subscriptions_users", "users"
   add_foreign_key "subscriptions", "companies"
+  add_foreign_key "subscriptions", "groups"
   add_foreign_key "subscriptions", "users"
 end

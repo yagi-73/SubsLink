@@ -1,8 +1,5 @@
-<table class='table'>
-  <tr><%= image_tag company.get_image(300,100) %></tr>
-  <tr>
-	  <th>name</th>
-	  <td><%= company.name %></td>
-  </tr>
-</table>
+<div>
+  <h2>会社情報</h2>
+  <%= image_tag company.get_image(100,100) %>
+  <%= company.name %>
 </div>

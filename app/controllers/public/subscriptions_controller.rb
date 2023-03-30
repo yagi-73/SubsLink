@@ -3,16 +3,17 @@ class Public::SubscriptionsController < ApplicationController
   def create
     @subsc = current_user.user_subscriptions.new(subsc_params)
     @subsc.save
-    redirect_to subscription_path(@subsc)
+    redirect_to user_path(current_user)
   end
 
   def index
-    @subscriptions = AdminSubscription.all
+    @subscriptions = AdminSubscription.no_overlap
     @subsc = UserSubscription.new
   end
 
   def show
     @subsc = Subscription.find(params[:id])
+    @subscriptions = AdminSubscription.same_group(@subsc)
     @subsc_new = UserSubscription.new
   end
 
@@ -23,7 +24,7 @@ class Public::SubscriptionsController < ApplicationController
   def update
     @subsc = UserSubscription.find(params[:id])
     @subsc.update(subsc_params)
-    redirect_to subscription_path(@subsc)
+    redirect_to user_path(current_user)
   end
 
   def destroy

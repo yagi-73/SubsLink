@@ -1,0 +1,15 @@
+<h2>サブスク一覧</h2>
+<div class="d-flex flex-wrap">
+  <% subscriptions.each do |subsc| %>
+    <%= link_to subscription_path(subsc), class: "d-flex w-50 text-reset text-decoration-none" do %>
+      <%= image_tag subsc.get_image(120,120) %>
+      <div>
+        <p><%= subsc.name %></p>
+        <p>￥<%= subsc.price.to_s(:delimited) %>/<%= subsc.update_cycle %>ヵ月</p>
+        <% if subsc.update_cycle != 1 %>
+          <p>月換算 ￥ <%= (subsc.price / subsc.update_cycle).to_s(:delimited) %>/月</p>
+        <% end %>
+      </div>
+    <% end %>
+  <% end %>
+</div>

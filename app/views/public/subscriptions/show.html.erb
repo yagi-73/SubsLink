@@ -4,18 +4,37 @@
       <%= render 'form', subsc: @subsc_new %>
     </div>
     <div class='col-md-8 offset-md-1'>
-  		<h2>subsc detail</h2>
-  		<table class='table'>
-  		  <tr>
-          <td><%= image_tag @subsc.get_image(100,100) %><br></td>
-          <td><%= @subsc.name %></td>
-          <td><%= @subsc.price %></td>
-          <% if @subsc.contract_day.present? %>
-            <td><%= @subsc.next_update_day %></td>
+  		<h2 class="mb-3">サブスク詳細</h2>
+  		<div class="row">
+        <div class='col-md-5'>
+          <%= image_tag @subsc.get_image(200,200) %>
+        </div>
+        <div class="col-md-6 offset-md-1">
+          <h2><%= @subsc.name %></h2>
+          <h4>￥<%= @subsc.price.to_s(:delimited) %>/<%= @subsc.update_cycle %>ヵ月</h4>
+          <% if @subsc.update_cycle != 1 %>
+            <p>月換算 ￥ <%= (@subsc.price / @subsc.update_cycle).to_s(:delimited) %>/月</p>
           <% end %>
-          <td><%= @subsc.update_cycle %></td>
-        </tr>
-      </table>
+          <%= link_to @subsc.company.name, company_path(@subsc.company) %>
+        </div>
+        <div class="d-flex flex-nowrap overflow-x-auto">
+          <% @subscriptions.each do |subsc| %>
+            <div class="col-4 mb-3">
+              <%= link_to subscription_path(subsc), class: "text-reset text-decoration-none" do  %>
+                <div class="card h-100">
+                  <h2><%= subsc.name %></h2>
+                  <h4>￥<%= subsc.price.to_s(:delimited) %>/<%= subsc.update_cycle %>ヵ月</h4>
+                  <% if subsc.update_cycle != 1 %>
+                    <p>月換算 ￥ <%= (subsc.price / subsc.update_cycle).to_s(:delimited) %>/月</p>
+                  <% end %>
+                </div>
+              <% end %>
+            </div>
+            <div class="offset-1"></div>
+          <% end %>
+        </div>
+      </div>
+      <div class="description mt-5"><%= simple_format(h(@subsc.description)) %></div>
     </div>
   </div>
 </div>

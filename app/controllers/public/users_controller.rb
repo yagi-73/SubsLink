@@ -1,7 +1,7 @@
 class Public::UsersController < ApplicationController
   def show
     @user = User.find(params[:id])
-    subscriptions = @user.subscriptions.to_a
+    subscriptions = @user.subscriptions
     @subscriptions = Array.new
     subscriptions.each do |subsc|
       subsc_next = UserSubscription.new(

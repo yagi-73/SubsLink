@@ -1,2 +1,20 @@
-<h1>Public::Companies#index</h1>
-<p>Find me in app/views/public/companies/index.html.erb</p>
+<div class="container">
+  <div class="row">
+    <div class="col-md-3">
+      <%= render 'public/subscriptions/form', subsc: @subsc%>
+    </div>
+    <div class='col-md-8 offset-md-1'>
+      <h2>企業一覧</h2>
+      <div class="d-flex flex-wrap">
+        <% @companies.each do |company| %>
+          <%= link_to company_path(company), class: "d-flex w-50 text-reset" do %>
+            <%= image_tag company.get_image(100,100) %>
+            <div class="d-flex align-items-center">
+              <p><%= company.name %></p>
+            </div>
+          <% end %>
+        <% end %>
+      </div>
+    </div>
+  </div>
+</div>
