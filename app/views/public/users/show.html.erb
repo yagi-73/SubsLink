@@ -11,7 +11,7 @@
       <%= month_calendar attribute: :contract_day, events: @subscriptions do |date, subscriptions| %>
         <%= date.day %><br>
         <% subscriptions.each do |subsc| %>
-          <%= link_to subsc.name, edit_subscription_path(subsc) %>
+          ・<%= link_to subsc.name, edit_subscription_path(subsc) %><br>
         <% end %>
       <% end %>
     </div>

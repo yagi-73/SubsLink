@@ -16,9 +16,10 @@ Rails.application.routes.draw do
 
   scope module: :public do
     root to: 'homes#top'
-    get 'about' => 'homes/about', as: 'about'
+    get 'about' => 'homes#about', as: 'about'
     resources :users, only: [:show, :edit]
     resources :subscriptions
     resources :companies, only: [:index, :show]
+    post 'subscriptions/subscribe/:id' => 'subscriptions#subscribe', as: 'subscribe'
   end
 end
