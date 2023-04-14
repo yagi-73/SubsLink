@@ -8,10 +8,16 @@ class User < ApplicationRecord
   has_many :subscribes
   has_many :admin_subscriptions, through: :subscribes
 
+  has_many :reverse_of_relationships, class_name: "Relationship", foreign_key: "followed_id", dependent: :destroy
+  has_many :followers, through: :reverse_of_relationships, source: :follower
+
+  has_many :relationships, class_name: "Relationship", foreign_key: "follower_id", dependent: :destroy
+  has_many :followings, through: :relationships, source: :followed
+
   def subscriptions
     self.user_subscriptions + self.admin_subscriptions
   end
-  
+
   def subscribe(subsc_id)
     subscribes.create(admin_subscription_id: subsc_id)
   end
@@ -26,5 +32,17 @@ class User < ApplicationRecord
 
   def subscribing(subsc)
     subscribes.find_by(admin_subscription_id: subsc.id)
+  end
+
+  def follow(user)
+    relationships.create(followed_id: user.id)
+  end
+
+  def unfollow(user)
+    relationships.find_by(followed_id: user.id).destroy
+  end
+
+  def following?(user)
+    followings.include?(user)
   end
 end

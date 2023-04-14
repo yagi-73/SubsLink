@@ -1,4 +1,9 @@
 class Public::UsersController < ApplicationController
+  def index
+    @users = User.all
+    @subsc = UserSubscription.new
+  end
+
   def show
     @user = User.find(params[:id])
     subscriptions = @user.subscriptions

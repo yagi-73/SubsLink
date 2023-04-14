@@ -2,7 +2,7 @@ Rails.application.routes.draw do
   devise_for :admin, skip: [:registrations, :passwords] ,controllers: {
     sessions: 'admin/sessions'
   }
-  
+
   devise_for :users, controllers: {
     registrations: 'public/registrations',
     sessions: 'public/sessions',
@@ -17,7 +17,11 @@ Rails.application.routes.draw do
   scope module: :public do
     root to: 'homes#top'
     get 'about' => 'homes#about', as: 'about'
-    resources :users, only: [:show, :edit]
+    resources :users, only: [:index, :show, :edit, :update] do
+      resource :relationships, only: [:create, :destroy]
+      get "followings" => "relationships#followings", as: "followings"
+      get "followers" => "relationships#followers", as: "followers"
+    end
     resources :subscriptions
     resources :companies, only: [:index, :show]
     post 'subscriptions/subscribe/:id' => 'subscriptions#subscribe', as: 'subscribe'
