@@ -1,0 +1,12 @@
+<%= month_calendar attribute: :contract_day, events: subscriptions do |date, subscriptions| %>
+  <%= date.day %><br>
+  <% subscriptions.each do |subsc| %>
+    <% if user == current_user %>
+      ・<%= link_to subsc.name, edit_subscription_path(subsc) %><br>
+    <% elsif subsc.class == UserSubscription %>
+      ・<%= subsc.name %><br>
+    <% else %>
+      ・<%= link_to subsc.name, subscription_path(subsc) %><br>
+    <% end%>
+  <% end %>
+<% end %>

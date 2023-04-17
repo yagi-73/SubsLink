@@ -14,6 +14,8 @@ class User < ApplicationRecord
   has_many :relationships, class_name: "Relationship", foreign_key: "follower_id", dependent: :destroy
   has_many :followings, through: :relationships, source: :followed
 
+  has_one_attached :image
+
   def subscriptions
     self.user_subscriptions + self.admin_subscriptions
   end

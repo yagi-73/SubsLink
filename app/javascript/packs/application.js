@@ -14,6 +14,8 @@ import "bootstrap";
 import "../stylesheets/application" 
 import '@fortawesome/fontawesome-free/js/all'
 
+import "./switch_tab"
+
 Rails.start()
 Turbolinks.start()
 ActiveStorage.start()

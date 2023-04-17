@@ -1,26 +1,30 @@
 <div class='container'>
-  <h2>Myサブスク編集</h2>
-  <%= form_with model: @subsc, url: subscription_path(@subsc), method: :patch do |f| %>
-    <div class="mb-3">
-      <%= f.label :サブスク名 %>
-      <%= f.text_field :name, class: 'form-control' %>
+  <div class='row'>
+    <div class="col-sm-12 col-md-8 col-lg-5 px-5 px-sm-0 mx-auto">
+      <h2>Myサブスク編集</h2>
+      <%= form_with model: @subsc, url: subscription_path(@subsc), method: :patch do |f| %>
+        <div class="mb-3">
+          <%= f.label :サブスク名 %>
+          <%= f.text_field :name, class: 'form-control' %>
+        </div>
+        <div class="mb-3">
+          <%= f.label :金額 %>
+          <%= f.text_field :price, class: 'form-control' %>
+        </div>
+        <div class="mb-3">
+          <%= f.label :契約日 %>
+          <%= f.date_field :contract_day, class: 'form-control' %>
+        </div>
+        <div class="mb-3">
+          <%= f.label :更新周期 %>
+          <%= f.select :update_cycle, *[1..12], class: 'form-control' %>
+        </div>
+        <p>次回更新日： <%= l @subsc.next_update_day, format: :date %></p>
+        <div class="mb-3">
+          <%= f.submit "更新する", class: 'btn btn-primary' %>
+          <%= link_to "削除する", subscription_path(@subsc), method: :delete, class: 'btn btn-danger' %>
+        </div>
+      <% end %>
     </div>
-    <div class="mb-3">
-      <%= f.label :金額 %>
-      <%= f.text_field :price, class: 'form-control' %>
-    </div>
-    <div class="mb-3">
-      <%= f.label :契約日 %>
-      <%= f.date_field :contract_day, class: 'form-control' %>
-    </div>
-    <div class="mb-3">
-      <%= f.label :更新周期 %>
-      <%= f.select :update_cycle, *[1..12], class: 'form-control' %>
-    </div>
-    <p>次回更新日： <%= l @subsc.next_update_day, format: :date %></p>
-    <div class="mb-3">
-      <%= f.submit "更新する", class: 'btn btn-primary' %>
-      <%= link_to "削除する", subscription_path(@subsc), method: :delete, class: 'btn btn-danger' %>
-    </div>
-  <% end %>
+  </div>
 </div>

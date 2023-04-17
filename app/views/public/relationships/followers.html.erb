@@ -2,7 +2,7 @@
   <div class='row d-flex flex-column'>
     <h2>Follower Users</h2>
     <% if @users.exists? %>
-      <%= render '/publiv/users/index', users: @users %>
+      <%= render '/public/users/index', users: @users %>
     <% else %>
       <p>ユーザーはいません</p>
     <% end %>

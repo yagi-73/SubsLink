@@ -6,8 +6,8 @@ class Public::UsersController < ApplicationController
 
   def show
     @user = User.find(params[:id])
-    subscriptions = @user.subscriptions
-    make_calender_array(subscriptions)
+    @subscriptions = @user.subscriptions
+    make_calender_array(@subscriptions)
     @subsc = UserSubscription.new
   end
 
@@ -27,7 +27,7 @@ class Public::UsersController < ApplicationController
   end
 
   def make_calender_array(subscriptions)
-    @subscriptions = Array.new
+    @subsc_calender = Array.new
     subscriptions.each do |subsc|
       if subsc.class == AdminSubscription
         subsc = Subscription.new(
@@ -42,7 +42,7 @@ class Public::UsersController < ApplicationController
         name: subsc.name,
         contract_day: subsc.next_update_day
       )
-      @subscriptions.push(subsc, subsc_next)
+      @subsc_calender.push(subsc, subsc_next)
     end
   end
 end
