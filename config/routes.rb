@@ -24,6 +24,6 @@ Rails.application.routes.draw do
     end
     resources :subscriptions
     resources :companies, only: [:index, :show]
-    post 'subscriptions/subscribe/:id' => 'subscriptions#subscribe', as: 'subscribe'
+    post 'subscriptions/subscribe' => 'subscriptions#subscribe', as: 'subscribe'
   end
 end

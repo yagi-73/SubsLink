@@ -1,7 +1,7 @@
 <div class='container'>
   <div class='row'>
     <div class='col-md-3'>
-      <%= render 'form', subsc: @subsc_new %>
+      <%= render 'form', subsc: @user_subsc_new %>
     </div>
     <div class='col-md-8 offset-md-1'>
   		<h2 class="mb-3">サブスク詳細</h2>
@@ -23,7 +23,30 @@
               <% if current_user.subscribing(@subsc) %>
                 <%= link_to "解約する", subscription_path(@subsc), method: :delete, class: "btn btn-danger btn-lg" %>
               <% else %>
-                <%= link_to "加入する", subscribe_path(@subsc), method: :post, class: "btn btn-warning btn-lg" %>
+                <button type="button" class="btn btn-warning btn-lg" data-bs-toggle="modal" data-bs-target="#formModal">
+                  加入する
+                </button>
+                <div class="modal fade" id="formModal" tabindex="-1" aria-labelledby="formModalLabel" aria-hidden="true">
+                  <div class="modal-dialog">
+                    <div class="modal-content">
+                      <%= form_with model: @admin_subsc_new, url: subscribe_path, method: :post do |f| %>
+                        <div class="modal-header">
+                          <h5 class="modal-title" id="exampleModalLabel">加入日を選択してください</h5>
+                          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                        </div>
+                        <div class="modal-body">
+                          <%= f.label :契約日 %>
+                          <%= f.date_field :contract_day, class: 'form-control' %>
+                          <%= f.hidden_field :admin_subscription_id, :value => @subsc.id %>
+                        </div>
+                        <div class="modal-footer">
+                          <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">閉じる</button>
+                          <%= f.submit "加入", class: "btn btn-primary" %>
+                        </div>
+                      <% end %>
+                    </div>
+                  </div>
+                </div>
               <% end %>
             </div>
           </div>

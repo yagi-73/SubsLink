@@ -75,6 +75,7 @@ ActiveRecord::Schema.define(version: 2023_04_14_074238) do
   create_table "subscribes", force: :cascade do |t|
     t.integer "admin_subscription_id"
     t.integer "user_id"
+    t.date "contract_day", null: false
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
     t.index ["admin_subscription_id"], name: "index_subscribes_on_admin_subscription_id"

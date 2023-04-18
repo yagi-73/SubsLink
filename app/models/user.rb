@@ -20,8 +20,8 @@ class User < ApplicationRecord
     self.user_subscriptions + self.admin_subscriptions
   end
 
-  def subscribe(subsc_id)
-    subscribes.create(admin_subscription_id: subsc_id)
+  def subscribe(params)
+    subscribes.create!(params)
   end
 
   def unsubscribe(subsc)
@@ -47,4 +47,8 @@ class User < ApplicationRecord
   def following?(user)
     followings.include?(user)
   end
+
+  # def monthly_amount(month)
+  #   self.user_subscriptions.sum(:price) + self.admin_subscriptions.sum(:price)
+  # end
 end

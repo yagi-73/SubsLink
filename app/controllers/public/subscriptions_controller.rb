@@ -2,13 +2,13 @@ class Public::SubscriptionsController < ApplicationController
   before_action :check_subscription, only: [:edit, :update]
 
   def create
-    @subsc = current_user.user_subscriptions.new(subsc_params)
+    @subsc = current_user.user_subscriptions.new(user_subsc_params)
     @subsc.save
     redirect_to user_path(current_user)
   end
 
   def subscribe
-    current_user.subscribe(params[:id])
+    current_user.subscribe(admin_subsc_params)
     redirect_to user_path(current_user)
   end
 
@@ -20,7 +20,8 @@ class Public::SubscriptionsController < ApplicationController
   def show
     @subsc = Subscription.find(params[:id])
     @subscriptions = AdminSubscription.same_group(@subsc)
-    @subsc_new = UserSubscription.new
+    @user_subsc_new = UserSubscription.new
+    @admin_subsc_new = AdminSubscription.new
   end
 
   def edit
@@ -29,7 +30,7 @@ class Public::SubscriptionsController < ApplicationController
 
   def update
     @subsc = UserSubscription.find(params[:id])
-    @subsc.update(subsc_params)
+    @subsc.update(user_subsc_params)
     redirect_to user_path(current_user)
   end
 
@@ -40,8 +41,12 @@ class Public::SubscriptionsController < ApplicationController
   end
 
   private
-  def subsc_params
+  def user_subsc_params
     params.require(:user_subscription).permit(:name, :price, :contract_day, :update_cycle)
+  end
+
+  def admin_subsc_params
+    params.require(:admin_subscription).permit(:admin_subscription_id, :contract_day)
   end
 
   def check_subscription

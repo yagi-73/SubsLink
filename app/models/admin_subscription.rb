@@ -8,6 +8,6 @@ class AdminSubscription < Subscription
   scope :same_group, -> (subsc){ where(group_id: subsc.group_id).where.not(id: subsc.id) }
 
   def subscribe_day(user)
-    subscribes.find_by(user_id: user.id).created_at
+    subscribes.find_by(user_id: user.id).contract_day
   end
 end
