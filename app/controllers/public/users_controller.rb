@@ -34,34 +34,27 @@ class Public::UsersController < ApplicationController
     end
   end
 
+  def diff_month(date1, date2)
+    ((date2.year * 12 + date2.month) - (date1.year * 12 + date1.month)).abs
+  end
+
   def make_calender_array(date)
     subsc_calender = Array.new
     @subscriptions.each do |subsc|
-      if subsc.class == AdminSubscription
-        contract_day = @user.subscribing(subsc).contract_day
-      else
-        contract_day = subsc.contract_day
-      end
 
-      if contract_day >= date
+      if subsc.class == AdminSubscription
+        subsc = Subscription.new(
+          id: subsc.id,
+          name: subsc.name,
+          price: subsc.price,
+          contract_day: subsc.subscribe_day(@user),
+          update_cycle: subsc.update_cycle
+        )
+      end
+      if subsc.contract_day.strftime('%Y-%m') <= date.strftime('%Y-%m')
+        subsc.contract_day = subsc.contract_day.months_since(diff_month(date, subsc.contract_day))
         subsc_calender << subsc
       end
-      # if subsc.class == AdminSubscription
-      #   subsc = Subscription.new(
-      #     id: subsc.id,
-      #     name: subsc.name,
-      #     price: subsc.price,
-      #     contract_day: subsc.subscribe_day(current_user),
-      #     update_cycle: subsc.update_cycle
-      #   )
-      # end
-      # subsc_next = Subscription.new(
-      #   id: subsc.id,
-      #   name: subsc.name,
-      #   price: subsc.price,
-      #   contract_day: subsc.next_update_day
-      # )
-      # @subsc_calender.push(subsc, subsc_next)
     end
     return subsc_calender
   end
