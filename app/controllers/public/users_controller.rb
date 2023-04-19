@@ -7,7 +7,7 @@ class Public::UsersController < ApplicationController
   def show
     @user = User.find(params[:id])
     @subscriptions = @user.subscriptions
-    @subsc_calender = make_calender_array(@subscriptions, get_date)
+    @subsc_calender = make_calender_array(get_date)
     @subsc = UserSubscription.new
   end
 
@@ -26,7 +26,7 @@ class Public::UsersController < ApplicationController
     params.require(:user).permit(:name)
   end
 
-  def get_month
+  def get_date
     if params[:start_date].present?
       Date.parse(params[:start_date])
     else
@@ -34,10 +34,16 @@ class Public::UsersController < ApplicationController
     end
   end
 
-  def make_calender_array(subscriptions, date)
+  def make_calender_array(date)
     subsc_calender = Array.new
-    subscriptions.each do |subsc|
-      if subsc.contract_day >= date
+    @subscriptions.each do |subsc|
+      if subsc.class == AdminSubscription
+        contract_day = @user.subscribing(subsc).contract_day
+      else
+        contract_day = subsc.contract_day
+      end
+
+      if contract_day >= date
         subsc_calender << subsc
       end
       # if subsc.class == AdminSubscription
