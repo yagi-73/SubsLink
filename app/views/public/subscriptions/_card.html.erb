@@ -1,0 +1,8 @@
+<%= image_tag subsc.get_image(120,120) %>
+<div>
+  <p><%= subsc.name %></p>
+  <p>￥<%= subsc.price.to_s(:delimited) %>/<%= subsc.update_cycle %>ヵ月</p>
+  <% if subsc.update_cycle != 1 %>
+    <p>月換算 ￥ <%= (subsc.price / subsc.update_cycle).to_s(:delimited) %>/月</p>
+  <% end %>
+</div>

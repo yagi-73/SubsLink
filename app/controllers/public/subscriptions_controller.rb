@@ -37,7 +37,7 @@ class Public::SubscriptionsController < ApplicationController
   def destroy
     subsc = Subscription.find(params[:id])
     current_user.unsubscribe(subsc)
-    redirect_to subscriptions_path
+    redirect_to user_path(current_user)
   end
 
   private

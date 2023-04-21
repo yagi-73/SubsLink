@@ -1,15 +1,21 @@
 <h2>サブスク一覧</h2>
 <div class="d-flex flex-wrap">
   <% subscriptions.each do |subsc| %>
-    <%= link_to subscription_path(subsc), class: "d-flex w-50 text-reset text-decoration-none" do %>
-      <%= image_tag subsc.get_image(120,120) %>
-      <div>
-        <p><%= subsc.name %></p>
-        <p>￥<%= subsc.price.to_s(:delimited) %>/<%= subsc.update_cycle %>ヵ月</p>
-        <% if subsc.update_cycle != 1 %>
-          <p>月換算 ￥ <%= (subsc.price / subsc.update_cycle).to_s(:delimited) %>/月</p>
-        <% end %>
+    <% if subsc.class == UserSubscription %>
+      <button type="button" class= "d-flex w-50 p-2" data-bs-toggle="modal" data-bs-target="#formModal<%= subsc.id %>">
+        <%= render 'public/subscriptions/card', subsc: subsc %>
+      </button>
+      <div class="modal fade" id="formModal<%= subsc.id %>" tabindex="-1" aria-labelledby="formModalLabel" aria-hidden="true">
+        <div class="modal-dialog">
+          <div class="modal-content p-3">
+            <%= render 'public/subscriptions/edit_form', subsc: subsc %>
+          </div>
+        </div>
       </div>
-    <% end %>
+    <% else %>
+      <%= link_to subscription_path(subsc), class: "d-flex w-50 p-2 text-reset text-decoration-none" do %>
+        <%= render 'public/subscriptions/card', subsc: subsc %>
+      <% end %>
+    <% end%>
   <% end %>
 </div>

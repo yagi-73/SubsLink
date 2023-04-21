@@ -8,7 +8,6 @@ class Public::UsersController < ApplicationController
     @user = User.find(params[:id])
     @subscriptions = @user.subscriptions
     @subsc_calender = make_calender_array(get_date)
-    # @subsc_calender = []
     @subsc = UserSubscription.new
   end
 
@@ -47,9 +46,9 @@ class Public::UsersController < ApplicationController
         subsc.contract_day = subsc.subscribe_day(@user)
       end
       if subsc.contract_day.strftime('%Y-%m') <= date.strftime('%Y-%m')
-        subsc.contract_day = subsc.contract_day.months_since(diff_month(date, subsc.contract_day))
+        # subsc.contract_day = subsc.contract_day.months_since(diff_month(date, subsc.contract_day))
         # subsc = Subscription.new(subsc.attributes)
-        subsc = Subscription.new(
+        subsc = subsc.class.new(
           id: subsc.id,
           name: subsc.name,
           price: subsc.price,
