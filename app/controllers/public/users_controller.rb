@@ -46,16 +46,7 @@ class Public::UsersController < ApplicationController
         subsc.contract_day = subsc.subscribe_day(@user)
       end
       if subsc.contract_day.strftime('%Y-%m') <= date.strftime('%Y-%m')
-        # subsc.contract_day = subsc.contract_day.months_since(diff_month(date, subsc.contract_day))
-        # subsc = Subscription.new(subsc.attributes)
-        subsc = subsc.class.new(
-          id: subsc.id,
-          name: subsc.name,
-          price: subsc.price,
-          contract_day: subsc.contract_day.months_since(diff_month(date, subsc.contract_day)),
-          update_cycle: subsc.update_cycle
-        )
-        # subsc.contract_day = subsc.contract_day.months_since(diff_month(date, subsc.contract_day))
+        subsc.calender_day = subsc.contract_day.months_since(diff_month(date, subsc.contract_day))
         subsc_calender << subsc
       end
     end

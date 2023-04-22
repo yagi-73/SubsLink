@@ -1,21 +1,23 @@
 <h2>サブスク一覧</h2>
-<div class="d-flex flex-wrap">
+<div class="row ">
   <% subscriptions.each do |subsc| %>
-    <% if subsc.class == UserSubscription %>
-      <button type="button" class= "d-flex w-50 p-2" data-bs-toggle="modal" data-bs-target="#formModal<%= subsc.id %>">
-        <%= render 'public/subscriptions/card', subsc: subsc %>
-      </button>
-      <div class="modal fade" id="formModal<%= subsc.id %>" tabindex="-1" aria-labelledby="formModalLabel" aria-hidden="true">
-        <div class="modal-dialog">
-          <div class="modal-content p-3">
-            <%= render 'public/subscriptions/edit_form', subsc: subsc %>
+    <div class="col-3 mb-3">
+      <% if subsc.class == UserSubscription %>
+        <button class="h-100" type="button" data-bs-toggle="modal" data-bs-target="#formModal-<%= subsc.id %>">
+          <%= render 'public/subscriptions/card', subsc: subsc %>
+        </button>
+        <div class="modal fade" id="formModal-<%= subsc.id %>" tabindex="-1" aria-labelledby="formModalLabel" aria-hidden="true">
+          <div class="modal-dialog">
+            <div class="modal-content p-3">
+              <%= render 'public/subscriptions/edit_form', subsc: subsc %>
+            </div>
           </div>
         </div>
-      </div>
-    <% else %>
-      <%= link_to subscription_path(subsc), class: "d-flex w-50 p-2 text-reset text-decoration-none" do %>
-        <%= render 'public/subscriptions/card', subsc: subsc %>
-      <% end %>
-    <% end%>
+      <% else %>
+        <%= link_to subscription_path(subsc), class: "text-reset text-decoration-none" do %>
+          <%= render 'public/subscriptions/card', subsc: subsc %>
+        <% end %>
+      <% end%>
+    </div>
   <% end %>
 </div>
