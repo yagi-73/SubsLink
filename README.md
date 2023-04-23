@@ -1,24 +1,11 @@
-# README
+# SubsLink
 
-This README would normally document whatever steps are necessary to get the
-application up and running.
+> 自分が登録しているサブスク、きちんと把握できていますか？<br>
+解約するつもりだったのに、気づいたら更新日を過ぎていた経験はありませんか？<br>
 
-Things you may want to cover:
+> SubsLinkは自分が登録したサブスクをカレンダーで管理することができるサービスです。<br>
+また、他の人がどんなサブスクを利用しているのか確認し、世の中にある便利なサブスクを発見することができます。<br>
+サブスクとSNSをリンクしたSubsLinkで、素敵なサブスクライフをお過ごしください！
 
-* Ruby version
-
-* System dependencies
-
-* Configuration
-
-* Database creation
-
-* Database initialization
-
-* How to run the test suite
-
-* Services (job queues, cache servers, search engines, etc.)
-
-* Deployment instructions
-
-* ...
+Ruby 3.1.2<br>
+Rails 6.1.4
