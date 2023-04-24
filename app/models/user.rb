@@ -47,8 +47,4 @@ class User < ApplicationRecord
   def following?(user)
     followings.include?(user)
   end
-
-  # def monthly_amount(month)
-  #   self.user_subscriptions.sum(:price) + self.admin_subscriptions.sum(:price)
-  # end
 end

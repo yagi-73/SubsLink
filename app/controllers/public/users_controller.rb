@@ -45,11 +45,10 @@ class Public::UsersController < ApplicationController
       if subsc.class == AdminSubscription
         subsc.contract_day = subsc.subscribe_day(@user)
       end
-      if subsc.contract_day.strftime('%Y-%m') <= date.strftime('%Y-%m')
+      if subsc.contract_day.strftime('%Y-%m') <= date.strftime('%Y-%m') && subsc.update_this_month?(date)
         subsc.calender_day = subsc.contract_day.months_since(diff_month(date, subsc.contract_day))
         subsc_calender << subsc
       end
     end
-    return subsc_calender
   end
 end
