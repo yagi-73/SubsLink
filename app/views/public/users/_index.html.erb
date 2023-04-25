@@ -1,21 +1,21 @@
-<table class='table'>
-  <thead>
-    <tr>
-      <th>image</th>
-      <th>name</th>
-      <th colspan="4"></th>
-    </tr>
-  </thead>
+<table class='table table-borderless table-hover'>
   <tbody>
     <% users.each do |user| %>
-      <tr>
-        <td><%= image_tag user.get_image(80,80) %></td>
+      <tr class="user_tr" data-href="/users/<%= user.id%>">
+        <td><%= image_tag user.get_image(60,60), class: "rounded-circle" %></td>
         <td><%= user.name %></td>
         <td>フォロー数：<%= user.followings.count %></td>
         <td>フォロワー：<%= user.followers.count %></td>
         <td><%= render "public/relationships/btn", user: user %></td>
-        <td><%= link_to 'Show', user, class: "user_#{user.id}" %></td>
       </tr>
     <% end %>
   </tbody>
 </table>
+
+<script>
+  jQuery(document).on("turbolinks:load", function() {
+    $(".user_tr").on('click', function() {
+        window.location = $(this).data("href");
+    });
+  });
+</script>
