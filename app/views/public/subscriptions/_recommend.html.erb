@@ -1,0 +1,15 @@
+<div class="card">
+  <%= image_tag subsc.get_image(100,100) %>
+  <div class="card-body text-start">
+    <h5 class="card-title"><%= subsc.name %></h5>
+    <ul class="list-unstyled">
+      <li>￥<%= subsc.price.to_s(:delimited) %>/<%= subsc.update_cycle %>ヵ月</li>
+      <% if subsc.update_cycle != 1 %>
+        <li>月換算 ￥ <%= (subsc.price / subsc.update_cycle).to_s(:delimited) %>/月</li>
+      <% end %>
+      <% if subsc.class == UserSubscription %>
+        <li>次回更新日: <%= l subsc.next_update_day, format: :date %></li>
+      <% end %>
+    </ul>
+  </div>
+</div>

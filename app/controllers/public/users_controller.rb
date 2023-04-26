@@ -9,8 +9,7 @@ class Public::UsersController < ApplicationController
     @subscriptions = @user.subscriptions
     @subsc_calender = make_calender_array(get_date)
     @subsc = UserSubscription.new
-    @recommend = @user.not_subscribing.order("RAND()").limit(1)
-    byebug
+    @recommend = @user.not_subscribing.order("RANDOM()").first
   end
 
   def edit
