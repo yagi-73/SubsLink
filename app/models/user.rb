@@ -36,9 +36,9 @@ class User < ApplicationRecord
     subscribes.find_by(admin_subscription_id: subsc.id)
   end
 
-  # def not_subscribing
-  #   AdminSubscription.where.not(self.admin_subscriptions)
-  # end
+  def not_subscribing
+    AdminSubscription.where.not(id: self.admin_subscriptions.pluck(:id))
+  end
 
   def follow(user)
     relationships.create(followed_id: user.id)
