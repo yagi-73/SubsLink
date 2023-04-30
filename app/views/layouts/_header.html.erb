@@ -1,57 +1,67 @@
-<header>
-  <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
-    <div class="container">
-      <a class="navbar-brand" href="/"><span>SubsLink</span></a>
-      <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNavDropdown" aria-controls="navbarNavDropdown" aria-expanded="false" aria-label="Toggle navigation">
+<header class="d-flex flex-column flex-shrink-0 p-3 text-bg-dark" style="width: 280px;">
+  <a class="navbar-brand" href="/"><span class="fs-4">SubsLink</span></a>
+  <%# <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNavDropdown" aria-controls="navbarNavDropdown" aria-expanded="false" aria-label="Toggle navigation">
         <span class="navbar-toggler-icon"></span>
       </button>
-      <div class="collapse navbar-collapse" id="navbarNavDropdown">
-        <ul class="navbar-nav ms-auto">
-        <% if user_signed_in? %>
-          <li>
-            <%= link_to user_path(current_user),class: 'nav-link text-light' do %>
-              <i class="fas fa-home"></i> Home
-            <% end %>
-          </li>
-          <li>
-            <%= link_to subscriptions_path,class: 'nav-link text-light' do %>
-              <i class="fas fa-crop-alt"></i> Subscriptions
-            <% end %>
-          </li>
-          <li>
-            <%= link_to users_path,class: 'nav-link text-light' do %>
-              <i class="fas fa-users"></i> Users
-            <% end %>
-          </li>
-          <li>
-            <%= link_to destroy_user_session_path, method: :delete,class: 'nav-link text-light' do %>
-              <i class="fas fa-sign-out-alt"></i> Logout
-            <% end %>
-          </li>
-        <% else %>
-          <li>
-            <%= link_to root_path,class: 'nav-link text-light' do %>
-              <i class="fas fa-home"></i> Home
-            <% end %>
-          </li>
-          <li>
-            <%= link_to about_path,class: 'nav-link text-light' do %>
-              <i class="fas fa-link"></i> About
-            <% end %>
-          </li>
-          <li>
-            <%= link_to new_user_registration_path,class: 'nav-link text-light' do %>
-              <i class="fas fa-user-plus"></i> Sign up
-            <% end %>
-          </li>
-          <li>
-            <%= link_to new_user_session_path ,class: 'nav-link text-light' do %>
-              <i class="fas fa-sign-in-alt"></i> Login
-            <% end %>
-          </li>
+      <div class="collapse navbar-collapse" id="navbarNavDropdown"> %>
+  <hr>
+  <ul class="nav nav-pills flex-column mb-auto">
+    <% if user_signed_in? %>
+      <li>
+        <%= link_to user_path(current_user),class: 'nav-link text-light' do %>
+          <i class="fas fa-home"></i> Home
         <% end %>
-        </ul>
-      </div>
-    </div>
-  </nav>
+      </li>
+      <li>
+        <%= link_to subscriptions_path,class: 'nav-link text-light' do %>
+          <i class="fas fa-crop-alt"></i> Subscriptions
+        <% end %>
+      </li>
+      <li>
+        <%= link_to users_path,class: 'nav-link text-light' do %>
+          <i class="fas fa-users"></i> Users
+        <% end %>
+      </li>
+      <li>
+        <%= link_to destroy_user_session_path, method: :delete,class: 'nav-link text-light' do %>
+          <i class="fas fa-sign-out-alt"></i> Logout
+        <% end %>
+      </li>
+    <% else %>
+      <li>
+        <%= link_to root_path,class: 'nav-link text-light' do %>
+          <i class="fas fa-home"></i> Home
+        <% end %>
+      </li>
+      <li>
+        <%= link_to about_path,class: 'nav-link text-light' do %>
+          <i class="fas fa-link"></i> About
+        <% end %>
+      </li>
+      <li>
+        <%= link_to new_user_registration_path,class: 'nav-link text-light' do %>
+          <i class="fas fa-user-plus"></i> Sign up
+        <% end %>
+      </li>
+      <li>
+        <%= link_to new_user_session_path ,class: 'nav-link text-light' do %>
+          <i class="fas fa-sign-in-alt"></i> Login
+        <% end %>
+      </li>
+    <% end %>
+  </ul>
+  <hr>
+  <div class="dropdown">
+    <a href="#" class="d-flex align-items-center text-white text-decoration-none dropdown-toggle" data-bs-toggle="dropdown" aria-expanded="false">
+      <img src="https://github.com/mdo.png" alt="" width="32" height="32" class="rounded-circle me-2">
+      <strong>mdo</strong>
+    </a>
+    <ul class="dropdown-menu dropdown-menu-dark text-small shadow">
+      <li><a class="dropdown-item" href="#">新プロジェクト...</a></li>
+      <li><a class="dropdown-item" href="#">設定</a></li>
+      <li><a class="dropdown-item" href="#">プロフィール</a></li>
+      <li><hr class="dropdown-divider"></li>
+      <li><a class="dropdown-item" href="#">サインアウト</a></li>
+    </ul>
+  </div>
 </header>

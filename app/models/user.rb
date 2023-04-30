@@ -16,6 +16,8 @@ class User < ApplicationRecord
 
   has_one_attached :image
 
+  validates :name, length: { in: 2..10 }
+
   def subscriptions
     self.user_subscriptions + self.admin_subscriptions
   end

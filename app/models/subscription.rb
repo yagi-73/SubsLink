@@ -2,7 +2,9 @@ class Subscription < ApplicationRecord
   has_one_attached :image
   attr_accessor :calender_day
 
-  validates :name, presence: true
+  validates :name, length: { in: 2..30 }
+  validates :price, presence: true
+  validates :update_cycle, numericality: { in: 1..12 }
 
   def next_update_day
     contract_day.since(self.update_cycle.month)

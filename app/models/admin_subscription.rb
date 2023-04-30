@@ -4,6 +4,8 @@ class AdminSubscription < Subscription
   has_many :subscribes
   has_many :users, through: :subscribes
 
+  validates :description, length: { maximum: 400 }
+
   scope :no_overlap, -> { uniq{ |n| n.group_id } }
   scope :same_group, -> (subsc){ where(group_id: subsc.group_id).where.not(id: subsc.id) }
 
