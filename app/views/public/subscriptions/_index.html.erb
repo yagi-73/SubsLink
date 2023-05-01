@@ -3,16 +3,20 @@
   <% subscriptions.each do |subsc| %>
     <div class="col-3 mb-3">
       <% if subsc.class == UserSubscription %>
-        <button class="h-100" type="button" data-bs-toggle="modal" data-bs-target="#formModal-<%= subsc.id %>">
-          <%= render 'public/subscriptions/card', subsc: subsc %>
-        </button>
-        <div class="modal fade" id="formModal-<%= subsc.id %>" tabindex="-1" aria-labelledby="formModalLabel" aria-hidden="true">
+        <% if user == current_user %>
+          <button class="h-100" type="button" data-bs-toggle="modal" data-bs-target="#formModal-<%= subsc.id %>">
+            <%= render 'public/subscriptions/card', subsc: subsc %>
+          </button>
+          <div class="modal fade" id="formModal-<%= subsc.id %>" tabindex="-1" aria-labelledby="formModalLabel" aria-hidden="true">
           <div class="modal-dialog">
             <div class="modal-content p-3">
               <%= render 'public/subscriptions/edit_form', subsc: subsc %>
             </div>
           </div>
         </div>
+        <% else %>
+          <%= render 'public/subscriptions/card', subsc: subsc %>
+        <% end %>
       <% else %>
         <%= link_to subscription_path(subsc), class: "text-reset text-decoration-none" do %>
           <%= render 'public/subscriptions/card', subsc: subsc %>
