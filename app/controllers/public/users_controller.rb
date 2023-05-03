@@ -1,14 +1,12 @@
 class Public::UsersController < ApplicationController
   def index
     @users = User.all
-    @subsc = UserSubscription.new
   end
 
   def show
     @user = User.find(params[:id])
     @subscriptions = @user.subscriptions
     @subsc_calender = make_calender_array(get_date)
-    @subsc = UserSubscription.new
     @recommend = @user.not_subscribing.order("RANDOM()").first
   end
 

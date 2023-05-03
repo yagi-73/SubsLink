@@ -1,7 +1,6 @@
 class Public::CompaniesController < ApplicationController
   def index
     @companies = Company.all
-    @subsc = Subscription.new
   end
 
   def show

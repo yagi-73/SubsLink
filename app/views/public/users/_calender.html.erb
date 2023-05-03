@@ -14,7 +14,7 @@
           </div>
         </div>
       <% elsif subsc.class == UserSubscription %>
-        <p class= "btn btn-secondary"><%= subsc.name %></p>
+        <p class= "btn btn-secondary disabled"><%= subsc.name %></p>
       <% else %>
         <%= link_to subsc.name, subscription_path(subsc), class: "btn btn-success" %><br>
       <% end%>

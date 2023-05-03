@@ -14,13 +14,11 @@ class Public::SubscriptionsController < ApplicationController
 
   def index
     @subscriptions = AdminSubscription.no_overlap
-    @subsc = UserSubscription.new
   end
 
   def show
     @subsc = Subscription.find(params[:id])
     @subscriptions = AdminSubscription.same_group(@subsc)
-    @user_subsc_new = UserSubscription.new
     @admin_subsc_new = AdminSubscription.new
   end
 
