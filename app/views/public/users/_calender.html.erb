@@ -7,7 +7,7 @@
           <%= subsc.name %>
         </button>
         <div class="modal fade" id="formModal<%= subsc.id %>" tabindex="-1" aria-labelledby="formModalLabel" aria-hidden="true">
-          <div class="modal-dialog">
+          <div class="modal-dialog modal-dialog-centered">
             <div class="modal-content p-3">
               <%= render 'public/subscriptions/edit_form', subsc: subsc %>
             </div>

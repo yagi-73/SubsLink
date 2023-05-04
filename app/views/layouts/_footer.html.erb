@@ -1,5 +1,13 @@
-<footer>
-	<div class='d-flex justify-content-center'>
+<footer class="d-flex flex-column h-100">
+	<div class="input-group p-3">
+		<%= form_with url: subscriptions_search_path, method: :get do |f| %>
+			<%= f.text_field :keyword, id: "search", placeholder: "サブスク検索", class: "form-control" %>
+		<% end %>
+		<label for="search" class="btn btn-primary">
+			<i class="fas fa-search"></i>
+		</label>
+	</div>
+	<div class="mt-auto">
 		<p>CopyRight Sota Aoyagi</p>
 	</div>
 </footer>

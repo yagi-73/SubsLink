@@ -16,6 +16,11 @@ class Public::SubscriptionsController < ApplicationController
     @subscriptions = AdminSubscription.no_overlap
   end
 
+  def search
+    @subscriptions = AdminSubscription.search(params[:keyword])
+    render :index
+  end
+
   def show
     @subsc = Subscription.find(params[:id])
     @subscriptions = AdminSubscription.same_group(@subsc)

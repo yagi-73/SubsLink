@@ -22,8 +22,9 @@ Rails.application.routes.draw do
       get "followings" => "relationships#followings", as: "followings"
       get "followers" => "relationships#followers", as: "followers"
     end
+    get 'subscriptions/search' => 'subscriptions#search'
     resources :subscriptions
-    resources :companies, only: [:index, :show]
     post 'subscriptions/subscribe' => 'subscriptions#subscribe', as: 'subscribe'
+    resources :companies, only: [:index, :show]
   end
 end
