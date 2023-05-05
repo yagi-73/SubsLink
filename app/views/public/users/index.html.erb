@@ -1,2 +1,72 @@
-<h2>すべてのユーザー</h2>
+<h2>ユーザー</h2>
+<ul class="nav nav-tabs" id="myTab" role="tablist">
+  <li class="nav-item" role="presentation">
+    <button
+      class="nav-link active"
+      id="mutual-follows-tab"
+      data-bs-toggle="tab"
+      data-bs-target="#mutual-follows"
+      type="button"
+      role="tab"
+      aria-controls="mutual-follows"
+      aria-selected="true"
+    >
+      相互フォロー
+    </button>
+  </li>
+  <li class="nav-item" role="presentation">
+    <button
+      class="nav-link"
+      id="followings-tab"
+      data-bs-toggle="tab"
+      data-bs-target="#followings"
+      type="button"
+      role="tab"
+      aria-controls="followings"
+      aria-selected="false"
+    >
+      フォロー
+    </button>
+  </li>
+  <li class="nav-item" role="presentation">
+    <button
+      class="nav-link"
+      id="follower-tab"
+      data-bs-toggle="tab"
+      data-bs-target="#follower"
+      type="button"
+      role="tab"
+      aria-controls="follower"
+      aria-selected="false"
+    >
+      フォロワー
+    </button>
+  </li>
+</ul>
+<div class="tab-content" id="myTabContent">
+  <div
+    class="tab-pane fade show active"
+    id="mutual-follows"
+    role="tabpanel"
+    aria-labelledby="mutual-follows-tab"
+  >
+    相互フォロー
+  </div>
+  <div
+    class="tab-pane fade"
+    id="followings"
+    role="tabpanel"
+    aria-labelledby="followings-tab"
+  >
+    フォロー
+  </div>
+  <div
+    class="tab-pane fade"
+    id="follower"
+    role="tabpanel"
+    aria-labelledby="follower-tab"
+  >
+    フォロワー
+  </div>
+</div>
 <%= render 'index',users: @users %>

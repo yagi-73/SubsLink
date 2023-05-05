@@ -10,7 +10,7 @@
     </ul>
     <div class="tabbox-contents">
       <div class="tabbox box-show">
-        <h1><%= @user.name %>のカレンダー</h1>
+        <h1 class="mb-3"><%= @user.name %>のカレンダー</h1>
         <%= render 'calender', subscriptions: @subsc_calender, user: @user %>
       </div>
       <div class="tabbox">

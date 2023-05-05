@@ -53,4 +53,8 @@ class User < ApplicationRecord
   def following?(user)
     followings.include?(user)
   end
+
+  def mutually_followings
+    followings && followers
+  end
 end

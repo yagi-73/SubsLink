@@ -1,6 +1,6 @@
 class Public::UsersController < ApplicationController
   def index
-    @users = User.all
+    @mutually_following_users = current_user.mutually_followings
   end
 
   def show
