@@ -1,6 +1,6 @@
 class User < ApplicationRecord
-  # Include default devise modules. Others available are:
-  # :confirmable, :lockable, :timeoutable, :trackable and :omniauthable
+  before_create :generate_tag
+
   devise :database_authenticatable, :registerable,
          :recoverable, :rememberable, :validatable
 
@@ -55,6 +55,15 @@ class User < ApplicationRecord
   end
 
   def mutually_followings
-    followings && followers
+    followings & followers
+  end
+
+  private
+
+  def generate_tag
+    self.tag = loop do
+      tag = rand(1000..9999)
+      break tag unless self.class.exists?(tag: tag)
+    end
   end
 end

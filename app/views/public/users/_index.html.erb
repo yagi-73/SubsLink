@@ -4,8 +4,9 @@
       <tr class="user_tr" data-href="/users/<%= user.id%>">
         <td><%= image_tag user.get_image(60,60), class: "rounded-circle" %></td>
         <td><%= user.name %></td>
-        <td>フォロー数：<%= user.followings.count %></td>
-        <td>フォロワー：<%= user.followers.count %></td>
+        <td>フォロー数：<%= user.followings.size %></td>
+        <td>フォロワー：<%= user.followers.size %></td>
+        <td>加入サブスク数: <%= user.subscriptions.size %></td>
         <td><%= render "public/relationships/btn", user: user %></td>
       </tr>
     <% end %>

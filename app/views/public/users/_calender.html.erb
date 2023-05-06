@@ -1,7 +1,7 @@
 <%= month_calendar attribute: :calender_day, events: subscriptions do |date, subscriptions| %>
   <%= date.day %><br>
   <% subscriptions.each do |subsc| %>
-    <div class="subscription">
+    <div class="subscription mb-1">
       <% if user == current_user && subsc.class == UserSubscription %>
         <button type="button" class="btn btn-info w-100 mb-1" data-bs-toggle="modal" data-bs-target="#formModal<%= subsc.id %>">
           <%= subsc.name %>

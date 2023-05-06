@@ -18,15 +18,15 @@
           <% if current_user.subscribing(@subsc) %>
             <%= link_to "解約する", subscription_path(@subsc), method: :delete, class: "btn btn-danger btn-lg" %>
           <% else %>
-            <button type="button" class="btn btn-warning btn-lg" data-bs-toggle="modal" data-bs-target="#formModal">
+            <button type="button" class="btn btn-warning btn-lg" data-bs-toggle="modal" data-bs-target="#joinFormModal">
               加入する
             </button>
-            <div class="modal fade" id="formModal" tabindex="-1" aria-labelledby="formModalLabel" aria-hidden="true">
+            <div class="modal fade" id="joinFormModal" tabindex="-1" aria-labelledby="joinFormModalLabel" aria-hidden="true">
               <div class="modal-dialog">
                 <div class="modal-content">
                   <%= form_with model: @admin_subsc_new, url: subscribe_path, method: :post do |f| %>
                     <div class="modal-header">
-                      <h5 class="modal-title" id="exampleModalLabel">加入日を選択してください</h5>
+                      <h5 class="modal-title">加入日を選択してください</h5>
                       <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                     </div>
                     <div class="modal-body">
