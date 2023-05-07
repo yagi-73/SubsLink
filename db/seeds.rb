@@ -1,10 +1,3 @@
-# This file should contain all the record creation needed to seed the database with its default values.
-# The data can then be loaded with the bin/rails db:seed command (or created alongside the database with db:setup).
-#
-# Examples:
-#
-#   movies = Movie.create([{ name: 'Star Wars' }, { name: 'Lord of the Rings' }])
-#   Character.create(name: 'Luke', movie: movies.first)
 Admin.create!(
   email: "a@a",
   password: "aaaaaa"
@@ -24,10 +17,8 @@ subscriptions = [
   [5, "Eco Essentials Plus -3ヵ月パック-", %Q{Eco Essentialsをより豪華にご提供します!\n\n Eco Essentials Plusでは、オーガニック素材を使用した高級スキンケア製品や、持続可能な材料を使ったファッションアイテムなど、より高級でエコロジカルな商品を提供します。\n\n 定期的に特別なプロモーションや限定商品を提供することで、皆様に驚きと喜びを与えます。\n\n Eco Essentials Plusは、環境に配慮し、高品質でおしゃれな商品を求めるユーザーに向けた究極のサブスクリプションサービスです。}, 11000, 3, 5]
 ]
 
-5.times do |n|
-  company = Company.create!(
-    name: companies[n]
-  )
+companies.each do |company|
+  company = Company.create!(name: company)
   company.image.attach(io: File.open("./app/assets/images/logo_#{company.name}.png"), filename: "#{company.name}.png")
 end
 
@@ -35,14 +26,38 @@ end
   Group.create!
 end
 
-10.times do |n|
+subscriptions.each do |subscription|
   subsc = AdminSubscription.create!(
-    company_id: subscriptions[n][0],
-    name: subscriptions[n][1],
-    description: subscriptions[n][2],
-    price: subscriptions[n][3],
-    update_cycle: subscriptions[n][4],
-    group_id: subscriptions[n][5]
+    company_id: subscription[0],
+    name: subscription[1],
+    description: subscription[2],
+    price: subscription[3],
+    update_cycle: subscription[4],
+    group_id: subscription[5]
   )
   subsc.image.attach(io: File.open("./app/assets/images/logo_#{subsc.name}.png"), filename: "#{subsc.name}.png")
+end
+
+users = [{ email: "yagi@test", name: "やぎ" }, { email: "spring@test", name: "はる" }, { email: "summer@test", name: "なつ" }, { email: "autumn@test", name: "あき" }, { email: "winter@test", name: "ふゆ" }]
+user_images = ["building.jpg", "spring.jpg", "summer.jpg", "autumn.jpg", "winter.jpg"]
+
+users.size.times do |n|
+  user = User.new(users[n])
+  user.password = 123456
+  user.save
+  user.image.attach(io: File.open("./app/assets/images/#{user_images[n]}"), filename: user_images[n])
+end
+
+relationships = [[1, 2], [1, 3], [1, 4], [2, 1], [2, 3], [2, 5], [3, 2], [3, 4], [3, 5], [4, 2], [5, 1], [5, 2], [5, 3], [5, 4]]
+relationships.each do |relationship|
+  Relationship.create!(follower_id: relationship[0], followed_id: relationship[1])
+end
+
+subscribes = [[1, 1, "2023-04-01"], [1, 2, "2023-03-21"], [1, 9, "2023-02-16"], [2, 1, "2022-09-30"], [2, 4, "2023-05-04"], [2, 6, "2023-03-27"], [3, 1, "2023-01-11"], [3, 4, "2022-12-06"], [3, 7, "2023-02-22"], [4, 6, "2023-05-03"], [5, 10, "2023-04-25"]]
+subscribes.each do |subscribe|
+  Subscribe.create!(
+    user_id: subscribe[0],
+    admin_subscription_id: subscribe[1],
+    contract_day: subscribe[2],
+  )
 end

@@ -1,8 +1,9 @@
 class Public::UsersController < ApplicationController
   def index
-    @mutually_followings = current_user.mutually_followings
-    @followings = current_user.followings
-    @followers = current_user.followers
+    user = User.find(params[:user_id])
+    @mutually_followings = user.mutually_followings
+    @followings = user.followings
+    @followers = user.followers
   end
 
   def show
@@ -41,7 +42,7 @@ class Public::UsersController < ApplicationController
 
   def make_calender_array(date)
     subsc_calender = Array.new
-    @user.subscriptions.each do |subsc|
+    @subscriptions.each do |subsc|
 
       if subsc.class == AdminSubscription
         subsc.contract_day = subsc.subscribe_day(@user)

@@ -10,7 +10,21 @@
     </ul>
     <div class="tabbox-contents">
       <div class="tabbox box-show">
-        <h1 class="mb-3"><%= @user.name %>のカレンダー</h1>
+        <div class="profile d-flex mb-3">
+          <%= image_tag @user.get_image(100, 100), class: "rounded-circle me-3" %>
+          <div class="my-auto">
+            <div class="d-flex align-items-end">
+              <h3><%= @user.name%></h3>
+              <p class="ms-1 mb-2">#<%= @user.tag%></p>
+            </div>
+            <%= link_to user_relationships_path(@user), class: "text-reset text-decoration-none" do %>
+              <strong><%= @user.followings.size %></strong>フォロー中
+            <% end %>
+            <%= link_to user_relationships_path(@user), class: "text-reset text-decoration-none" do %>
+              <strong><%= @user.followers.size %></strong>フォロワー
+            <% end %>
+          </div>
+        </div>
         <%= render 'calender', subscriptions: @subsc_calender, user: @user %>
       </div>
       <div class="tabbox">

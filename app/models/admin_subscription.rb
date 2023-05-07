@@ -4,7 +4,7 @@ class AdminSubscription < Subscription
   has_many :subscribes
   has_many :users, through: :subscribes
 
-  validates :description, length: { maximum: 400 }
+  validates :description, length: { maximum: 500 }
 
   scope :top_subscribes,  -> { all.includes(:subscribes).sort_by {|subsc| -subsc.subscribes.size }.take(3) }
   scope :no_overlap,      -> { uniq{ |n| n.group_id } }

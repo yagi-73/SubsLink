@@ -19,7 +19,7 @@ class User < ApplicationRecord
   validates :name, length: { in: 2..10 }
 
   def subscriptions
-    self.user_subscriptions + self.admin_subscriptions
+    self.user_subscriptions + self.admin_subscriptions.includes(:subscribes)
   end
 
   def subscribe(params)
