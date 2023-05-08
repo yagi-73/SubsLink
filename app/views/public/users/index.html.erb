@@ -2,7 +2,7 @@
 <%= form_with url: user_search_path, method: :get do |f| %>
 <div class="input-group mb-3">
   <span class="input-group-text" id="basic-addon1">#</span>
-    <%= f.text_field :keyword, id: "search", placeholder: "ユーザー検索", class: "form-control", 'aria-describedby': :"basic-addon1" %>
+    <%= f.text_field :user_tag, id: "search", placeholder: "ユーザー検索: 4桁のタグを入力してください", class: "form-control", 'aria-describedby': :"basic-addon1" %>
 </div>
 <% end %>
 <ul class="nav nav-tabs nav-fill nav-justified" id="myTab" role="tablist">

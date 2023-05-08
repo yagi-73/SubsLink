@@ -24,6 +24,15 @@ class Public::UsersController < ApplicationController
   end
 
   def search
+    @user = User.find_by(tag: params[:user_tag])
+    if @user
+      @subscriptions = @user.subscriptions
+      @subsc_calender = make_calender_array(get_date)
+      @recommend = @user.not_subscribing.order("RANDOM()").first
+      render :show
+    else
+      redirect_to user_relationships_path(current_user)
+    end
   end
 
   private

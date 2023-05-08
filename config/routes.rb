@@ -19,8 +19,8 @@ Rails.application.routes.draw do
     get 'about' => 'homes#about', as: 'about'
     resources :users, only: [:show, :edit, :update] do
       resource :relationships, only: [:create, :destroy]
-      get 'search' => 'users#search'
       get 'relationships' => 'users#index'
+      get 'search' => 'users#search'
     end
     get 'subscriptions/search' => 'subscriptions#search'
     resources :subscriptions
