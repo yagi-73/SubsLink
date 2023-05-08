@@ -1,8 +1,10 @@
 <h2>ユーザー</h2>
+<%= form_with url: user_search_path, method: :get do |f| %>
 <div class="input-group mb-3">
   <span class="input-group-text" id="basic-addon1">#</span>
-  <input type="text" class="form-control" placeholder="Username" aria-label="Username" aria-describedby="basic-addon1">
+    <%= f.text_field :keyword, id: "search", placeholder: "ユーザー検索", class: "form-control", 'aria-describedby': :"basic-addon1" %>
 </div>
+<% end %>
 <ul class="nav nav-tabs nav-fill nav-justified" id="myTab" role="tablist">
   <li class="nav-item" role="presentation">
     <button

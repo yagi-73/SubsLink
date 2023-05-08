@@ -23,6 +23,9 @@ class Public::UsersController < ApplicationController
     redirect_to user_path(@user)
   end
 
+  def search
+  end
+
   private
   def user_params
     params.require(:user).permit(:name)
