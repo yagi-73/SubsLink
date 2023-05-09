@@ -12,9 +12,9 @@ class ApplicationController < ActionController::Base
     def set_subsc_form
       @subsc_new = UserSubscription.new
     end
-    
+
     def get_top_subscriptions
-      @top_subscriptions = AdminSubscription.top_subscribes
+      @top_subscriptions = AdminSubscription.includes(:subscribes, {image_attachment: :blob}).top_subscribes
     end
 
     def after_sign_in_path_for(resource)
@@ -25,7 +25,7 @@ class ApplicationController < ActionController::Base
         user_path(resource)
       end
     end
-   
+
     def after_sign_out_path_for(resource)
       case resource
       when :admin

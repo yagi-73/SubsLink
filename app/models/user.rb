@@ -19,7 +19,7 @@ class User < ApplicationRecord
   validates :name, length: { in: 2..10 }
 
   def subscriptions
-    self.user_subscriptions + self.admin_subscriptions.includes(:subscribes)
+    self.user_subscriptions.with_attached_image + self.admin_subscriptions.includes(:subscribes, {image_attachment: :blob})
   end
 
   def subscribe(params)
@@ -55,7 +55,7 @@ class User < ApplicationRecord
   end
 
   def mutually_followings
-    followings & followers
+    followings.with_attached_image & followers.with_attached_image
   end
 
   private

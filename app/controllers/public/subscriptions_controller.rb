@@ -13,11 +13,11 @@ class Public::SubscriptionsController < ApplicationController
   end
 
   def index
-    @subscriptions = AdminSubscription.no_overlap
+    @subscriptions = AdminSubscription.with_attached_image.no_overlap
   end
 
   def search
-    @subscriptions = AdminSubscription.search(params[:keyword])
+    @subscriptions = AdminSubscription.with_attached_image.search(params[:keyword])
     render :index
   end
 

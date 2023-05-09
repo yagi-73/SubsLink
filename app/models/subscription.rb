@@ -11,7 +11,7 @@ class Subscription < ApplicationRecord
   end
 
   def update_this_month?(date)
-    next_update_month = self.contract_day.month
+    next_update_month = self.contract_day.month - 12
     while next_update_month < date.month
       next_update_month += self.update_cycle
     end
