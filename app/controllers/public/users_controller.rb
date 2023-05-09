@@ -1,8 +1,8 @@
 class Public::UsersController < ApplicationController
   def index
-    user = User.find(params[:user_id])
-    @followings = user.followings.with_attached_image
-    @followers = user.followers.with_attached_image
+    @user = User.find(params[:user_id])
+    @followings = @user.followings.with_attached_image
+    @followers = @user.followers.with_attached_image
     @mutually_followings = @followings & @followers
   end
 

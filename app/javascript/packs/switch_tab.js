@@ -1,4 +1,10 @@
 $(document).on('turbolinks:load', function() {
+  var hash = window.location.hash;
+  if (hash === "#followings") {
+    $('#followings-tab').trigger('click');
+  } else if (hash === "#followers") {
+    $('#follower-tab').trigger('click');
+  }
   $(function() {
     $('.tab').click(function(){
       $('.tab-active').removeClass('tab-active');

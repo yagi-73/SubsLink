@@ -4,6 +4,7 @@
 
 .tab {
   width: 100%;
+  height: 45px;
   padding: 10px;
   cursor: pointer;
   border-left: solid 1px #CCC;
@@ -21,7 +22,7 @@
 
 .tabbox {
   display: none;
-  padding: 15px;
+  padding: 5px 15px 0px;
 }
 
 .box-show {

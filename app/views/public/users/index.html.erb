@@ -1,12 +1,15 @@
-<h2>ユーザー</h2>
+<div class="d-flex align-items-end">
+  <h3><%= @user.name%></h3>
+  <p class="ms-1 mb-2">#<%= @user.tag%></p>
+</div>
 <%= form_with url: user_search_path, method: :get do |f| %>
 <div class="input-group mb-3">
   <span class="input-group-text" id="basic-addon1">#</span>
     <%= f.text_field :user_tag, id: "search", placeholder: "ユーザー検索: 4桁のタグを入力してください", class: "form-control", 'aria-describedby': :"basic-addon1" %>
 </div>
 <% end %>
-<ul class="nav nav-tabs nav-fill nav-justified" id="myTab" role="tablist">
-  <li class="nav-item" role="presentation">
+<ul class="nav nav-tabs nav-fill nav-justified" id="followTab" role="tablist">
+  <li class="nav-item" role="mutual-follows">
     <button
       class="nav-link active"
       id="mutual-follows-tab"
@@ -20,7 +23,7 @@
       相互フォロー
     </button>
   </li>
-  <li class="nav-item" role="presentation">
+  <li class="nav-item" role="followings">
     <button
       class="nav-link"
       id="followings-tab"
@@ -34,7 +37,7 @@
       フォロー
     </button>
   </li>
-  <li class="nav-item" role="presentation">
+  <li class="nav-item" role="follower">
     <button
       class="nav-link"
       id="follower-tab"
@@ -49,7 +52,7 @@
     </button>
   </li>
 </ul>
-<div class="tab-content" id="myTabContent">
+<div class="tab-content" id="followTabContent">
   <div
     class="tab-pane fade show active"
     id="mutual-follows"
