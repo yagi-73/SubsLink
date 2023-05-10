@@ -10,8 +10,8 @@ Rails.application.routes.draw do
   }
 
   namespace :admin do
-    resources :companies, only: [:new, :create, :edit, :update, :destroy]
-    resources :subscriptions, only: [:new, :create, :edit, :update, :destroy]
+    resources :companies, only: [:new, :index, :create, :update, :destroy]
+    resources :subscriptions, only: [:new, :index, :create, :update, :destroy]
   end
 
   scope module: :public do

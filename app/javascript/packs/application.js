@@ -15,6 +15,7 @@ import "../stylesheets/application"
 import '@fortawesome/fontawesome-free/js/all'
 
 import "./switch_tab"
+import "./hover_link"
 
 Rails.start()
 Turbolinks.start()

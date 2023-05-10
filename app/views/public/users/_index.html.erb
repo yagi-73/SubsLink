@@ -5,7 +5,7 @@
 <% else %>
   <div class="d-flex flex-column">
     <% users.each do |user| %>
-      <div class="user btn d-flex align-items-center my-2">
+      <div class="user btn btn-hover d-flex align-items-center my-2" data-href="/users/<%= user.id%>">
         <%= link_to user_path(user) do %>
           <%= image_tag user.get_image(60, 60), class: "rounded-circle mx-2" %>
         <% end %>
@@ -27,7 +27,7 @@
 
 <script>
   $(document).on("turbolinks:load", function() {
-    $(".user_tr").on('click', function() {
+    $(".user").on('click', function() {
         window.location = $(this).data("href");
     });
     $(".user").hover(

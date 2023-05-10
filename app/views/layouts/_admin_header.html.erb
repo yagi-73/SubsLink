@@ -6,20 +6,15 @@
       <div class="collapse navbar-collapse" id="navbarNavDropdown"> %>
   <hr>
   <ul class="nav nav-pills flex-column mb-auto">
-    <% if user_signed_in? %>
+    <% if admin_signed_in? %>
       <li>
-        <%= link_to user_path(current_user),class: 'btn nav-btn rounded-pill text-reset fs-3 fw-bold my-1 w-100' do %>
-          <i class="fas fa-home"></i> ホーム
-        <% end %>
-      </li>
-      <li>
-        <%= link_to subscriptions_path,class: 'btn nav-btn rounded-pill text-reset fs-3 fw-bold my-1 w-100' do %>
+        <%= link_to subscriptions_path,class: 'btn btn-hover rounded-pill text-reset fs-3 fw-bold my-1 w-100' do %>
           <i class="fas fa-crop-alt"></i> サブスク
         <% end %>
       </li>
       <li>
-        <%= link_to user_relationships_path(current_user),class: 'btn nav-btn rounded-pill text-reset fs-3 fw-bold my-1 w-100' do %>
-          <i class="fas fa-users"></i> ユーザー
+        <%= link_to admin_companies_path,class: 'btn btn-hover rounded-pill text-reset fs-3 fw-bold my-1 w-100' do %>
+          <i class="fas fa-users"></i> 会社
         <% end %>
       </li>
       <li>
@@ -29,29 +24,29 @@
         <div class="modal fade" id="formModal" tabindex="-1" aria-labelledby="formModalLabel" aria-hidden="true">
           <div class="modal-dialog">
             <div class="modal-content p-3">
-              <%= render 'public/subscriptions/new_form', subsc: @subsc_new %>
+              <%= render 'admin/subscriptions/new_form', subsc: @admin_subsc_new %>
             </div>
           </div>
         </div>
       </li>
     <% else %>
       <li>
-        <%= link_to root_path,class: 'btn nav-btn rounded-pill text-reset fs-3 fw-bold my-1 w-100' do %>
+        <%= link_to root_path,class: 'btn btn-hover rounded-pill text-reset fs-3 fw-bold my-1 w-100' do %>
           <i class="fas fa-home"></i> ホーム
         <% end %>
       </li>
       <li>
-        <%= link_to subscriptions_path,class: 'btn nav-btn rounded-pill text-reset fs-3 fw-bold my-1 w-100' do %>
+        <%= link_to subscriptions_path,class: 'btn btn-hover rounded-pill text-reset fs-3 fw-bold my-1 w-100' do %>
           <i class="fas fa-crop-alt"></i> サブスク
         <% end %>
       </li>
       <li>
-        <%= link_to new_user_registration_path,class: 'btn nav-btn rounded-pill text-reset fs-3 fw-bold my-1 w-100' do %>
+        <%= link_to new_user_registration_path,class: 'btn btn-hover rounded-pill text-reset fs-3 fw-bold my-1 w-100' do %>
           <i class="fas fa-user-plus"></i> サインアップ
         <% end %>
       </li>
       <li>
-        <%= link_to new_user_session_path ,class: 'btn nav-btn rounded-pill text-reset fs-3 fw-bold my-1 w-100' do %>
+        <%= link_to new_user_session_path ,class: 'btn btn-hover rounded-pill text-reset fs-3 fw-bold my-1 w-100' do %>
           <i class="fas fa-sign-in-alt"></i> ログイン
         <% end %>
       </li>
@@ -75,15 +70,3 @@
   </div>
   <% end %>
 </header>
-<script>
-$(document).on('turbolinks:load', function() {
-  $(".nav-btn").hover(
-    function() {
-      $(this).addClass("btn-light");
-    },
-    function() {
-      $(this).removeClass("btn-light");
-    }
-  );
-});
-</script>

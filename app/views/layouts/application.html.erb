@@ -14,7 +14,11 @@
     <div class="container-fluid full-height">
       <div class="row justify-content-center">
         <div class="col-2 full-height">
-          <%= render 'layouts/header' %>
+          <% if request.fullpath.include?("admin") %>
+            <%= render "layouts/admin_header" %>
+          <% else %>
+            <%= render "layouts/user_header" %>
+          <% end %>
         </div>
         <main class="col-6 full-height overflow-auto">
           <p id="notice"><%= notice %></p>
