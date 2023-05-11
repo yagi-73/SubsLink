@@ -8,12 +8,12 @@
   <ul class="nav nav-pills flex-column mb-auto">
     <% if admin_signed_in? %>
       <li>
-        <%= link_to subscriptions_path,class: 'btn btn-hover rounded-pill text-reset fs-3 fw-bold my-1 w-100' do %>
+        <%= link_to subscriptions_path,class: 'btn btn-hover rounded-pill text-reset text-start fs-3 fw-bold my-1 w-100' do %>
           <i class="fas fa-crop-alt"></i> サブスク
         <% end %>
       </li>
       <li>
-        <%= link_to admin_companies_path,class: 'btn btn-hover rounded-pill text-reset fs-3 fw-bold my-1 w-100' do %>
+        <%= link_to admin_companies_path,class: 'btn btn-hover rounded-pill text-reset text-start fs-3 fw-bold my-1 w-100' do %>
           <i class="fas fa-users"></i> 会社
         <% end %>
       </li>

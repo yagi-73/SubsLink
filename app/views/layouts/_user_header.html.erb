@@ -8,17 +8,17 @@
   <ul class="nav nav-pills flex-column mb-auto">
     <% if user_signed_in? %>
       <li>
-        <%= link_to user_path(current_user),class: 'btn btn-hover rounded-pill text-reset fs-3 fw-bold my-1 w-100' do %>
+        <%= link_to user_path(current_user),class: 'btn btn-hover rounded-pill text-reset text-start fs-3 fw-bold my-1 w-100' do %>
           <i class="fas fa-home"></i> ホーム
         <% end %>
       </li>
       <li>
-        <%= link_to subscriptions_path,class: 'btn btn-hover rounded-pill text-reset fs-3 fw-bold my-1 w-100' do %>
+        <%= link_to subscriptions_path,class: 'btn btn-hover rounded-pill text-reset text-start fs-3 fw-bold my-1 w-100' do %>
           <i class="fas fa-crop-alt"></i> サブスク
         <% end %>
       </li>
       <li>
-        <%= link_to user_relationships_path(current_user),class: 'btn btn-hover rounded-pill text-reset fs-3 fw-bold my-1 w-100' do %>
+        <%= link_to user_relationships_path(current_user),class: 'btn btn-hover rounded-pill text-reset text-start fs-3 fw-bold my-1 w-100' do %>
           <i class="fas fa-users"></i> ユーザー
         <% end %>
       </li>
@@ -36,22 +36,22 @@
       </li>
     <% else %>
       <li>
-        <%= link_to root_path,class: 'btn btn-hover rounded-pill text-reset fs-3 fw-bold my-1 w-100' do %>
+        <%= link_to root_path,class: 'btn btn-hover rounded-pill text-reset text-start fs-3 fw-bold my-1 w-100' do %>
           <i class="fas fa-home"></i> ホーム
         <% end %>
       </li>
       <li>
-        <%= link_to subscriptions_path,class: 'btn btn-hover rounded-pill text-reset fs-3 fw-bold my-1 w-100' do %>
+        <%= link_to subscriptions_path,class: 'btn btn-hover rounded-pill text-reset text-start fs-3 fw-bold my-1 w-100' do %>
           <i class="fas fa-crop-alt"></i> サブスク
         <% end %>
       </li>
       <li>
-        <%= link_to new_user_registration_path,class: 'btn btn-hover rounded-pill text-reset fs-3 fw-bold my-1 w-100' do %>
+        <%= link_to new_user_registration_path,class: 'btn btn-hover rounded-pill text-reset text-start fs-3 fw-bold my-1 w-100' do %>
           <i class="fas fa-user-plus"></i> サインアップ
         <% end %>
       </li>
       <li>
-        <%= link_to new_user_session_path ,class: 'btn btn-hover rounded-pill text-reset fs-3 fw-bold my-1 w-100' do %>
+        <%= link_to new_user_session_path ,class: 'btn btn-hover rounded-pill text-reset text-start fs-3 fw-bold my-1 w-100' do %>
           <i class="fas fa-sign-in-alt"></i> ログイン
         <% end %>
       </li>
