@@ -59,3 +59,15 @@ button{
 	70% {box-shadow: 0 0 0 10px rgb(39 172 217 / 0%);}
 	100% {box-shadow: 0 0 0 0 rgb(39 172 217 / 0%);}
 }
+
+/* @media (min-width: 1200px) {
+  .fa-plus {
+    display: none;
+  }
+}
+
+@media (max-width: 1200px) {
+  header span {
+    display: none;
+  }
+} */
