@@ -1,11 +1,11 @@
 <h2>サブスク一覧</h2>
-<div class="row row-cols-4">
+<div class="row row-cols-md-2">
   <% subscriptions.each do |subsc| %>
     <div class="mb-3">
       <% if subsc.class == UserSubscription %>
         <% if user == current_user %>
           <button class="h-100" type="button" data-bs-toggle="modal" data-bs-target="#formModal-<%= subsc.id %>">
-            <%= render 'public/subscriptions/card', subsc: subsc %>
+            <%= render 'public/subscriptions/card_horizontal', subsc: subsc %>
           </button>
           <div class="modal fade" id="formModal-<%= subsc.id %>" tabindex="-1" aria-labelledby="formModalLabel" aria-hidden="true">
           <div class="modal-dialog">
@@ -15,11 +15,11 @@
           </div>
         </div>
         <% else %>
-          <%= render 'public/subscriptions/card', subsc: subsc %>
+          <%= render 'public/subscriptions/card_horizontal', subsc: subsc, user: user %>
         <% end %>
       <% else %>
         <%= link_to subscription_path(subsc), class: "text-reset text-decoration-none" do %>
-          <%= render 'public/subscriptions/card', subsc: subsc %>
+          <%= render 'public/subscriptions/card_horizontal', subsc: subsc, user: user %>
         <% end %>
       <% end%>
     </div>

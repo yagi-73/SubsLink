@@ -34,7 +34,7 @@ body {
 
 .dropdown-toggle { outline: 0; }
 
-header button{
+button{
   background-color: transparent;
   border: none;
   cursor: pointer;

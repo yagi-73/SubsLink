@@ -1,10 +1,10 @@
 <%= month_calendar attribute: :calender_day, events: subscriptions do |date, subscriptions| %>
   <%= date.day %><br>
   <% subscriptions.each do |subsc| %>
-    <div class="subscription mb-1">
+    <div class="subscription mb-md-2">
       <% if user == current_user && subsc.class == UserSubscription %>
-        <button type="button" class="btn btn-info w-100 mb-1" data-bs-toggle="modal" data-bs-target="#formModal<%= subsc.id %>">
-          <%= subsc.name %>
+        <button type="button" class="btn btn-info w-100" data-bs-toggle="modal" data-bs-target="#formModal<%= subsc.id %>">
+          <span class="d-none d-md-block"><%= subsc.name %></span>
         </button>
         <div class="modal fade" id="formModal<%= subsc.id %>" tabindex="-1" aria-labelledby="formModalLabel" aria-hidden="true">
           <div class="modal-dialog modal-dialog-centered">
@@ -14,9 +14,14 @@
           </div>
         </div>
       <% elsif subsc.class == UserSubscription %>
-        <p class= "btn btn-secondary disabled"><%= subsc.name %></p>
+        <div class= "btn btn-secondary disabled">
+          <span class="d-none d-md-block"><%= subsc.name %></span>
+        </div>
       <% else %>
-        <%= link_to subsc.name, subscription_path(subsc), class: "btn btn-success" %><br>
+        <%= link_to subscription_path(subsc), class: "btn btn-success w-100" do %>
+          <span class="d-none d-md-block"><%= subsc.name %></span>
+        <% end %>
+        <br>
       <% end%>
     </div>
   <% end %>

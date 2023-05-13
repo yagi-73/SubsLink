@@ -10,8 +10,4 @@ class AdminSubscription < Subscription
   scope :no_overlap,      -> { uniq{ |n| n.group_id } }
   scope :same_group,      -> (subsc){ where(group_id: subsc.group_id).where.not(id: subsc.id) }
   scope :search,          -> (keyword){ where(["name LIKE?", "%#{keyword}%"]) }
-
-  def subscribe_day(user)
-    subscribes.find_by(user_id: user.id).contract_day
-  end
 end

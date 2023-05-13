@@ -1,23 +1,22 @@
-<%= link_to subscription_path(subsc), class: "text-reset text-decoration-none" do %>
-  <div class="card btn btn-hover mb-3 p-0">
-    <div class="row">
-      <div class="col-md-4">
-        <%= image_tag subsc.get_image(100,100) %>
-      </div>
-      <div class="col-md-8">
-        <div class="card-body text-start">
-          <h5 class="card-title"><%= subsc.name %></h5>
-          <ul class="list-unstyled">
-            <li>￥<%= subsc.price.to_s(:delimited) %>/<%= subsc.update_cycle %>ヵ月</li>
+<div class="card btn btn-hover mb-3 h-100">
+  <div class="row">
+    <div class="col-md-4 col-4">
+      <%= image_tag subsc.get_image, class: "card-img" %>
+    </div>
+    <div class="col-md-8 col-8">
+      <div class="card-body text-start">
+        <h5 class="card-title"><%= subsc.name %></h5>
+          <h6 class="card-subtitle mb-2 text-muted">
+            ￥<%= subsc.price.to_s(:delimited) %>/<%= subsc.update_cycle %>ヵ月
             <% if subsc.update_cycle != 1 %>
-              <li>月換算 ￥ <%= (subsc.price / subsc.update_cycle).to_s(:delimited) %>/月</li>
+              , ￥<%= (subsc.price / subsc.update_cycle).to_s(:delimited) %>/月
             <% end %>
-            <% if subsc.class == UserSubscription %>
-              <li>次回更新日: <%= l subsc.next_update_day, format: :date %></li>
-            <% end %>
-          </ul>
-        </div>
+          </h6>
+          <% if subsc.class == UserSubscription || user.subscribing?(subsc) && subsc.contract_day.present? %>
+            <h6 class="card-subtitle mb-2 text-muted">次回更新日: <%= l subsc.next_update_day, format: :date %></h6>
+          <% end %>
+        </ul>
       </div>
     </div>
   </div>
-<% end %>
+</div>

@@ -19,7 +19,7 @@ class User < ApplicationRecord
   validates :name, length: { in: 2..10 }
 
   def subscriptions
-    self.user_subscriptions.with_attached_image + self.admin_subscriptions.includes(:subscribes, {image_attachment: :blob})
+    self.user_subscriptions.with_attached_image + self.admin_subscriptions.with_attached_image
   end
 
   def subscribe(params)
@@ -34,8 +34,12 @@ class User < ApplicationRecord
     end
   end
 
-  def subscribing(subsc)
-    subscribes.find_by(admin_subscription_id: subsc.id)
+  def subscribe_day(subsc)
+    subscribes.find_by(admin_subscription_id: subsc.id).contract_day
+  end
+
+  def subscribing?(subsc)
+    admin_subscriptions.include?(subsc)
   end
 
   def not_subscribing
