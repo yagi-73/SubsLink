@@ -1,6 +1,6 @@
 <div class='container px-xs-0'>
   <div class='row'>
-    <div class="profile d-flex mb-3 col-7">
+    <div class="profile d-flex mb-3 col-9">
       <%= image_tag @user.get_image(90, 90), class: "rounded-circle me-3" %>
       <div class="my-auto">
         <div class="d-flex align-items-end">
@@ -16,12 +16,12 @@
       </div>
       <div class="mt-auto ms-3"><%= render 'public/relationships/btn', user: @user %></div>
     </div>
-    <ul class="tab-list list-unstyled col-5">
+    <ul class="tab-list list-unstyled col-3">
       <li class="tab tab-active">
-        カレンダー
+        <i class="fas fa-calendar"></i>
       </li>
       <li class="tab">
-        登録済みサブスク
+        <i class="fas fa-list-alt"></i>
       </li>
     </ul>
     <div class="tabbox-contents">
@@ -29,6 +29,7 @@
         <%= render 'calender', subscriptions: @subsc_calender, user: @user %>
       </div>
       <div class="tabbox">
+        <h2>登録済みサブスク</h2>
         <%= render 'public/subscriptions/index', subscriptions: @subscriptions, user: @user %>
       </div>
     </div>
