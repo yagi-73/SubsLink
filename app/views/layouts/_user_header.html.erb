@@ -1,28 +1,24 @@
-<header class="d-flex flex-column flex-shrink-0 pe-1 p-xl-3 border-end full-height">
+<header class="d-flex flex-column flex-shrink-0 pe-lg-3 pe-2 p-xl-3 border-end full-height">
   <a class="navbar-brand" href="/"><span class="d-none d-xl-block fs-4">SubsLink</span></a>
-  <%# <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNavDropdown" aria-controls="navbarNavDropdown" aria-expanded="false" aria-label="Toggle navigation">
-        <span class="navbar-toggler-icon"></span>
-      </button>
-      <div class="collapse navbar-collapse" id="navbarNavDropdown"> %>
   <hr>
-  <ul class="nav nav-pills flex-column mb-auto">
+  <ul class="nav flex-column mb-auto">
     <% if user_signed_in? %>
-      <li>
+      <li class="nav-item w-100">
         <%= link_to user_path(current_user), class: 'btn btn-hover rounded-pill d-flex align-items-center text-reset text-start fs-3 fw-bold my-1 w-100' do %>
           <i class="fas fa-home"></i><span class="d-none d-xl-block">ホーム</span>
         <% end %>
       </li>
-      <li>
+      <li class="nav-item w-100">
         <%= link_to subscriptions_path,class: 'btn btn-hover rounded-pill d-flex align-items-center text-reset text-start fs-3 fw-bold my-1 w-100' do %>
           <i class="fas fa-list-alt"></i><span class="d-none d-xl-block">サブスク</span>
         <% end %>
       </li>
-      <li>
+      <li class="nav-item w-100">
         <%= link_to user_relationships_path(current_user),class: 'btn btn-hover rounded-pill d-flex align-items-center text-reset text-start fs-3 fw-bold my-1 w-100' do %>
           <i class="fas fa-users"></i><span class="d-none d-xl-block">ユーザー</span>
         <% end %>
       </li>
-      <li>
+      <li class="nav-item w-100">
         <button type="button" class="btn btn-primary rounded-pill btn_shadow w-100 my-3 py-2" data-bs-toggle="modal" data-bs-target="#formModal">
           <span class="d-none d-xl-block">サブスク登録</span>
           <i class="fas fa-plus d-xl-none d-xl-block" style="color: #ffffff;"></i>
@@ -36,22 +32,22 @@
         </div>
       </li>
     <% else %>
-      <li>
+      <li class="nav-item w-100">
         <%= link_to root_path,class: 'btn btn-hover rounded-pill d-flex align-items-center text-reset text-start fs-3 fw-bold my-1 w-100' do %>
           <i class="fas fa-home"></i><span class="d-none d-xl-block">ホーム</span>
         <% end %>
       </li>
-      <li>
+      <li class="nav-item w-100">
         <%= link_to subscriptions_path,class: 'btn btn-hover rounded-pill d-flex align-items-center text-reset text-start fs-3 fw-bold my-1 w-100' do %>
           <i class="fas fa-crop-alt"></i><span class="d-none d-xl-block">サブスク</span>
         <% end %>
       </li>
-      <li>
+      <li class="nav-item w-100">
         <%= link_to new_user_registration_path,class: 'btn btn-hover rounded-pill d-flex align-items-center text-reset text-start fs-3 fw-bold my-1 w-100' do %>
           <i class="fas fa-user-plus"></i><span class="d-none d-xl-block">サインアップ</span>
         <% end %>
       </li>
-      <li>
+      <li class="nav-item w-100">
         <%= link_to new_user_session_path ,class: 'btn btn-hover rounded-pill d-flex align-items-center text-reset text-start fs-3 fw-bold my-1 w-100' do %>
           <i class="fas fa-sign-in-alt"></i><span class="d-none d-xl-block">ログイン</span>
         <% end %>

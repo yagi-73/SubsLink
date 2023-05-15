@@ -1,19 +1,19 @@
 <%= form_with model: subsc, url: subscription_path(subsc), method: :patch do |f| %>
   <div class="mb-3">
-    <%= f.label :サブスク名 %>
+    <%= f.label :name, 'サブスク名' %>
     <%= f.text_field :name, class: 'form-control' %>
   </div>
   <div class="mb-3">
-    <%= f.label :金額 %>
+    <%= f.label :price, '金額' %>
     <%= f.text_field :price, class: 'form-control' %>
   </div>
   <div class="mb-3">
-    <%= f.label :契約日 %>
+    <%= f.label :contract_day, '契約日' %>
     <%= f.date_field :contract_day, class: 'form-control' %>
   </div>
   <div class="d-flex mb-3">
     <div>
-      <%= f.label :更新周期 %>
+      <%= f.label :update_cycle, '更新周期' %>
       <%= f.select :update_cycle, *[1..12], class: 'form-control' %>
       <p class="mt-2">次回更新日： <%= l subsc.next_update_day, format: :date %></p>
     </div>
