@@ -87,6 +87,7 @@ ActiveRecord::Schema.define(version: 2023_04_14_074238) do
     t.integer "company_id"
     t.integer "group_id"
     t.string "name", null: false
+    t.string "catch_copy"
     t.text "description"
     t.integer "price", null: false
     t.date "contract_day"
