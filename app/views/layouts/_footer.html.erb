@@ -14,10 +14,18 @@
 			<%= link_to subscription_path(subsc), class: "text-reset text-decoration-none" do %>
 				<div class="card card btn btn-hover mb-3">
 					<div class="card-body">
-						<h5 class="card-title"><%= subsc.name %></h5>
-						<h6 class="card-subtitle mb-2 text-muted">
-							￥<%= subsc.price.to_s(:delimited) %>/<%= subsc.update_cycle %>ヵ月
-						</h6>
+						<div class="row">
+							<div class="col-xxl-5 d-none d-xxl-block">
+								<%= image_tag subsc.get_image, class: "card-img" %>
+							</div>
+							<div class="col-xxl-7 col-12">
+								<h5 class="card-title"><%= subsc.name %></h5>
+								<h6 class="card-subtitle mb-2 text-muted">
+									￥<%= subsc.price.to_s(:delimited) %>/<%= subsc.update_cycle %>ヵ月
+								</h6>
+							</div>
+						</div>
+						<p class="card-text text-truncate"><small class="text-muted"><%= subsc.catch_copy %></small></p>
 					</div>
 				</div>
 			<% end %>

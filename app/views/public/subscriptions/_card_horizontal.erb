@@ -1,22 +1,22 @@
 <div class="card btn btn-hover mb-3 h-100">
   <div class="row">
-    <div class="col-md-4 col-4">
+    <div class="col-md-4 col-3">
       <%= image_tag subsc.get_image, class: "card-img" %>
     </div>
-    <div class="col-md-8 col-8">
+    <div class="col-md-8 col-9">
       <div class="card-body text-start">
         <h5 class="card-title"><%= subsc.name %></h5>
-          <h6 class="card-subtitle mb-2 text-muted">
-            ￥<%= subsc.price.to_s(:delimited) %>/<%= subsc.update_cycle %>ヵ月
-            <% if subsc.update_cycle != 1 %>
-              , ￥<%= (subsc.price / subsc.update_cycle).to_s(:delimited) %>/月
-            <% end %>
-          </h6>
-          <% if subsc.class == UserSubscription || user.subscribing?(subsc) && subsc.contract_day.present? %>
-            <h6 class="card-subtitle mb-2 text-muted">次回更新日: <%= l subsc.next_update_day, format: :date %></h6>
+        <h6 class="card-subtitle mb-2 text-muted">
+          ￥<%= subsc.price.to_s(:delimited) %>/<%= subsc.update_cycle %>ヵ月
+          <% if subsc.update_cycle != 1 %>
+            , ￥<%= (subsc.price / subsc.update_cycle).to_s(:delimited) %>/月
           <% end %>
-        </ul>
+        </h6>
+        <% if subsc.class == UserSubscription || user.subscribing?(subsc) && subsc.contract_day.present? %>
+          <h6 class="card-subtitle mb-2 text-muted">次回更新日: <%= l subsc.next_update_day, format: :date %></h6>
+        <% end %>
       </div>
     </div>
   </div>
+  <p class="card-text text-truncate"><small class="text-muted"><%= subsc.catch_copy %></small></p>
 </div>
