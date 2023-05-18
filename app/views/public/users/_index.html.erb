@@ -9,13 +9,13 @@
         <%= link_to user_path(user) do %>
           <%= image_tag user.get_image(60, 60), class: "rounded-circle mx-2" %>
         <% end %>
-        <div class="d-flex align-items-end mx-2">
-          <h5 class="my-auto"><%= user.name%></h5>
-          <small class="ms-1">#<%= user.tag%></small>
+        <div class="d-sm-flex">
+          <div class="d-flex align-items-end mx-2">
+            <h5 class="my-auto"><%= user.name%></h5>
+            <small class="ms-1">#<%= user.tag%></small>
+          </div>
+          <small class="d-flex align-items-end mx-2"><%= user.favorite_subscription.name %></small>
         </div>
-        <span class="mx-2">フォロー数：<%= user.followings.size %></span>
-        <span class="mx-2">フォロワー：<%= user.followers.size %></span>
-        <span class="mx-2">加入サブスク数: <%= user.subscriptions.size %></span>
         <div class="ms-auto">
           <%= render "public/relationships/btn", user: user %>
         </div>

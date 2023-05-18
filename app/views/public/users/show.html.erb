@@ -1,7 +1,7 @@
 <div class='container px-xs-0'>
   <div class='row'>
-    <div class="profile d-flex mb-3 col-9">
-      <%= image_tag @user.get_image(90, 90), class: "rounded-circle me-3" %>
+    <div class="profile d-flex mb-3 col-sm-9 col-10">
+      <%= image_tag @user.get_image(70, 70), class: "rounded-circle me-3" %>
       <div class="my-auto">
         <div class="d-flex align-items-end">
           <h3><%= @user.name%></h3>
@@ -16,7 +16,7 @@
       </div>
       <div class="mt-auto ms-3"><%= render 'public/relationships/btn', user: @user %></div>
     </div>
-    <ul class="tab-list list-unstyled col-3">
+    <ul class="tab-list list-unstyled d-sm-flex d-block col-sm-3 col-2">
       <li class="tab tab-active">
         <i class="fas fa-calendar"></i>
       </li>

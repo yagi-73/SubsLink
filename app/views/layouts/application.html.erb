@@ -1,6 +1,6 @@
 <!DOCTYPE html>
 <html>
-  <head>
+  <header>
     <title>SubsLink</title>
     <meta name="viewport" content="width=device-width,initial-scale=1">
     <%= csrf_meta_tags %>
@@ -13,21 +13,28 @@
   <body>
     <div class="container full-height">
       <div class="row justify-content-center">
-        <div class="col-xl-2 col-md-1 p-0 d-none d-md-block full-height">
+        <header class="col-xl-2 col-md-1 p-0 d-none d-md-block full-height">
           <% if request.fullpath.include?("admin") %>
             <%= render "layouts/admin_header" %>
           <% else %>
             <%= render "layouts/user_header" %>
           <% end %>
-        </div>
-        <main class="col-xl-7 col-lg-8 col-md-11 full-height overflow-auto">
-          <p id="notice"><%= notice %></p>
-          <%= yield %>
+        </header>
+        <main class="col-xl-10 col-md-11 full-height">
+          <div class="row">
+            <div class="col-lg-9 overflow-auto">
+              <p id="notice"><%= notice %></p>
+              <%= yield %>
+            </div>
+            <div class="d-lg-block d-none col-lg-3">
+              <%= render 'layouts/sidebar' %>
+            </div>
+          </div>
         </main>
-        <div class="col-lg-3 full-height">
-          <%= render 'layouts/footer' %>
-        </div>
       </div>
     </div>
+    <footer class="fixed-bottom d-md-none">
+      <%= render 'layouts/footer' %>
+    </footer>
   </body>
 </html>

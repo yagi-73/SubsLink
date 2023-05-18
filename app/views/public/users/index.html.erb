@@ -1,9 +1,9 @@
 <div class="row mb-3">
   <div class="d-flex align-items-end col-3">
     <h3><%= @user.name%></h3>
-    <p class="ms-1 mb-2">#<%= @user.tag%></p>
+    <p class="ms-1 mb-2 d-none d-sm-block">#<%= @user.tag%></p>
   </div>
-  <%= form_with url: user_search_path, method: :get, class: "col-7" do |f| %>
+  <%= form_with url: user_search_path, method: :get, class: "col-sm-7 col-8" do |f| %>
     <div class="input-group">
       <span class="input-group-text" id="basic-addon1">#</span>
         <%= f.text_field :user_tag, id: "search", placeholder: "ユーザー検索: 4桁のタグを入力してください", class: "form-control", 'aria-describedby': :"basic-addon1" %>

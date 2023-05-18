@@ -1,37 +1,34 @@
-<footer class="d-flex flex-column ps-3 border-start h-100">
-	<%= form_with url: subscriptions_search_path, method: :get do |f| %>
-		<div class="input-group mb-4 p-3">
-			<%= f.text_field :keyword, id: "search", placeholder: "サブスク検索", class: "form-control col-9" %>
-			<%= button_tag type: "submit", class: "btn btn-primary col-3" do %>
-				<i class="fas fa-search"></i>
-			<% end %>
-		</div>
-	<% end %>
-
-	<div>
-		<h3>人気のサブスク</h3>
-		<% @top_subscriptions.each do |subsc| %>
-			<%= link_to subscription_path(subsc), class: "text-reset text-decoration-none" do %>
-				<div class="card card btn btn-hover mb-3">
-					<div class="card-body">
-						<div class="row">
-							<div class="col-xxl-5 d-none d-xxl-block">
-								<%= image_tag subsc.get_image, class: "card-img" %>
-							</div>
-							<div class="col-xxl-7 col-12">
-								<h5 class="card-title"><%= subsc.name %></h5>
-								<h6 class="card-subtitle mb-2 text-muted">
-									￥<%= subsc.price.to_s(:delimited) %>/<%= subsc.update_cycle %>ヵ月
-								</h6>
-							</div>
-						</div>
-						<p class="card-text text-truncate"><small class="text-muted"><%= subsc.catch_copy %></small></p>
-					</div>
-				</div>
-			<% end %>
-		<% end %>
-	</div>
-	<div class="d-flex justify-content-center mt-auto">
-		<p>CopyRight Sota Aoyagi</p>
-	</div>
-</footer>
+<nav class="navbar navbar-expand-lg navbar-light bg-light">
+  <div class="container-fluid">
+    <ul class="navbar-nav">
+      <li class="nav-item">
+        <%= link_to user_path(current_user), class: 'btn btn-hover rounded-pill d-flex align-items-center text-reset text-start fs-3 fw-bold my-1 w-100' do %>
+          <i class="fas fa-home"></i><span class="d-none d-xl-block">ホーム</span>
+        <% end %>
+      </li>
+      <li class="nav-item">
+        <%= link_to subscriptions_path,class: 'btn btn-hover rounded-pill d-flex align-items-center text-reset text-start fs-3 fw-bold my-1 w-100' do %>
+          <i class="fas fa-list-alt"></i><span class="d-none d-xl-block">サブスク</span>
+        <% end %>
+      </li>
+      <li class="nav-item">
+        <%= link_to user_relationships_path(current_user),class: 'btn btn-hover rounded-pill d-flex align-items-center text-reset text-start fs-3 fw-bold my-1 w-100' do %>
+          <i class="fas fa-users"></i><span class="d-none d-xl-block">ユーザー</span>
+        <% end %>
+      </li>
+      <li class="nav-item">
+        <button type="button" class="btn btn-primary rounded-pill btn_shadow w-100 my-3 py-2" data-bs-toggle="modal" data-bs-target="#formModal">
+          <span class="d-none d-xl-block">サブスク登録</span>
+          <i class="fas fa-plus d-xl-none d-xl-block" style="color: #ffffff;"></i>
+        </button>
+        <div class="modal fade" id="formModal" tabindex="-1" aria-labelledby="formModalLabel" aria-hidden="true">
+          <div class="modal-dialog">
+            <div class="modal-content p-3">
+              <%= render 'public/subscriptions/new_form', subsc: @subsc_new %>
+            </div>
+          </div>
+        </div>
+      </li>
+    </ul>
+  </div>
+</nav>
