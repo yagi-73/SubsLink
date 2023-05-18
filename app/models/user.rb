@@ -32,7 +32,7 @@ class User < ApplicationRecord
     if subsc.class == UserSubscription
       subsc.destroy
     else
-      subscribing(subsc).destroy
+      subscribes.find_by(admin_subscription_id: subsc.id).destroy
     end
   end
 

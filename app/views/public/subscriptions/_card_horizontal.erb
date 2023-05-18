@@ -12,11 +12,11 @@
             , ￥<%= (subsc.price / subsc.update_cycle).to_s(:delimited) %>/月
           <% end %>
         </h6>
-        <% if subsc.class == UserSubscription || user.subscribing?(subsc) && subsc.contract_day.present? %>
-          <h6 class="card-subtitle mb-2 text-muted">次回更新日: <%= l subsc.next_update_day, format: :date %></h6>
-        <% end %>
       </div>
     </div>
   </div>
+  <% if subsc.class == UserSubscription || user.subscribing?(subsc) && subsc.contract_day.present? %>
+    <h6 class="card-subtitle mb-2 text-muted">次回更新日: <%= l subsc.next_update_day, format: :date %></h6>
+  <% end %>
   <p class="card-text text-truncate"><small class="text-muted"><%= subsc.catch_copy %></small></p>
 </div>
