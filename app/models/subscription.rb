@@ -1,5 +1,5 @@
 class Subscription < ApplicationRecord
-  has_many :user
+  # has_many :user
   has_one_attached :image
   attr_accessor :calender_day
 

@@ -11,22 +11,22 @@
   </head>
 
   <body>
-    <div class="container full-height">
+    <div class="container">
       <div class="row justify-content-center">
-        <header class="col-xl-2 col-md-1 p-0 d-none d-md-block full-height">
+        <header class="col-xl-2 col-md-1 p-0 d-none d-md-block">
           <% if request.fullpath.include?("admin") %>
             <%= render "layouts/admin_header" %>
           <% else %>
             <%= render "layouts/user_header" %>
           <% end %>
         </header>
-        <main class="col-xl-10 col-md-11 full-height">
+        <main class="col-xl-10 col-md-11">
           <div class="row">
-            <div class="col-lg-8 overflow-auto">
+            <div class="col-lg-8 pb-md-0 pb-5 full-height">
               <p id="notice"><%= notice %></p>
               <%= yield %>
             </div>
-            <div class="d-lg-block d-none col-lg-4">
+            <div class="d-lg-block d-none col-lg-4 full-height">
               <%= render 'layouts/sidebar' %>
             </div>
           </div>
@@ -34,7 +34,7 @@
       </div>
     </div>
     <% if user_signed_in? %>
-      <footer class="sticky-bottom d-md-none">
+      <footer class="fixed-bottom d-md-none">
         <%= render 'layouts/footer' %>
       </footer>
     <% end %>
