@@ -33,8 +33,10 @@
         </main>
       </div>
     </div>
-    <footer class="sticky-bottom d-md-none">
-      <%= render 'layouts/footer' %>
-    </footer>
+    <% if user_signed_in? %>
+      <footer class="sticky-bottom d-md-none">
+        <%= render 'layouts/footer' %>
+      </footer>
+    <% end %>
   </body>
 </html>
