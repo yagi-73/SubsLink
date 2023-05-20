@@ -108,11 +108,10 @@ ActiveRecord::Schema.define(version: 2023_04_14_074238) do
     t.datetime "remember_created_at"
     t.string "name", null: false
     t.integer "tag", null: false
-    t.integer "favorite_subscription_id"
+    t.string "introduction"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
     t.index ["email"], name: "index_users_on_email", unique: true
-    t.index ["favorite_subscription_id"], name: "index_users_on_favorite_subscription_id"
     t.index ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true
   end
 
@@ -125,5 +124,4 @@ ActiveRecord::Schema.define(version: 2023_04_14_074238) do
   add_foreign_key "subscriptions", "companies"
   add_foreign_key "subscriptions", "groups"
   add_foreign_key "subscriptions", "users"
-  add_foreign_key "users", "subscriptions", column: "favorite_subscription_id"
 end

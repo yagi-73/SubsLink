@@ -34,7 +34,7 @@ class DeviseCreateUsers < ActiveRecord::Migration[6.1]
 
       t.string :name, null: false
       t.integer :tag, null: false
-      t.belongs_to :favorite_subscription, foreign_key: { to_table: :subscriptions }
+      t.string :introduction
 
       t.timestamps null: false
     end

@@ -39,7 +39,7 @@ subscriptions.each do |subscription|
   subsc.image.attach(io: File.open("./app/assets/images/logo_#{subsc.name}.png"), filename: "#{subsc.name}.png")
 end
 
-users = [{ email: "yagi@test", name: "やぎ", favorite_subscription_id: 1 }, { email: "spring@test", name: "はる", favorite_subscription_id: 3 }, { email: "summer@test", name: "なつ", favorite_subscription_id: 5 }, { email: "autumn@test", name: "あき", favorite_subscription_id: 2 }, { email: "winter@test", name: "ふゆ", favorite_subscription_id: 4 }]
+users = [{ email: "yagi@test", name: "やぎ", introduction: "IPUT ２期生 Web Engineer" }, { email: "spring@test", name: "はる", introduction: "お花に囲まれて過ごしていたい" }, { email: "summer@test", name: "なつ", introduction: "音楽とスポーツ観戦が趣味です" }, { email: "autumn@test", name: "あき", introduction: "食欲旺盛な読書好き" }, { email: "winter@test", name: "ふゆ", introduction: "こたつで寝てたいよ～" }]
 user_images = ["building.jpg", "spring.jpg", "summer.jpg", "autumn.jpg", "winter.jpg"]
 
 users.size.times do |n|

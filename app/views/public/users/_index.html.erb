@@ -5,19 +5,21 @@
 <% else %>
   <div class="d-flex flex-column">
     <% users.each do |user| %>
-      <div class="user btn btn-hover d-flex align-items-center my-2" data-href="/users/<%= user.id%>">
+      <div class="user btn btn-hover d-flex my-2" data-href="/users/<%= user.id%>">
         <%= link_to user_path(user) do %>
           <%= image_tag user.get_image(60, 60), class: "rounded-circle mx-2" %>
         <% end %>
-        <div class="d-sm-flex">
-          <div class="d-flex align-items-end mx-2">
-            <h5 class="my-auto"><%= user.name%></h5>
+        <div class="col mx-2">
+          <div class="d-flex align-items-end">
+            <h5 class="mb-0"><%= user.name%></h5>
             <small class="ms-1">#<%= user.tag%></small>
+            <div class="ms-auto">
+              <%= render "public/relationships/btn", user: user %>
+            </div>
           </div>
-          <small class="d-flex align-items-end mx-2"><%= user.favorite_subscription.name %></small>
-        </div>
-        <div class="ms-auto">
-          <%= render "public/relationships/btn", user: user %>
+          <div class="mt-1 me-2">
+            <small class="d-flex align-items-end text-truncate"><%= user.introduction %></small>
+          </div>
         </div>
       </div>
     <% end %>

@@ -9,6 +9,7 @@
           <h3><%= @user.name%></h3>
           <p class="ms-1 mb-2">#<%= @user.tag%></p>
         </div>
+        <p><%= @user.introduction %></p>
         <%= link_to user_relationships_path(@user, anchor: "followings"), class: "text-reset text-decoration-none" do %>
           <strong><%= @user.followings.size %></strong>フォロー中
         <% end %>
