@@ -1,4 +1,4 @@
 <div class='container px-5 px-sm-0'>
       <%= render 'info', company: @company %>
-      <%= render 'public/subscriptions/index', subscriptions: @subscriptions %>
+      <%= render 'public/subscriptions/index', subscriptions: @subscriptions, user: current_user %>
 </div>
