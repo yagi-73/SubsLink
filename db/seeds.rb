@@ -47,23 +47,25 @@ end
 
 users = [{ email: "yagi@test", name: "やぎ", introduction: "IPUT ２期生 Web Engineer" }, { email: "spring@test", name: "はる", introduction: "お花に囲まれて過ごしていたい" }, { email: "summer@test", name: "なつ", introduction: "音楽とスポーツ観戦が趣味です" }, { email: "autumn@test", name: "あき", introduction: "食欲旺盛な読書好き" }, { email: "winter@test", name: "ふゆ", introduction: "こたつで寝てたいよ～" }]
 user_images = ["building.jpg", "spring.jpg", "summer.jpg", "autumn.jpg", "winter.jpg"]
+user_ids = [0]
 
 users.size.times do |n|
   user = User.new(users[n])
   user.password = 123456
   user.save
+  user_ids.push(user.id)
   user.image.attach(io: File.open("./app/assets/images/#{user_images[n]}"), filename: user_images[n])
 end
 
 relationships = [[1, 2], [1, 3], [1, 4], [2, 1], [2, 3], [2, 5], [3, 2], [3, 4], [3, 5], [4, 2], [5, 1], [5, 2], [5, 3], [5, 4]]
 relationships.each do |relationship|
-  Relationship.create!(follower_id: relationship[0], followed_id: relationship[1])
+  Relationship.create!(follower_id: user_ids[relationship[0]], followed_id: user_ids[relationship[1]])
 end
 
 subscribes = [[1, 1, "2023-04-01"], [1, 2, "2023-03-21"], [1, 9, "2023-02-16"], [2, 1, "2022-09-30"], [2, 4, "2023-05-04"], [2, 6, "2023-03-27"], [3, 1, "2023-01-11"], [3, 4, "2022-12-06"], [3, 7, "2023-02-22"], [4, 6, "2023-05-03"], [5, 10, "2023-04-25"]]
 subscribes.each do |subscribe|
   Subscribe.create!(
-    user_id: subscribe[0],
+    user_id: user_ids[subscribe[0]],
     admin_subscription_id: subscribe[1],
     contract_day: subscribe[2],
   )

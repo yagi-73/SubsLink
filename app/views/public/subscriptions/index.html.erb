@@ -1,6 +1,6 @@
 <h2>サブスク一覧</h2>
 <div class="categories">
-  <ul class="list-unstyled d-flex">
+  <ul class="list-unstyled d-flex flex-wrap">
     <% @categories.each do |category| %>
       <li class="me-2 mb-2">
         <%= link_to subscriptions_path(category: category.name), class: "btn btn-hover rounded-pill text-reset border border-secondary" do %>

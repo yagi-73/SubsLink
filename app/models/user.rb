@@ -1,5 +1,6 @@
 class User < ApplicationRecord
-  before_create :generate_tag
+  include IdGenerator
+  include TagGenerator
 
   devise :database_authenticatable, :registerable,
          :recoverable, :rememberable, :validatable
@@ -62,12 +63,4 @@ class User < ApplicationRecord
     followings.with_attached_image & followers.with_attached_image
   end
 
-  private
-
-  def generate_tag
-    self.tag = loop do
-      tag = rand(1000..9999)
-      break tag unless self.class.exists?(tag: tag)
-    end
-  end
 end
