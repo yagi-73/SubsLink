@@ -3,16 +3,14 @@
     <div class="col-md-4 col-3">
       <%= image_tag subsc.get_image %>
     </div>
-    <div class="col-md-8 col-9">
-      <div class="card-body text-start">
-        <h5 class="card-title"><%= subsc.name %></h5>
-        <h6 class="card-subtitle mb-2 text-muted">
-          ￥<%= subsc.price.to_s(:delimited) %>/<%= subsc.update_cycle %>ヵ月
-          <% if subsc.update_cycle != 1 %>
-            , ￥<%= (subsc.price / subsc.update_cycle).to_s(:delimited) %>/月
-          <% end %>
-        </h6>
-      </div>
+    <div class="card-body text-start col-md-8 col-9">
+      <h5 class="card-title"><%= subsc.name %></h5>
+      <h6 class="card-subtitle mb-2 text-muted">
+        ￥<%= subsc.price.to_s(:delimited) %>/<%= subsc.update_cycle %>ヵ月
+        <% if subsc.update_cycle != 1 %>
+          , ￥<%= (subsc.price / subsc.update_cycle).to_s(:delimited) %>/月
+        <% end %>
+      </h6>
     </div>
   </div>
   <% if subsc.class == UserSubscription || user.subscribing?(subsc) && subsc.contract_day.present? %>

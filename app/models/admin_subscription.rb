@@ -1,6 +1,7 @@
 class AdminSubscription < Subscription
   belongs_to :company
   belongs_to :group
+  belongs_to :category
   has_many :subscribes
   has_many :users, through: :subscribes
 

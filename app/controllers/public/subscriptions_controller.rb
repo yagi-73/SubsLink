@@ -13,7 +13,12 @@ class Public::SubscriptionsController < ApplicationController
   end
 
   def index
-    @subscriptions = AdminSubscription.with_attached_image.no_overlap
+    if params[:category].nil?
+      @subscriptions = AdminSubscription.with_attached_image.no_overlap
+    else
+      @subscriptions = Category.find_by(name: params[:category]).admin_subscriptions.with_attached_image.no_overlap
+    end
+    @categories = Category.all
   end
 
   def search

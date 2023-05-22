@@ -4,6 +4,7 @@ class CreateSubscriptions < ActiveRecord::Migration[6.1]
       t.belongs_to :user, foreign_key: true
       t.belongs_to :company, foreign_key: true
       t.belongs_to :group, foreign_key: true
+      t.belongs_to :category, foreign_key: true
       t.string :name, null:false
       t.string :catch_copy
       t.text :description

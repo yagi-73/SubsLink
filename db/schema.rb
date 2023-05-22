@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2023_04_14_074238) do
+ActiveRecord::Schema.define(version: 2023_05_22_060047) do
 
   create_table "active_storage_attachments", force: :cascade do |t|
     t.string "name", null: false
@@ -52,6 +52,13 @@ ActiveRecord::Schema.define(version: 2023_04_14_074238) do
     t.index ["reset_password_token"], name: "index_admins_on_reset_password_token", unique: true
   end
 
+  create_table "categories", force: :cascade do |t|
+    t.string "name", null: false
+    t.string "icon", null: false
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+  end
+
   create_table "companies", force: :cascade do |t|
     t.string "name"
     t.datetime "created_at", precision: 6, null: false
@@ -86,6 +93,7 @@ ActiveRecord::Schema.define(version: 2023_04_14_074238) do
     t.integer "user_id"
     t.integer "company_id"
     t.integer "group_id"
+    t.integer "category_id"
     t.string "name", null: false
     t.string "catch_copy"
     t.text "description"
@@ -95,6 +103,7 @@ ActiveRecord::Schema.define(version: 2023_04_14_074238) do
     t.string "type"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
+    t.index ["category_id"], name: "index_subscriptions_on_category_id"
     t.index ["company_id"], name: "index_subscriptions_on_company_id"
     t.index ["group_id"], name: "index_subscriptions_on_group_id"
     t.index ["user_id"], name: "index_subscriptions_on_user_id"
@@ -121,6 +130,7 @@ ActiveRecord::Schema.define(version: 2023_04_14_074238) do
   add_foreign_key "relationships", "users", column: "follower_id"
   add_foreign_key "subscribes", "subscriptions", column: "admin_subscription_id"
   add_foreign_key "subscribes", "users"
+  add_foreign_key "subscriptions", "categories"
   add_foreign_key "subscriptions", "companies"
   add_foreign_key "subscriptions", "groups"
   add_foreign_key "subscriptions", "users"
