@@ -7,4 +7,7 @@ $(document).on("turbolinks:load", function() {
       $(this).removeClass("btn-light");
     }
   );
+  $(".user").on('click', function() {
+    window.location = $(this).data("href");
+  });
 });

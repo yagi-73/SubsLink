@@ -65,13 +65,12 @@
       </span>
     </a>
     <ul class="dropdown-menu text-small shadow">
-      <li><a class="dropdown-item" href="#">新プロジェクト...</a></li>
+      <li><%= link_to "Myサブスク", user_path(current_user, anchor: "subscriptions"), class: "dropdown-item" %></li>
       <li>
         <button class="dropdown-item" type="button" data-bs-toggle="modal" data-bs-target="#userFormModal">プロフィール編集</button>
       </li>
-      <li><a class="dropdown-item" href="#">設定</a></li>
       <li><hr class="dropdown-divider"></li>
-      <li><%= link_to "サインアウト", destroy_user_session_path, method: :delete,class: 'dropdown-item' %></li>
+      <li><%= link_to "サインアウト", destroy_user_session_path, method: :delete, class: 'dropdown-item' %></li>
     </ul>
     <div class="modal fade" id="userFormModal" tabindex="-1" aria-labelledby="userFormModalLabel" aria-hidden="true">
       <div class="modal-dialog modal-dialog-centered">

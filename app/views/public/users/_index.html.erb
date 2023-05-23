@@ -5,7 +5,7 @@
 <% else %>
   <div class="d-flex flex-column">
     <% users.each do |user| %>
-      <div class="btn btn-hover d-flex my-2" data-href="/users/<%= user.id%>">
+      <div class="user btn btn-hover d-flex my-2" data-href="/users/<%= user.id%>">
         <%= link_to user_path(user) do %>
           <%= image_tag user.get_image(60, 60), class: "rounded-circle mx-2" %>
         <% end %>
