@@ -23,6 +23,7 @@ class Public::SubscriptionsController < ApplicationController
 
   def search
     @subscriptions = AdminSubscription.with_attached_image.search(params[:keyword])
+    @categories = Category.all
     render :index
   end
 

@@ -14,6 +14,9 @@ import "bootstrap";
 import "../stylesheets/application" 
 import '@fortawesome/fontawesome-free/js/all'
 
+import "./jquery.validate.min"
+import "./validates/user"
+
 import "./switch_tab"
 import "./hover_link"
 

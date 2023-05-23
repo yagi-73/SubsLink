@@ -4,7 +4,7 @@
     <% @categories.each do |category| %>
       <li class="me-2 mb-2">
         <%= link_to subscriptions_path(category: category.name), class: "btn btn-hover rounded-pill text-reset border border-secondary" do %>
-          <i class="fas fa-<%= category.icon %>"></i><%= category.name %>
+          <i class="fas fa-<%= category.icon %> me-1"></i><%= category.name %>
         <% end %>
       </li>
     <% end %>
