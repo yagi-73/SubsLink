@@ -17,6 +17,7 @@ import "jquery-validation"
 import "bootstrap-show-password"
 
 import "./validates/user"
+import "./validates/user_subscription"
 import "./messages_ja"
 
 import "./switch_tab"

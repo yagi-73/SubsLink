@@ -2,57 +2,34 @@
   <a class="navbar-brand" href="/"><span class="d-none d-xl-block fs-4">SubsLink</span></a>
   <hr>
   <ul class="nav flex-column mb-auto">
-    <% if user_signed_in? %>
-      <li class="nav-item w-100">
-        <%= link_to user_path(current_user), class: 'btn btn-hover rounded-pill d-flex align-items-center text-reset text-start fs-3 fw-bold my-1 w-100' do %>
-          <i class="fas fa-home"></i><span class="d-none d-xl-block ms-1">ホーム</span>
-        <% end %>
-      </li>
-      <li class="nav-item w-100">
-        <%= link_to subscriptions_path,class: 'btn btn-hover rounded-pill d-flex align-items-center text-reset text-start fs-3 fw-bold my-1 w-100' do %>
-          <i class="fas fa-list-alt"></i><span class="d-none d-xl-block ms-1">サブスク</span>
-        <% end %>
-      </li>
-      <li class="nav-item w-100">
-        <%= link_to user_relationships_path(current_user),class: 'btn btn-hover rounded-pill d-flex align-items-center text-reset text-start fs-3 fw-bold my-1 w-100' do %>
-          <i class="fas fa-users"></i><span class="d-none d-xl-block ms-1">ユーザー</span>
-        <% end %>
-      </li>
-      <li class="nav-item w-100">
-        <button type="button" class="btn btn-primary rounded-pill btn_shadow w-100 my-3 py-2" data-bs-toggle="modal" data-bs-target="#formModal">
-          <span class="d-none d-xl-block">サブスク登録</span>
-          <i class="fas fa-plus d-xl-none d-xl-block" style="color: #ffffff;"></i>
-        </button>
-        <div class="modal fade" id="formModal" tabindex="-1" aria-labelledby="formModalLabel" aria-hidden="true">
-          <div class="modal-dialog">
-            <div class="modal-content p-3">
-              <%= render 'public/subscriptions/new_form', subsc: @subsc_new %>
-            </div>
+    <li class="nav-item w-100">
+      <%= link_to user_path(current_user), class: 'btn btn-hover rounded-pill d-flex align-items-center text-reset text-start fs-3 fw-bold my-1 w-100' do %>
+        <i class="fas fa-home"></i><span class="d-none d-xl-block ms-1">ホーム</span>
+      <% end %>
+    </li>
+    <li class="nav-item w-100">
+      <%= link_to subscriptions_path,class: 'btn btn-hover rounded-pill d-flex align-items-center text-reset text-start fs-3 fw-bold my-1 w-100' do %>
+        <i class="fas fa-list-alt"></i><span class="d-none d-xl-block ms-1">サブスク</span>
+      <% end %>
+    </li>
+    <li class="nav-item w-100">
+      <%= link_to user_relationships_path(current_user),class: 'btn btn-hover rounded-pill d-flex align-items-center text-reset text-start fs-3 fw-bold my-1 w-100' do %>
+        <i class="fas fa-users"></i><span class="d-none d-xl-block ms-1">ユーザー</span>
+      <% end %>
+    </li>
+    <li class="nav-item w-100">
+      <button type="button" class="btn btn-primary rounded-pill btn_shadow w-100 my-3 py-2" data-bs-toggle="modal" data-bs-target="#formModal">
+        <span class="d-none d-xl-block">サブスク登録</span>
+        <i class="fas fa-plus d-xl-none d-xl-block" style="color: #ffffff;"></i>
+      </button>
+      <div class="modal fade" id="formModal" tabindex="-1" aria-labelledby="formModalLabel" aria-hidden="true">
+        <div class="modal-dialog">
+          <div class="modal-content p-3">
+            <%= render 'public/subscriptions/new_form', subsc: @subsc_new %>
           </div>
         </div>
-      </li>
-    <% else %>
-      <li class="nav-item w-100">
-        <%= link_to root_path,class: 'btn btn-hover rounded-pill d-flex align-items-center text-reset text-start fs-3 fw-bold my-1 w-100' do %>
-          <i class="fas fa-home"></i><span class="d-none d-xl-block">ホーム</span>
-        <% end %>
-      </li>
-      <li class="nav-item w-100">
-        <%= link_to subscriptions_path,class: 'btn btn-hover rounded-pill d-flex align-items-center text-reset text-start fs-3 fw-bold my-1 w-100' do %>
-          <i class="fas fa-crop-alt"></i><span class="d-none d-xl-block">サブスク</span>
-        <% end %>
-      </li>
-      <li class="nav-item w-100">
-        <%= link_to new_user_registration_path,class: 'btn btn-hover rounded-pill d-flex align-items-center text-reset text-start fs-3 fw-bold my-1 w-100' do %>
-          <i class="fas fa-user-plus"></i><span class="d-none d-xl-block">サインアップ</span>
-        <% end %>
-      </li>
-      <li class="nav-item w-100">
-        <%= link_to new_user_session_path ,class: 'btn btn-hover rounded-pill d-flex align-items-center text-reset text-start fs-3 fw-bold my-1 w-100' do %>
-          <i class="fas fa-sign-in-alt"></i><span class="d-none d-xl-block">ログイン</span>
-        <% end %>
-      </li>
-    <% end %>
+      </div>
+    </li>
   </ul>
   <hr>
   <% if current_user.present? %>

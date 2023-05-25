@@ -8,33 +8,40 @@
 
     <%= stylesheet_link_tag 'application', media: 'all', 'data-turbolinks-track': 'reload' %>
     <%= javascript_pack_tag 'application', 'data-turbolinks-track': 'reload' %>
-    
+
   </head>
 
   <body>
-    <div class="container">
-      <div class="row justify-content-center">
-        <header class="col-xl-2 col-md-1 p-0 d-none d-md-block">
-          <% if request.fullpath.include?("admin") %>
-            <%= render "layouts/admin_header" %>
-          <% else %>
-            <%= render "layouts/user_header" %>
-          <% end %>
-        </header>
-        <main class="col-xl-10 col-md-11">
-          <div class="row">
-            <div class="col-lg-8 px-4 pb-md-0 pb-5 full-height overflow-auto">
-              <p id="notice"><%= notice %></p>
-              <%= yield %>
-            </div>
-            <div class="d-lg-block d-none col-lg-4 p-0 full-height overflow-auto">
-              <%= render 'layouts/sidebar' %>
-            </div>
+    <% unless user_signed_in? %>
+      <div class="container full-height">
+        <div class="row">
+          <div class="col-6 offset-3">
+            <%= yield %>
           </div>
-        </main>
+        </div>
       </div>
-    </div>
-    <% if user_signed_in? %>
+    <% else %>
+      <div class="container">
+        <div class="row">
+          <header class="col-xl-2 col-md-1 p-0 d-none d-md-block">
+            <% if request.fullpath.include?("admin") %>
+              <%= render "layouts/admin_header" %>
+            <% else %>
+              <%= render "layouts/user_header" %>
+            <% end %>
+          </header>
+          <main class="col-xl-10 col-md-11">
+            <div class="row">
+              <div class="col-lg-8 px-4 pt-3 pb-md-0 pb-5 full-height overflow-auto">
+                <%= yield %>
+              </div>
+              <div class="d-lg-block d-none col-lg-4 p-0 full-height overflow-auto">
+                <%= render 'layouts/sidebar' %>
+              </div>
+            </div>
+          </main>
+        </div>
+      </div>
       <footer class="fixed-bottom d-md-none">
         <%= render 'layouts/footer' %>
       </footer>
