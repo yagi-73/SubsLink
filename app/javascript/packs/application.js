@@ -14,6 +14,7 @@ import "bootstrap"
 import "../stylesheets/application" 
 import '@fortawesome/fontawesome-free/js/all'
 import "jquery-validation"
+import "bootstrap-show-password"
 
 import "./validates/user"
 import "./messages_ja"

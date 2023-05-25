@@ -14,14 +14,14 @@
         <%= f.email_field :email, autocomplete: "email", id: "inputEmail", class: "form-control", placeholder: "メールアドレス" %>
       </div>
 
-      <div class="mb-3">
+      <div class="form-group mb-3">
         <label for="inputPassword" class="form-label">パスワード(6文字以上)</label>
         <%= f.password_field :password, id: "inputPassword", class: "form-control", placeholder: "パスワード" %>
       </div>
 
-      <div class="mb-3">
+      <div class="form-group mb-3">
         <label for="inputPasswordConfirmation" class="form-label">パスワード(確認用)</label>
-        <%= f.password_field :password_confirmation, id: "inputPasswordConfirmation", class: "form-control", placeholder: "再度パスワードを入力してください" %>
+        <%= f.password_field :password_confirmation, id: "inputPasswordConfirmation", 'data-toggle': "password", class: "form-control", placeholder: "再度パスワードを入力してください" %>
       </div>
 
       <div class="mb-3">
