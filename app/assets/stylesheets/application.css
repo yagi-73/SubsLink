@@ -21,6 +21,10 @@
   box-sizing: border-box;
 }
 
+label.is-invalid {
+  color: #dc3545;
+}
+
 body {
   min-height: 100vh;
 }

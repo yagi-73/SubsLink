@@ -8,14 +8,15 @@ import Turbolinks from "turbolinks"
 import * as ActiveStorage from "@rails/activestorage"
 import "channels"
 
-import "jquery";
-import "popper.js";
-import "bootstrap";
+import $ from "expose-loader?exposes[]=$&exposes[]=jQuery!jquery";
+import "popper.js"
+import "bootstrap"
 import "../stylesheets/application" 
 import '@fortawesome/fontawesome-free/js/all'
+import "jquery-validation"
 
-import "./jquery.validate.min"
 import "./validates/user"
+import "./messages_ja"
 
 import "./switch_tab"
 import "./hover_link"

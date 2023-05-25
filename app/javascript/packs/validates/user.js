@@ -1,36 +1,33 @@
-$(function () {
-  $("#signup-form").validate({
-    rules: {
-      "user[name]": {
-        required: true
+$(document).on('turbolinks:load', function() {
+  $(function () {
+    $("#signupForm, #loginForm").validate({
+      rules: {
+        "user[name]": {
+          required: true
+        },
+        "user[email]": {
+          required: true
+        },
+        "user[password]": {
+          required: true
+        },
+        "user[password_confirmation]": {
+          required: true,
+          equalTo: "#inputPassword"
+        },
       },
-      "user[email]": {
-        required: true
-      },
-      "user[password]": {
-        required: true
-      },
-      "user[password_confirmation]": {
-        required: true,
-        equalTo: "#password"
-      },
-    },
 
-    messages: {
-      "user[password]": {
-        required: "パスワードを入力してください"
+      messages: {
+        "user[password_confirmation]": {
+          equalTo: "パスワードが一致していません"
+        },
       },
-      "user[password_confirmation]": {
-        required: "確認用パスワードを入力してください",
-        equalTo: "パスワードが一致していません"
-      },
-    },
-    errorClass: "is-invalid",
-    validClass: "is-valid",
-    errorElement: "p"
-  });
+      errorClass: "is-invalid",
+      validClass: "is-valid",
+    });
 
-  $("#password, #password_confirmation").blur(function () {
-    $(this).valid();
+    // $("#inputName, #inputEmail, #inputPassword, #inputPasswordConfirmation").blur(function () {
+    //   $(this).valid();
+    // });
   });
 });

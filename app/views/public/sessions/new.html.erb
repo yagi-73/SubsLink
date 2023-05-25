@@ -1,31 +1,32 @@
-<div class="w-50 m-auto">
-  <div class="logo">Log in</div>
-  <div class="login-form-1">
-    <%= form_for(resource, as: resource_name, url: session_path(resource_name)) do |f| %>
-      <div class="login-form-main-message"></div>
-      <div class="main-login-form">
-        <div class="login-group">
-          <div class="form-group">
-            <%= f.label :email, class: "sr-only" %>
-            <%= f.email_field :email, autofocus: true, autocomplete: "email", class: "form-control", placeholder: "email" %>
-          </div>
-          <div class="form-group">
-            <%= f.label :password, class: "sr-only" %>
-            <%= f.password_field :password, autocomplete: "current-password", class: "form-control", placeholder: "password" %>
-          </div>
-          <% if devise_mapping.rememberable? %>
-            <div class="form-group login-group-checkbox">
-              <%= f.check_box :remember_me %>
-              <%= f.label :remember_me %>
-            </div>
-          <% end %>
-        </div>
-        <button type="submit" class="login-button"><i class="fa fa-chevron-right"></i></button>
-      </div>
-      <div class="etc-login-form">
-        <p>forgot your password? <%= link_to "click here", new_user_password_path%></p>
-        <p>new user? <%= link_to "create new account", new_user_registration_path  %></p>
+<div class="col-8 offset-2">
+  <h2>ログイン</h2>
+  <%= form_with model: @user, url: user_session_path, id: "loginForm" do |f| %>
+    <div class="mb-3">
+      <label for="inputEmail" class="form-label">メールアドレス</label>
+      <%= f.email_field :email, autofocus: true, autocomplete: "email", id: "inputEmail", class: "form-control", placeholder: "メールアドレス" %>
+    </div>
+    <div class="mb-3">
+      <label for="inputPassword" class="form-label">パスワード</label>
+      <%= f.password_field :password, autocomplete: "current-password",id: "inputPassword", class: "form-control", placeholder: "パスワードを" %>
+    </div>
+    <% if devise_mapping.rememberable? %>
+      <div class="mb-3">
+        <%= f.check_box :remember_me %>
+        <%= f.label :remember_me %>
       </div>
     <% end %>
-  </div>
+    <div class="mb-5">
+      <%= f.submit "ログイン", class: "btn btn-success" %>
+    </div>
+    <div class="mb-3">
+      <div class="mb-2">
+        <span>パスワードを忘れた方は</span>
+        <%= link_to "こちら", new_user_password_path %>
+      </div>
+      <div>
+        <span>初回登録の方は</span>
+        <%= link_to "こちら", new_user_registration_path %>
+      </div>
+    </div>
+  <% end %>
 </div>
