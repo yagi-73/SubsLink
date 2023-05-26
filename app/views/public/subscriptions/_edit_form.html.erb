@@ -1,4 +1,4 @@
-<%= form_with model: subsc, url: subscription_path(subsc), method: :patch, id: "subscriptionForm" do |f| %>
+<%= form_with model: subsc, url: subscription_path(subsc), method: :patch, class: "subscription-form" do |f| %>
   <div class="form-group mb-3">
     <%= f.label :name, 'サブスク名' %>
     <%= f.text_field :name, class: 'form-control' %>

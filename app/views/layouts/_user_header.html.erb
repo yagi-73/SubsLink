@@ -18,17 +18,10 @@
       <% end %>
     </li>
     <li class="nav-item w-100">
-      <button type="button" class="btn btn-primary rounded-pill btn_shadow w-100 my-3 py-2" data-bs-toggle="modal" data-bs-target="#formModal">
+      <button type="button" class="btn btn-primary rounded-pill btn_shadow w-100 my-3 py-2" data-bs-toggle="modal" data-bs-target="#subscriptionModal">
         <span class="d-none d-xl-block">サブスク登録</span>
         <i class="fas fa-plus d-xl-none d-xl-block" style="color: #ffffff;"></i>
       </button>
-      <div class="modal fade" id="formModal" tabindex="-1" aria-labelledby="formModalLabel" aria-hidden="true">
-        <div class="modal-dialog">
-          <div class="modal-content p-3">
-            <%= render 'public/subscriptions/new_form', subsc: @subsc_new %>
-          </div>
-        </div>
-      </div>
     </li>
   </ul>
   <hr>

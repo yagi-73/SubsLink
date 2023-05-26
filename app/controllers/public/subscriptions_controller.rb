@@ -2,8 +2,8 @@ class Public::SubscriptionsController < ApplicationController
   before_action :check_subscription, only: [:edit, :update]
 
   def create
-    @subsc = current_user.user_subscriptions.new(user_subsc_params)
-    @subsc.save
+    subsc = current_user.user_subscriptions.new(user_subsc_params)
+    subsc.save
     redirect_to user_path(current_user)
   end
 
@@ -38,8 +38,8 @@ class Public::SubscriptionsController < ApplicationController
   end
 
   def update
-    @subsc = UserSubscription.find(params[:id])
-    @subsc.update(user_subsc_params)
+    subsc = UserSubscription.find(params[:id])
+    subsc.update(user_subsc_params)
     redirect_to user_path(current_user)
   end
 

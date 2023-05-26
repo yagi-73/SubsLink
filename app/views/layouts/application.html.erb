@@ -45,6 +45,13 @@
       <footer class="fixed-bottom d-md-none">
         <%= render 'layouts/footer' %>
       </footer>
+      <div class="modal fade" id="subscriptionModal" tabindex="-1" aria-labelledby="formModalLabel" aria-hidden="true">
+        <div class="modal-dialog">
+          <div class="modal-content p-3">
+            <%= render 'public/subscriptions/new_form', subsc: @subsc_new %>
+          </div>
+        </div>
+      </div>
     <% end %>
   </body>
 </html>
