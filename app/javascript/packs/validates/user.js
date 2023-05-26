@@ -3,10 +3,12 @@ $(document).on('turbolinks:load', function() {
     $("#signupForm, #loginForm").validate({
       rules: {
         "user[name]": {
-          required: true
+          required: true,
+          rengelength: [2, 10]
         },
         "user[email]": {
-          required: true
+          required: true,
+          email: true
         },
         "user[password]": {
           required: true
@@ -37,5 +39,31 @@ $(document).on('turbolinks:load', function() {
     // $("#inputName, #inputEmail, #inputPassword, #inputPasswordConfirmation").blur(function () {
     //   $(this).valid();
     // });
+  });
+
+  $(function () {
+    $("#userEditForm").validate({
+      rules: {
+        "user[name]": {
+          required: true,
+          rangelength: [2, 10]
+        },
+        "user[introduction]": {
+          maxlength: 100
+        },
+        "user[image]": {
+          accept: "image/*"
+        }
+      },
+
+      messages: {
+        "user[image]": {
+          accept: "画像をアップロードしてください"
+        },
+      },
+
+      errorClass: "is-invalid",
+      validClass: "is-valid",
+    });
   });
 });

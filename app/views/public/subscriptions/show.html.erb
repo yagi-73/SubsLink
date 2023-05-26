@@ -45,21 +45,21 @@
       </div>
     </div>
   </div>
-  <div class="d-flex flex-nowrap overflow-x-auto">
+  <div class="d-flex flex-nowrap overflow-x-auto mt-4">
     <% @subscriptions.each do |subsc| %>
-      <div class="col-4 mb-3">
+      <div class="col-4 mb-3 me-4">
         <%= link_to subscription_path(subsc), class: "text-reset text-decoration-none" do  %>
           <div class="card h-100 p-2">
-            <h2><%= subsc.name %></h2>
-            <h4>￥<%= subsc.price.to_s(:delimited) %>/<%= subsc.update_cycle %>ヵ月</h4>
+            <h3><%= subsc.name %></h3>
+            <h5>￥<%= subsc.price.to_s(:delimited) %>/<%= subsc.update_cycle %>ヵ月</h5>
             <% if subsc.update_cycle != 1 %>
               <p>月換算 ￥ <%= (subsc.price / subsc.update_cycle).to_s(:delimited) %>/月</p>
             <% end %>
           </div>
         <% end %>
       </div>
-      <div class="offset-1"></div>
+      
     <% end %>
   </div>
 </div>
-<div class="description mt-5"><%= simple_format(h(@subsc.description)) %></div>
+<div class="description mt-4"><%= simple_format(h(@subsc.description)) %></div>

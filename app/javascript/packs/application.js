@@ -14,11 +14,12 @@ import "bootstrap"
 import "../stylesheets/application" 
 import '@fortawesome/fontawesome-free/js/all'
 import "jquery-validation"
+import 'jquery-validation/dist/additional-methods'
+import 'jquery-validation/dist/localization/messages_ja'
 import "bootstrap-show-password"
 
 import "./validates/user"
 import "./validates/user_subscription"
-import "./messages_ja"
 
 import "./switch_tab"
 import "./hover_link"
