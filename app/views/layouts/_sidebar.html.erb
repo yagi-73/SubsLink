@@ -1,8 +1,8 @@
 <div class="d-flex flex-column ps-4 border-start full-height">
 	<%= form_with url: subscriptions_search_path, method: :get do |f| %>
 		<div class="input-group mb-4 p-3">
-			<%= f.text_field :keyword, id: "search", placeholder: "サブスク検索", class: "form-control col-9" %>
-			<%= button_tag type: "submit", class: "btn btn-primary col-3" do %>
+			<%= f.text_field :keyword, id: "subscriptionSearchForm", placeholder: "サブスク検索", class: "form-control col-9", 'aria-describedby': :"subscriptionSearchButton" %>
+			<%= button_tag type: "submit", id: "subscriptionSearchButton", class: "btn btn-primary col-3" do %>
 				<i class="fas fa-search"></i>
 			<% end %>
 		</div>

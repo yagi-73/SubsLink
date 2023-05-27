@@ -18,8 +18,8 @@ import 'jquery-validation/dist/additional-methods'
 import 'jquery-validation/dist/localization/messages_ja'
 import "bootstrap-show-password"
 
-import "./validates/user"
 import "./validates/user_subscription"
+import "./validates/user"
 
 import "./switch_tab"
 import "./hover_link"

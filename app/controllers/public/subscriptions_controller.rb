@@ -3,7 +3,7 @@ class Public::SubscriptionsController < ApplicationController
 
   def create
     subsc = current_user.user_subscriptions.new(user_subsc_params)
-    subsc.save
+    subsc.save!
     redirect_to user_path(current_user)
   end
 

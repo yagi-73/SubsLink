@@ -4,7 +4,7 @@ $(document).on('turbolinks:load', function() {
       rules: {
         "user[name]": {
           required: true,
-          rengelength: [2, 10]
+          rangelength: [2, 10]
         },
         "user[email]": {
           required: true,
@@ -59,11 +59,22 @@ $(document).on('turbolinks:load', function() {
       messages: {
         "user[image]": {
           accept: "画像をアップロードしてください"
-        },
+        }
       },
 
       errorClass: "is-invalid",
       validClass: "is-valid",
+    });
+  });
+
+  $(function () {
+    $("#userSearchForm").validate({
+      rules: {
+        "user_tag": {
+          digits: true,
+          range: 4
+        }
+      }
     });
   });
 });

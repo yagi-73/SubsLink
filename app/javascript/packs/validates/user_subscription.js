@@ -4,16 +4,20 @@ $(document).on('turbolinks:load', function() {
       $(this).validate({
         rules: {
           "user_subscription[name]": {
-            required: true
+            required: true,
+            rangelength: [2, 30]
           },
           "user_subscription[price]": {
-            required: true
+            required: true,
+            digits: true
           },
           "user_subscription[contract_day]": {
-            required: true
+            required: true,
+            date: true
           },
           "user_subscription[update_cycle]": {
-            required: true
+            required: true,
+            range: [1, 12]
           },
         },
 
