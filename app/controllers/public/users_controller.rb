@@ -7,12 +7,7 @@ class Public::UsersController < ApplicationController
   end
 
   def show
-    if params[:id].present? 
-      @user =  User.find(params[:id])
-      # @user =  User.includes([admin_subscriptions: { image_attachment: :blob }, user_subscriptions: { image_attachment: :blob }]).find(params[:id])
-    else
-      @user = current_user
-    end
+    @user = params[:id].present? ? User.find(params[:id]) : current_user
     @subsc_calender = make_calender_array(get_date)
   end
 
