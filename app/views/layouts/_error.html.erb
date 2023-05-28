@@ -1,0 +1,10 @@
+<% if obj.errors.any? %>
+  <div class="border border-3 border-danger mb-3 bg-light">
+    <h3 class="bg-danger p-1 text-white"><%= obj.nil? ? '登録' : '更新' %>に失敗しました</h3>
+    <ul class="m-3">
+      <% obj.errors.full_messages.each do |message| %>
+        <li><%= message %></li>
+      <% end %>
+    </ul>
+  </div>
+<% end %>

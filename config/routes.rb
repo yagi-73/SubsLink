@@ -15,6 +15,9 @@ Rails.application.routes.draw do
   end
 
   scope module: :public do
+    authenticated :user do
+      root to: 'users#show', as: :authenticated_root
+    end
     root to: 'homes#top'
     get 'about' => 'homes#about', as: 'about'
     resources :users, only: [:show, :update] do

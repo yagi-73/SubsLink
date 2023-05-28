@@ -66,15 +66,4 @@ $(document).on('turbolinks:load', function() {
       validClass: "is-valid",
     });
   });
-
-  $(function () {
-    $("#userSearchForm").validate({
-      rules: {
-        "user_tag": {
-          digits: true,
-          range: 4
-        }
-      }
-    });
-  });
 });

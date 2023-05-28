@@ -21,7 +21,7 @@ class User < ApplicationRecord
   validates :introduction, length: { maximum: 100 }
 
   def subscriptions
-    self.user_subscriptions.with_attached_image + self.admin_subscriptions.with_attached_image
+    self.user_subscriptions + self.admin_subscriptions
   end
 
   def subscribe(params)

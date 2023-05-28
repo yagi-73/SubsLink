@@ -3,8 +3,14 @@ class Public::SubscriptionsController < ApplicationController
 
   def create
     subsc = current_user.user_subscriptions.new(user_subsc_params)
-    subsc.save!
-    redirect_to user_path(current_user)
+    if subsc.save
+      redirect_to user_path(current_user)
+    else
+      @error_obj = subsc
+      @user = current_user
+      @subsc_calender = make_calender_array(get_date)
+      render "public/users/show"
+    end
   end
 
   def subscribe
@@ -39,8 +45,14 @@ class Public::SubscriptionsController < ApplicationController
 
   def update
     subsc = UserSubscription.find(params[:id])
-    subsc.update(user_subsc_params)
-    redirect_to user_path(current_user)
+    if subsc.update(user_subsc_params)
+      redirect_to user_path(current_user)
+    else
+      @error_obj = subsc
+      @user = current_user
+      @subsc_calender = make_calender_array(get_date)
+      render "public/users/show"
+    end
   end
 
   def destroy

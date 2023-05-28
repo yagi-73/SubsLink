@@ -12,8 +12,15 @@
 
 ActiveRecord::Schema.define(version: 2023_05_22_060047) do
 
-# Could not dump table "active_storage_attachments" because of following StandardError
-#   Unknown type 'uuid' for column 'record_id'
+  create_table "active_storage_attachments", force: :cascade do |t|
+    t.string "name", null: false
+    t.string "record_type", null: false
+    t.string "record_id", null: false
+    t.bigint "blob_id", null: false
+    t.datetime "created_at", null: false
+    t.index ["blob_id"], name: "index_active_storage_attachments_on_blob_id"
+    t.index ["record_type", "record_id", "name", "blob_id"], name: "index_active_storage_attachments_uniqueness", unique: true
+  end
 
   create_table "active_storage_blobs", force: :cascade do |t|
     t.string "key", null: false
@@ -63,14 +70,44 @@ ActiveRecord::Schema.define(version: 2023_05_22_060047) do
     t.datetime "updated_at", precision: 6, null: false
   end
 
-# Could not dump table "relationships" because of following StandardError
-#   Unknown type 'uuid' for column 'follower_id'
+  create_table "relationships", force: :cascade do |t|
+    t.string "follower_id"
+    t.string "followed_id"
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.index ["followed_id"], name: "index_relationships_on_followed_id"
+    t.index ["follower_id"], name: "index_relationships_on_follower_id"
+  end
 
-# Could not dump table "subscribes" because of following StandardError
-#   Unknown type 'uuid' for column 'user_id'
+  create_table "subscribes", force: :cascade do |t|
+    t.integer "admin_subscription_id"
+    t.string "user_id"
+    t.date "contract_day", null: false
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.index ["admin_subscription_id"], name: "index_subscribes_on_admin_subscription_id"
+    t.index ["user_id"], name: "index_subscribes_on_user_id"
+  end
 
-# Could not dump table "subscriptions" because of following StandardError
-#   Unknown type 'uuid' for column 'user_id'
+  create_table "subscriptions", force: :cascade do |t|
+    t.string "user_id"
+    t.integer "company_id"
+    t.integer "group_id"
+    t.integer "category_id"
+    t.string "name", null: false
+    t.string "catch_copy"
+    t.text "description"
+    t.integer "price", null: false
+    t.date "contract_day"
+    t.integer "update_cycle", null: false
+    t.string "type"
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.index ["category_id"], name: "index_subscriptions_on_category_id"
+    t.index ["company_id"], name: "index_subscriptions_on_company_id"
+    t.index ["group_id"], name: "index_subscriptions_on_group_id"
+    t.index ["user_id"], name: "index_subscriptions_on_user_id"
+  end
 
   create_table "users", id: { type: :string, limit: 36 }, force: :cascade do |t|
     t.string "email", default: "", null: false

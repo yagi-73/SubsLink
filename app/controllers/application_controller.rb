@@ -15,7 +15,7 @@ class ApplicationController < ActionController::Base
     end
 
     def get_top_subscriptions
-      @top_subscriptions = AdminSubscription.includes(:subscribes, {image_attachment: :blob}).top_subscribes
+      @top_subscriptions = AdminSubscription.with_attached_image.top_subscribes
     end
 
     def after_sign_in_path_for(resource)
@@ -34,5 +34,32 @@ class ApplicationController < ActionController::Base
       when :user
         new_user_session_path
       end
+    end
+
+    def get_date
+      if params[:start_date].present?
+        Date.parse(params[:start_date])
+      else
+        Date.today
+      end
+    end
+  
+    def diff_month(date1, date2)
+      ((date2.year * 12 + date2.month) - (date1.year * 12 + date1.month)).abs
+    end
+  
+    def make_calender_array(date)
+      subsc_calender = Array.new
+      @user.subscriptions.each do |subsc|
+  
+        if subsc.class == AdminSubscription
+          subsc.contract_day = @user.subscribe_day(subsc)
+        end
+        if subsc.update_this_month?(date)
+          subsc.calender_day = subsc.contract_day.months_since(diff_month(date, subsc.contract_day))
+          subsc_calender << subsc
+        end
+      end
+      return subsc_calender
     end
 end

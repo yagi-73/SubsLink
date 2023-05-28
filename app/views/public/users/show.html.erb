@@ -1,3 +1,6 @@
+<% if @error_obj.present? %>
+  <%= render "layouts/error", obj: @error_obj %>
+<%end %>
 <div class='container px-xs-0'>
   <div class='row'>
     <div class="profile d-flex mb-3 col-sm-9 col-10">
@@ -29,11 +32,11 @@
     </ul>
     <div class="tabbox-contents">
       <div class="tabbox box-show">
-        <%= render 'calender', subscriptions: @subsc_calender, user: @user %>
+        <%= render 'public/users/calender', subscriptions: @subsc_calender, user: @user %>
       </div>
       <div class="tabbox">
         <h2>登録済みサブスク</h2>
-        <%= render 'public/subscriptions/index', subscriptions: @subscriptions, user: @user %>
+        <%= render 'public/subscriptions/index', subscriptions: @user.subscriptions, user: @user %>
       </div>
     </div>
   </div>

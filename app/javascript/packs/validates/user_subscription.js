@@ -9,7 +9,8 @@ $(document).on('turbolinks:load', function() {
           },
           "user_subscription[price]": {
             required: true,
-            digits: true
+            digits: true,
+            maxlength: 10
           },
           "user_subscription[contract_day]": {
             required: true,

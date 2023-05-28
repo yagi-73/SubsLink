@@ -8,6 +8,41 @@ ja:
     next: ">>"
 
   activerecord:
+    models: 
+      admin: 管理者
+      category: カテゴリー
+      company: 会社
+      group: グループ
+      relationship: 関係
+      subscribe: サブスクライブ
+      subscription: サブスク
+      user: ユーザー
+
+    attributes:
+      admin:
+        email: メールアドレス
+        password: パスワード
+      category: 
+        name: カテゴリー名
+        icon: アイコン
+      company:
+        name: 会社名
+      subscribe:
+        contract_day: 契約日
+      subscription:
+        name: サブスク名
+        catch_copy: キャッチコピー
+        description: 説明文
+        price: 金額
+        contract_day: 契約日
+        update_cycle: 更新サイクル
+      user:
+        name: 名前
+        email: メールアドレス
+        password: パスワード
+        introduction: プロフィール文
+        tag: タグ
+        
     errors:
       messages:
         record_invalid: 'バリデーションに失敗しました: %{errors}'
