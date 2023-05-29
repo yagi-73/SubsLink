@@ -1,4 +1,7 @@
 class Public::UsersController < ApplicationController
+  before_action :set_subsc_form, omly: [ :index, :show, :edit, :search]
+  before_action :get_top_subscriptions, omly: [ :index, :show, :edit, :search]
+
   def index
     @user = User.find(params[:user_id])
     @followings = @user.followings.with_attached_image

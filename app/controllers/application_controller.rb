@@ -1,8 +1,6 @@
 class ApplicationController < ActionController::Base
   before_action :authenticate_user!,except: [:top]
   before_action :configure_permitted_parameters, if: :devise_controller?
-  before_action :set_subsc_form
-  before_action :get_top_subscriptions
 
   private
     def configure_permitted_parameters

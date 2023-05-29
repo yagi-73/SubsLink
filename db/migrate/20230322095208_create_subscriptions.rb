@@ -12,6 +12,7 @@ class CreateSubscriptions < ActiveRecord::Migration[6.1]
       t.date :contract_day
       t.integer :update_cycle, null: false
       t.string :type
+      t.integer :subscribes_count, null: false, default: 0
 
       t.timestamps
     end

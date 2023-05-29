@@ -7,7 +7,7 @@ class AdminSubscription < Subscription
 
   validates :description, length: { maximum: 500 }
 
-  scope :top_subscribes,  -> { sort_by {|subsc| -subsc.subscribes.size }.take(3) }
+  scope :top_subscribes,  -> { sort_by {|subsc| -subsc.subscribes_count }.take(3) }
   scope :no_overlap,      -> { uniq{ |n| n.group_id } }
   scope :same_group,      -> (subsc){ where(group_id: subsc.group_id).where.not(id: subsc.id) }
   scope :search,          -> (keyword){ where(["name LIKE?", "%#{keyword}%"]) }

@@ -101,6 +101,7 @@ ActiveRecord::Schema.define(version: 2023_05_22_060047) do
     t.date "contract_day"
     t.integer "update_cycle", null: false
     t.string "type"
+    t.integer "subscribes_count", default: 0, null: false
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
     t.index ["category_id"], name: "index_subscriptions_on_category_id"

@@ -1,4 +1,7 @@
 class Public::CompaniesController < ApplicationController
+  before_action :set_subsc_form
+  before_action :get_top_subscriptions
+
   def index
     @companies = Company.all
   end

@@ -1,5 +1,7 @@
 class Public::SubscriptionsController < ApplicationController
   before_action :check_subscription, only: [:edit, :update]
+  before_action :set_subsc_form, omly: [ :index, :show, :edit,:search]
+  before_action :get_top_subscriptions, omly: [ :index, :show, :edit, :search]
 
   def create
     subsc = current_user.user_subscriptions.new(user_subsc_params)
@@ -25,12 +27,6 @@ class Public::SubscriptionsController < ApplicationController
       @subscriptions = Category.find_by(name: params[:category]).admin_subscriptions.with_attached_image.no_overlap
     end
     @categories = Category.all
-  end
-
-  def search
-    @subscriptions = AdminSubscription.with_attached_image.search(params[:keyword])
-    @categories = Category.all
-    render :index
   end
 
   def show
@@ -59,6 +55,12 @@ class Public::SubscriptionsController < ApplicationController
     subsc = Subscription.find(params[:id])
     current_user.unsubscribe(subsc)
     redirect_to user_path(current_user)
+  end
+
+  def search
+    @subscriptions = AdminSubscription.with_attached_image.search(params[:keyword])
+    @categories = Category.all
+    render :index
   end
 
   private
