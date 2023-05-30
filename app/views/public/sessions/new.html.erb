@@ -1,6 +1,6 @@
 <div class="col-8 offset-2">
   <h2>ログイン</h2>
-  <%= form_with model: @user, url: user_session_path, id: "loginForm" do |f| %>
+  <%= form_with model: @user, url: user_session_path, id: "userLoginForm" do |f| %>
     <div class="form-group mb-3">
       <label for="inputEmail" class="form-label">メールアドレス</label>
       <%= f.email_field :email, autofocus: true, autocomplete: "email", id: "inputEmail", class: "form-control", placeholder: "メールアドレス" %>
@@ -12,7 +12,7 @@
     <% if devise_mapping.rememberable? %>
       <div class="form-group mb-3">
         <%= f.check_box :remember_me %>
-        <%= f.label :remember_me %>
+        <%= f.label :remember_me, "ログインを記憶する" %>
       </div>
     <% end %>
     <div class="form-group mb-5">

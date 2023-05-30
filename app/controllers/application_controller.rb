@@ -1,8 +1,16 @@
 class ApplicationController < ActionController::Base
-  before_action :authenticate_user!,except: [:top]
+  before_action :authenticate_any!
   before_action :configure_permitted_parameters, if: :devise_controller?
 
   private
+    def authenticate_any!
+      if request.fullpath.include?("admin")
+        authenticate_admin!
+      elsif action_name == 'top'
+        authenticate_user!
+      end
+    end
+
     def configure_permitted_parameters
       devise_parameter_sanitizer.permit(:sign_up,keys:[:name])
     end

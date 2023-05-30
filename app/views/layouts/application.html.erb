@@ -18,25 +18,19 @@
           <header class="col-xl-2 col-md-1 p-0 d-none d-md-block">
             <%= render "layouts/admin_header" %>
           </header>
-            <main class="col-xl-10 col-md-11">
-              <div class="row">
-                <div class="col-lg-8 pt-3 pb-md-0 pb-5 px-md-4 px-2 full-height overflow-auto">
-                  <%= yield %>
-                </div>
-                <div class="d-lg-block d-none col-lg-4 p-0 full-height overflow-auto">
-                  <%= render 'layouts/sidebar' %>
-                </div>
+          <main class="col-xl-10 col-md-11">
+            <div class="row">
+              <div class="full-height overflow-auto">
+                <%= yield %>
               </div>
-            </main>
-    <% elsif !user_signed_in? %>
-      <div class="container full-height">
-        <div class="row">
-          <div class="col-6 offset-3">
-            <%= yield %>
-          </div>
+            </div>
+          </main>
+          <footer class="fixed-bottom d-md-none">
+            <%= render 'layouts/admin_footer' %>
+          </footer>
         </div>
       </div>
-    <% else %>
+    <% elsif user_signed_in? %>
       <div class="container">
         <div class="row">
           <header class="col-xl-2 col-md-1 p-0 d-none d-md-block">
@@ -68,6 +62,14 @@
         <div class="modal-dialog">
           <div class="modal-content p-3">
             <%= render 'public/subscriptions/new_form', subsc: @subsc_new %>
+          </div>
+        </div>
+      </div>
+    <% else %>
+      <div class="container full-height">
+        <div class="row">
+          <div class="col-6 offset-3">
+            <%= yield %>
           </div>
         </div>
       </div>

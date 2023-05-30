@@ -1,6 +1,6 @@
 $(document).on('turbolinks:load', function() {
   $(function () {
-    $("#signupForm, #loginForm").validate({
+    $("#userSignupForm, #userLoginForm").validate({
       rules: {
         "user[name]": {
           required: true,

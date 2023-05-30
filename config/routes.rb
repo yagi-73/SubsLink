@@ -10,8 +10,9 @@ Rails.application.routes.draw do
   }
 
   namespace :admin do
-    resources :companies, only: [:new, :index, :create, :update, :destroy]
-    resources :subscriptions, only: [:new, :index, :create, :update, :destroy]
+    resources :companies, only: [:index, :create, :update, :destroy]
+    resources :subscriptions, only: [:index, :create, :update, :destroy]
+    resources :categories, only: [:index, :create, :update, :destroy]
   end
 
   scope module: :public do
@@ -26,7 +27,7 @@ Rails.application.routes.draw do
       get 'search' => 'users#search'
     end
     get 'subscriptions/search' => 'subscriptions#search'
-    resources :subscriptions
+    resources :subscriptions, only: [:index, :create, :update, :destroy]
     post 'subscriptions/subscribe' => 'subscriptions#subscribe', as: 'subscribe'
     resources :companies, only: [:index, :show]
   end

@@ -1,7 +1,7 @@
 <div class="col-8 offset-2">
   <h2>新規会員登録</h2>
 
-  <%= form_with model: @user, url: user_registration_path, id: "signupForm" do |f| %>
+  <%= form_with model: @user, url: user_registration_path, id: "userSignupForm" do |f| %>
     <%= render "public/shared/error_messages", resource: resource %>
 
       <div class="form-group mb-3">
