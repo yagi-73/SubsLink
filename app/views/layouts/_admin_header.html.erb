@@ -1,72 +1,29 @@
-<div class="d-flex flex-column flex-shrink-0 p-3 border-end full-height">
-  <a class="navbar-brand" href="/"><span class="fs-4">SubsLink</span></a>
-  <%# <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNavDropdown" aria-controls="navbarNavDropdown" aria-expanded="false" aria-label="Toggle navigation">
-        <span class="navbar-toggler-icon"></span>
-      </button>
-      <div class="collapse navbar-collapse" id="navbarNavDropdown"> %>
+<div class="d-flex flex-column flex-shrink-0 pe-lg-3 pe-2 p-xl-3 border-end full-height">
+  <a class="navbar-brand" href="/"><span class="d-none d-xl-block fs-4">管理者</span></a>
   <hr>
-  <ul class="nav nav-pills flex-column mb-auto">
-    <% if admin_signed_in? %>
-      <li>
-        <%= link_to subscriptions_path,class: 'btn btn-hover rounded-pill text-reset text-start fs-3 fw-bold my-1 w-100' do %>
-          <i class="fas fa-crop-alt"></i> サブスク
-        <% end %>
-      </li>
-      <li>
-        <%= link_to admin_companies_path,class: 'btn btn-hover rounded-pill text-reset text-start fs-3 fw-bold my-1 w-100' do %>
-          <i class="fas fa-users"></i> 会社
-        <% end %>
-      </li>
-      <li>
-        <button type="button" class="btn btn-primary rounded-pill btn_shadow w-100 my-3 py-2" data-bs-toggle="modal" data-bs-target="#formModal">
-          サブスク登録
-        </button>
-        <div class="modal fade" id="formModal" tabindex="-1" aria-labelledby="formModalLabel" aria-hidden="true">
-          <div class="modal-dialog">
-            <div class="modal-content p-3">
-              <%= render 'admin/subscriptions/new_form', subsc: @admin_subsc_new %>
-            </div>
+  <ul class="nav flex-column mb-auto">
+    <li class="nav-item w-100">
+      <%= link_to admin_subscriptions_path,class: 'btn btn-hover rounded-pill d-flex align-items-center text-reset text-start fs-3 fw-bold my-1 w-100' do %>
+        <i class="fas fa-list-alt"></i><span class="d-none d-xl-block ms-1">サブスク</span>
+      <% end %>
+    </li>
+    <li class="nav-item w-100">
+      <%= link_to admin_companies_path,class: 'btn btn-hover rounded-pill d-flex align-items-center text-reset text-start fs-3 fw-bold my-1 w-100' do %>
+        <i class="fas fa-users"></i><span class="d-none d-xl-block ms-1">会社</span>
+      <% end %>
+    </li>
+    <li class="nav-item w-100">
+      <button type="button" class="btn btn-primary rounded-pill btn_shadow w-100 my-3 py-2" data-bs-toggle="modal" data-bs-target="#adminSubscriptionModal">
+        <span class="d-none d-xl-block">サブスク登録</span>
+        <i class="fas fa-plus d-xl-none d-xl-block" style="color: #ffffff;"></i>
+      </button>
+      <div class="modal fade" id="adminSubscriptionModal" tabindex="-1" aria-labelledby="adminSubscriptionModalLabel" aria-hidden="true">
+        <div class="modal-dialog">
+          <div class="modal-content p-3">
+            <%= render 'admin/subscriptions/new_form', subsc: @admin_subsc_new %>
           </div>
         </div>
-      </li>
-    <% else %>
-      <li>
-        <%= link_to root_path,class: 'btn btn-hover rounded-pill text-reset fs-3 fw-bold my-1 w-100' do %>
-          <i class="fas fa-home"></i> ホーム
-        <% end %>
-      </li>
-      <li>
-        <%= link_to subscriptions_path,class: 'btn btn-hover rounded-pill text-reset fs-3 fw-bold my-1 w-100' do %>
-          <i class="fas fa-crop-alt"></i> サブスク
-        <% end %>
-      </li>
-      <li>
-        <%= link_to new_user_registration_path,class: 'btn btn-hover rounded-pill text-reset fs-3 fw-bold my-1 w-100' do %>
-          <i class="fas fa-user-plus"></i> サインアップ
-        <% end %>
-      </li>
-      <li>
-        <%= link_to new_user_session_path ,class: 'btn btn-hover rounded-pill text-reset fs-3 fw-bold my-1 w-100' do %>
-          <i class="fas fa-sign-in-alt"></i> ログイン
-        <% end %>
-      </li>
-    <% end %>
+      </div>
+    </li>
   </ul>
-  <hr>
-  <% if current_user.present? %>
-  <div class="dropdown">
-    <a href="#" class="d-flex align-items-center text-reset text-decoration-none dropdown-toggle" data-bs-toggle="dropdown" aria-expanded="false">
-      <%= image_tag current_user.get_image(32, 32), class: "rounded-circle me-2" %>
-      <strong><%= current_user.name + " #" %></strong>
-      <%= current_user.tag %>
-    </a>
-    <ul class="dropdown-menu text-small shadow">
-      <li><a class="dropdown-item" href="#">新プロジェクト...</a></li>
-      <li><a class="dropdown-item" href="#">設定</a></li>
-      <li><a class="dropdown-item" href="#">プロフィール</a></li>
-      <li><hr class="dropdown-divider"></li>
-      <li><%= link_to "サインアウト", destroy_user_session_path, method: :delete,class: 'dropdown-item' %></li>
-    </ul>
-  </div>
-  <% end %>
 </div>

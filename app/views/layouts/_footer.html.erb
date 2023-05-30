@@ -1,22 +1,35 @@
 <nav class="navbar navbar-expand navbar-light bg-light" style="height: 50px;">
   <div class="container-fluid">
-    <ul class="navbar-nav justify-content-between w-100">
-      <li class="nav-item w-25">
+    <ul class="navbar-nav justify-content-between w-100 px-3">
+      <li class="nav-item dropdown dropup">
+        <a href="#" class="d-flex align-items-center h-100" data-bs-toggle="dropdown" aria-expanded="false">
+          <%= image_tag current_user.get_image(32, 32), class: "rounded-circle" %>
+        </a>
+        <ul class="dropdown-menu text-small shadow">
+          <li><%= link_to "Myサブスク", user_path(current_user, anchor: "subscriptions"), class: "dropdown-item" %></li>
+          <li>
+            <button class="dropdown-item" type="button" data-bs-toggle="modal" data-bs-target="#userFormModal">プロフィール編集</button>
+          </li>
+          <li><hr class="dropdown-divider"></li>
+          <li><%= link_to "サインアウト", destroy_user_session_path, method: :delete, class: 'dropdown-item' %></li>
+        </ul>
+      </li>
+      <li class="nav-item">
         <%= link_to user_path(current_user), class: 'btn btn-hover rounded-pill d-flex justify-content-center text-reset fs-3 fw-bold w-100' do %>
           <i class="fas fa-home"></i><span class="d-none d-xl-block">ホーム</span>
         <% end %>
       </li>
-      <li class="nav-item w-25">
+      <li class="nav-item">
         <%= link_to subscriptions_path,class: 'btn btn-hover rounded-pill d-flex justify-content-center text-reset fs-3 fw-bold w-100' do %>
           <i class="fas fa-list-alt"></i><span class="d-none d-xl-block">サブスク</span>
         <% end %>
       </li>
-      <li class="nav-item w-25">
+      <li class="nav-item">
         <%= link_to user_relationships_path(current_user),class: 'btn btn-hover rounded-pill d-flex justify-content-center text-reset fs-3 fw-bold w-100' do %>
           <i class="fas fa-users"></i><span class="d-none d-xl-block">ユーザー</span>
         <% end %>
       </li>
-      <li class="nav-item text-center w-25">
+      <li class="nav-item text-center">
         <button type="button" class="btn btn-primary rounded-pill btn_shadow" data-bs-toggle="modal" data-bs-target="#subscriptionModal">
           <span class="d-none d-xl-block">サブスク登録</span>
           <i class="fas fa-plus d-xl-none d-xl-block" style="color: #ffffff;"></i>

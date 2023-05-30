@@ -12,7 +12,23 @@
   </head>
 
   <body>
-    <% unless user_signed_in? %>
+    <% if admin_signed_in? %>
+      <div class="container">
+        <div class="row">
+          <header class="col-xl-2 col-md-1 p-0 d-none d-md-block">
+            <%= render "layouts/admin_header" %>
+          </header>
+            <main class="col-xl-10 col-md-11">
+              <div class="row">
+                <div class="col-lg-8 pt-3 pb-md-0 pb-5 px-md-4 px-2 full-height overflow-auto">
+                  <%= yield %>
+                </div>
+                <div class="d-lg-block d-none col-lg-4 p-0 full-height overflow-auto">
+                  <%= render 'layouts/sidebar' %>
+                </div>
+              </div>
+            </main>
+    <% elsif !user_signed_in? %>
       <div class="container full-height">
         <div class="row">
           <div class="col-6 offset-3">
@@ -24,15 +40,11 @@
       <div class="container">
         <div class="row">
           <header class="col-xl-2 col-md-1 p-0 d-none d-md-block">
-            <% if request.fullpath.include?("admin") %>
-              <%= render "layouts/admin_header" %>
-            <% else %>
-              <%= render "layouts/user_header" %>
-            <% end %>
+            <%= render "layouts/user_header" %>
           </header>
           <main class="col-xl-10 col-md-11">
             <div class="row">
-              <div class="col-lg-8 px-4 pt-3 pb-md-0 pb-5 full-height overflow-auto">
+              <div class="col-lg-8 pt-3 pb-md-0 pb-5 px-md-4 px-2 full-height overflow-auto">
                 <%= yield %>
               </div>
               <div class="d-lg-block d-none col-lg-4 p-0 full-height overflow-auto">
@@ -45,6 +57,13 @@
       <footer class="fixed-bottom d-md-none">
         <%= render 'layouts/footer' %>
       </footer>
+      <div class="modal fade" id="userFormModal" tabindex="-1" aria-labelledby="userFormModalLabel" aria-hidden="true">
+        <div class="modal-dialog modal-dialog-centered">
+          <div class="modal-content p-3">
+            <%= render 'public/users/edit_form' %>
+          </div>
+        </div>
+      </div>
       <div class="modal fade" id="subscriptionModal" tabindex="-1" aria-labelledby="formModalLabel" aria-hidden="true">
         <div class="modal-dialog">
           <div class="modal-content p-3">

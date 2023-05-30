@@ -25,7 +25,6 @@
     </li>
   </ul>
   <hr>
-  <% if current_user.present? %>
   <div class="dropdown dropup">
     <a href="#" class="d-flex align-items-center text-reset text-decoration-none dropdown-toggle" data-bs-toggle="dropdown" aria-expanded="false">
       <%= image_tag current_user.get_image(32, 32), class: "rounded-circle me-2" %>
@@ -42,13 +41,5 @@
       <li><hr class="dropdown-divider"></li>
       <li><%= link_to "サインアウト", destroy_user_session_path, method: :delete, class: 'dropdown-item' %></li>
     </ul>
-    <div class="modal fade" id="userFormModal" tabindex="-1" aria-labelledby="userFormModalLabel" aria-hidden="true">
-      <div class="modal-dialog modal-dialog-centered">
-        <div class="modal-content p-3">
-          <%= render 'public/users/edit_form' %>
-        </div>
-      </div>
-    </div>
   </div>
-  <% end %>
 </div>

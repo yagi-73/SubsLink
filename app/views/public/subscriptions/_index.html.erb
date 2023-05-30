@@ -1,26 +1,20 @@
 <div class="row row-cols-md-2">
   <% subscriptions.each do |subsc| %>
     <div class="mb-3">
-      <% if subsc.class == UserSubscription %>
-        <% if user == current_user %>
-          <button class="w-100 h-100" type="button" data-bs-toggle="modal" data-bs-target="#formModal-<%= subsc.id %>">
-            <%= render 'public/subscriptions/card_horizontal', subsc: subsc %>
-          </button>
-          <div class="modal fade" id="formModal-<%= subsc.id %>" tabindex="-1" aria-labelledby="formModalLabel" aria-hidden="true">
+      <% if subsc.class == UserSubscription && user == current_user %>
+        <button class="w-100 h-100" type="button" data-bs-toggle="modal" data-bs-target="#formModal-<%= subsc.id %>">
+          <%= render 'public/subscriptions/card_horizontal', subsc: subsc, user: user %>
+        </button>
+        <div class="modal fade" id="formModal-<%= subsc.id %>" tabindex="-1" aria-labelledby="formModalLabel" aria-hidden="true">
           <div class="modal-dialog">
             <div class="modal-content p-3">
-              <%= render 'public/subscriptions/edit_form', subsc: subsc %>
+              <%= render 'public/subscriptions/edit_form', subsc: subsc, user: user %>
             </div>
           </div>
         </div>
-        <% else %>
-          <%= render 'public/subscriptions/card_horizontal', subsc: subsc, user: user %>
-        <% end %>
       <% else %>
-        <%= link_to subscription_path(subsc), class: "text-reset text-decoration-none" do %>
-          <%= render 'public/subscriptions/card_horizontal', subsc: subsc, user: user %>
-        <% end %>
-      <% end%>
+        <%= render 'public/subscriptions/card_horizontal', subsc: subsc, user: user %>
+      <% end %>
     </div>
   <% end %>
 </div>

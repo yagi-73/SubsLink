@@ -3,7 +3,7 @@
 }
 
 .tab {
-  width: 100%;
+  width: 50px;
   height: 45px;
   padding: 10px;
   text-align: center;
@@ -11,6 +11,7 @@
   border-left: solid 1px #CCC;
   border-bottom: solid 1px #CCC;
 }
+
 .tab:first-child {
   border-left: none;
 }
@@ -23,7 +24,6 @@
 
 .tabbox {
   display: none;
-  // padding: 5px 15px 0px;
 }
 
 .box-show {

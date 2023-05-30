@@ -1,10 +1,12 @@
 <div class="card btn btn-hover mb-3 h-100">
   <div class="row">
-    <div class="col-md-4 col-3">
+    <div class="d-flex align-items-center col-4">
       <%= image_tag subsc.get_image %>
     </div>
-    <div class="card-body text-start col-md-8 col-9">
-      <h5 class="card-title"><%= subsc.name %></h5>
+    <div class="card-body text-start col-8">
+      <h5 class="card-title">
+        <%= link_to_if(subsc.class == AdminSubscription, subsc.name, subscription_path(subsc), class: "stretched-link text-reset text-decoration-none") %>
+      </h5>
       <h6 class="card-subtitle mb-2 text-muted">
         ￥<%= subsc.price.to_s(:delimited) %>/<%= subsc.update_cycle %>ヵ月
         <% if subsc.update_cycle != 1 %>
@@ -14,7 +16,7 @@
     </div>
   </div>
   <% if subsc.class == UserSubscription || user.subscribing?(subsc) && subsc.contract_day.present? %>
-    <h6 class="card-subtitle mb-2 text-muted">次回更新日: <%= l subsc.next_update_day, format: :date %></h6>
+    <p class="card-subtitle fw-bold text-muted mb-2">次回更新日: <%= l subsc.next_update_day, format: :date %></p>
   <% end %>
   <p class="card-text text-truncate"><small class="text-muted"><%= subsc.catch_copy %></small></p>
 </div>
