@@ -1,1 +1,22 @@
+<div class="d-flex">
+  <%= form_with url: subscriptions_search_path, method: :get do |f| %>
+  <div class="input-group mx-3">
+    <%= f.text_field :keyword, id: "subscriptionSearchForm", placeholder: "サブスク検索", class: "form-control col-9", 'aria-describedby': :"subscriptionSearchButton" %>
+    <%= button_tag type: "submit", id: "subscriptionSearchButton", class: "btn btn-primary col-3" do %>
+      <i class="fas fa-search"></i>
+    <% end %>
+  </div>
+	<% end %>
+  <button type="button" class="btn btn-primary rounded-pill btn_shadow my-3 ms-auto" data-bs-toggle="modal" data-bs-target="#adminSubscriptionModal">
+    <span class="d-none d-xl-block">サブスク登録</span>
+    <i class="fas fa-plus d-xl-none d-xl-block" style="color: #ffffff;"></i>
+  </button>
+</div>
 <%= render 'index', subscriptions: @subscriptions %>
+<div class="modal fade" id="adminSubscriptionModal" tabindex="-1" aria-labelledby="formModalLabel" aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-content p-3">
+      <%= render 'admin/subscriptions/new_form', subsc: @subsc_new %>
+    </div>
+  </div>
+</div>

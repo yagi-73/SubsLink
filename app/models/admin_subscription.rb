@@ -5,6 +5,7 @@ class AdminSubscription < Subscription
   has_many :subscribes
   has_many :users, through: :subscribes
 
+  validates :catch_copy, length: { maximum: 50 }
   validates :description, length: { maximum: 500 }
 
   scope :top_subscribes,  -> { sort_by {|subsc| -subsc.subscribes_count }.take(3) }

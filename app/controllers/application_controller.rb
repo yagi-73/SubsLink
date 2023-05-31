@@ -7,6 +7,8 @@ class ApplicationController < ActionController::Base
       if request.fullpath.include?("admin")
         authenticate_admin!
       elsif action_name == 'top'
+        return
+      else
         authenticate_user!
       end
     end

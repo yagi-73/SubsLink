@@ -15,14 +15,12 @@
     <% if admin_signed_in? %>
       <div class="container">
         <div class="row">
-          <header class="col-xl-2 col-md-1 p-0 d-none d-md-block">
+          <header class="col-lg-2 col-md-1 p-0 d-none d-md-block">
             <%= render "layouts/admin_header" %>
           </header>
-          <main class="col-xl-10 col-md-11">
-            <div class="row">
-              <div class="full-height overflow-auto">
-                <%= yield %>
-              </div>
+          <main class="col-lg-10 col-md-11">
+            <div class="pt-3 pb-md-0 pb-5 px-md-4 px-2 full-height overflow-auto">
+              <%= yield %>
             </div>
           </main>
           <footer class="fixed-bottom d-md-none">
@@ -51,14 +49,14 @@
       <footer class="fixed-bottom d-md-none">
         <%= render 'layouts/footer' %>
       </footer>
-      <div class="modal fade" id="userFormModal" tabindex="-1" aria-labelledby="userFormModalLabel" aria-hidden="true">
+      <div class="modal fade" id="userFormModal" tabindex="-1" aria-hidden="true">
         <div class="modal-dialog modal-dialog-centered">
           <div class="modal-content p-3">
             <%= render 'public/users/edit_form' %>
           </div>
         </div>
       </div>
-      <div class="modal fade" id="subscriptionModal" tabindex="-1" aria-labelledby="formModalLabel" aria-hidden="true">
+      <div class="modal fade" id="subscriptionModal" tabindex="-1" aria-hidden="true">
         <div class="modal-dialog">
           <div class="modal-content p-3">
             <%= render 'public/subscriptions/new_form', subsc: @subsc_new %>

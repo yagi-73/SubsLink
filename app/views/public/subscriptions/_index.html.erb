@@ -5,7 +5,7 @@
         <button class="w-100 h-100" type="button" data-bs-toggle="modal" data-bs-target="#formModal-<%= subsc.id %>">
           <%= render 'public/subscriptions/card_horizontal', subsc: subsc, user: user %>
         </button>
-        <div class="modal fade" id="formModal-<%= subsc.id %>" tabindex="-1" aria-labelledby="formModalLabel" aria-hidden="true">
+        <div class="modal fade" id="formModal-<%= subsc.id %>" tabindex="-1" aria-hidden="true">
           <div class="modal-dialog">
             <div class="modal-content p-3">
               <%= render 'public/subscriptions/edit_form', subsc: subsc, user: user %>

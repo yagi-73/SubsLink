@@ -1,0 +1,34 @@
+<%= form_with model: subsc, url: admin_subscriptions_path, method: :post, class: "admin-subscription-form" do |f| %>
+  <div class="form-group mb-3">
+      <%= f.label :name, 'サブスク名' %>
+      <%= f.text_field :name, class: 'form-control' %>
+    </div>
+    <div class="form-group mb-3">
+      <%= f.label :image, 'イメージ画像' %>
+      <%= f.file_field :image, class: "form-control-file user_image", accept: 'image/*' %>
+    </div>
+    <div class="form-group mb-3">
+      <%= f.label :company_id, '会社' %>
+      <%= f.select :company_id, options_from_collection_for_select(Company.all, :id, :name), class: 'form-control' %>
+    </div>
+    <div class="form-group mb-3">
+      <%= f.label :catch_copy, 'キャッチコピー' %>
+      <%= f.text_field :catch_copy, class: "form-control" %>
+    </div>
+    <div class="form-group mb-3">
+      <%= f.label :description, '説明文' %>
+      <%= f.text_area :description, class: 'form-control' %>
+    </div>
+    <div class="form-group mb-3">
+      <%= f.label :price, '金額' %>
+      <%= f.text_field :price, class: 'form-control' %>
+    </div>
+    <div class="form-group mb-3">
+      <%= f.label :update_cycle, '更新周期' %>
+      <%= f.select :update_cycle, *[1..12], class: 'form-control' %>
+    </div>
+    <div class="form-group mb-3">
+      <%= f.submit "登録する", class: 'btn btn-success' %>
+    </div>
+  </div>
+<% end %>

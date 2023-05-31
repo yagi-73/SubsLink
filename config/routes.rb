@@ -12,6 +12,7 @@ Rails.application.routes.draw do
   namespace :admin do
     resources :companies, only: [:index, :create, :update, :destroy]
     resources :subscriptions, only: [:index, :create, :update, :destroy]
+    get 'subscriptions/search' => 'subscriptions#search'
     resources :categories, only: [:index, :create, :update, :destroy]
   end
 

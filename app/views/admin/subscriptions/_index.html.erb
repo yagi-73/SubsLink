@@ -1,11 +1,10 @@
-<h2>サブスク一覧</h2>
-<div class="row ">
+<div class="row row-cols-md-2">
   <% subscriptions.each do |subsc| %>
-    <div class="col-3 mb-3">
-      <button class="h-100" type="button" data-bs-toggle="modal" data-bs-target="#formModal-<%= subsc.id %>">
-        <%= render 'admin/subscriptions/card', subsc: subsc %>
+    <div class="mb-3">
+      <button class="w-100 h-100" type="button" data-bs-toggle="modal" data-bs-target="#formModal-<%= subsc.id %>">
+        <%= render 'admin/subscriptions/card_horizontal', subsc: subsc %>
       </button>
-      <div class="modal fade" id="formModal-<%= subsc.id %>" tabindex="-1" aria-labelledby="formModalLabel" aria-hidden="true">
+      <div class="modal fade" id="formModal-<%= subsc.id %>" tabindex="-1" aria-hidden="true">
       <div class="modal-dialog">
         <div class="modal-content p-3">
           <%= render 'admin/subscriptions/edit_form', subsc: subsc %>
