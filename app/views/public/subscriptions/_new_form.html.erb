@@ -5,7 +5,10 @@
   </div>
   <div class="form-group mb-3">
     <%= f.label :price, '金額' %>
-    <%= f.text_field :price, class: 'form-control' %>
+    <div class="input-group">
+      <span class="input-group-text" id="price">￥</span>
+      <%= f.number_field :price, class: 'form-control' %>
+    </div>
   </div>
   <div class="form-group mb-3">
     <%= f.label :contract_day, '契約日' %>

@@ -5,8 +5,8 @@
   </div>
   <%= form_with url: user_search_path, method: :get, class: "col-sm-7 col-8" do |f| %>
     <div class="input-group">
-      <span class="input-group-text" id="userSearchLabel">#</span>
-      <%= f.text_field :user_tag, id: "userSearchForm", placeholder: "ユーザー検索: 4桁のタグを入力してください", class: "form-control", 'aria-describedby': :"userSearchLabel" %>
+      <span class="input-group-text" id="userSearchForm">#</span>
+      <%= f.text_field :user_tag, id: "userSearchForm", placeholder: "ユーザー検索: 4桁のタグを入力してください", class: "form-control" %>
     </div>
   <% end %>
 </div>

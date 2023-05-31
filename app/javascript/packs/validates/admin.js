@@ -2,11 +2,7 @@ $(document).on('turbolinks:load', function() {
   $(function () {
     $("#adminLoginForm").validate({
       rules: {
-        "user[name]": {
-          required: true,
-          rangelength: [2, 10]
-        },
-        "user[email]": {
+        "admin[email]": {
           required: true,
           email: true
         },
