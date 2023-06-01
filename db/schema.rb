@@ -65,11 +65,6 @@ ActiveRecord::Schema.define(version: 2023_05_22_060047) do
     t.datetime "updated_at", precision: 6, null: false
   end
 
-  create_table "groups", force: :cascade do |t|
-    t.datetime "created_at", precision: 6, null: false
-    t.datetime "updated_at", precision: 6, null: false
-  end
-
   create_table "relationships", force: :cascade do |t|
     t.string "follower_id"
     t.string "followed_id"
@@ -94,6 +89,7 @@ ActiveRecord::Schema.define(version: 2023_05_22_060047) do
     t.integer "company_id"
     t.integer "group_id"
     t.integer "category_id"
+    t.integer "basic_subscription_id"
     t.string "name", null: false
     t.string "catch_copy"
     t.text "description"
@@ -101,9 +97,11 @@ ActiveRecord::Schema.define(version: 2023_05_22_060047) do
     t.date "contract_day"
     t.integer "update_cycle", null: false
     t.string "type"
+    t.boolean "is_basic", default: true, null: false
     t.integer "subscribes_count", default: 0, null: false
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
+    t.index ["basic_subscription_id"], name: "index_subscriptions_on_basic_subscription_id"
     t.index ["category_id"], name: "index_subscriptions_on_category_id"
     t.index ["company_id"], name: "index_subscriptions_on_company_id"
     t.index ["group_id"], name: "index_subscriptions_on_group_id"
@@ -131,6 +129,7 @@ ActiveRecord::Schema.define(version: 2023_05_22_060047) do
   add_foreign_key "relationships", "users", column: "follower_id"
   add_foreign_key "subscribes", "subscriptions", column: "admin_subscription_id"
   add_foreign_key "subscribes", "users"
+  add_foreign_key "subscriptions", "basic_subscriptions"
   add_foreign_key "subscriptions", "categories"
   add_foreign_key "subscriptions", "companies"
   add_foreign_key "subscriptions", "groups"

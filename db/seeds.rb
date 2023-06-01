@@ -27,10 +27,6 @@ companies.each do |company|
   company.image.attach(io: File.open("./app/assets/images/logo_#{company.name}.png"), filename: "#{company.name}.png")
 end
 
-7.times do
-  Group.create!
-end
-
 subscriptions.each do |subscription|
   subsc = AdminSubscription.create!(
     company_id: subscription[0],

@@ -21,3 +21,14 @@
 </div>
 <%= render "layouts/error", obj: @subsc %>
 <%= render 'index', subscriptions: @subscriptions %>
+
+<script>
+  $(function() {
+    $('admin_subscription_company_id').change(function() {
+      $.get({
+        url: "#{admin_subscriptions_path}",
+        data: { company_id: $('#admin_subscription_company_id').has('option:selected').val() }
+      });
+    });
+  });
+</script>

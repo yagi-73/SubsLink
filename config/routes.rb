@@ -29,7 +29,7 @@ Rails.application.routes.draw do
       get 'search' => 'users#search'
     end
     get 'subscriptions/search' => 'subscriptions#search'
-    resources :subscriptions, only: [:index, :create, :update, :destroy]
+    resources :subscriptions, only: [:index, :create, :show, :update, :destroy]
     post 'subscriptions/subscribe' => 'subscriptions#subscribe', as: 'subscribe'
     resources :companies, only: [:index, :show]
   end

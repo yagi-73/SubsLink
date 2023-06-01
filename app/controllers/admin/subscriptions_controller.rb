@@ -36,6 +36,10 @@ class Admin::SubscriptionsController < ApplicationController
     render :index
   end
 
+  def change_form
+    @subscriptions = AdminSubscription.where(company_id: params[:company_id])
+  end
+
   private
   def subsc_params
     params.require(:admin_subscription).permit(:name, :image, :catch_copy, :description, :price, :company_id, :update_cycle)
