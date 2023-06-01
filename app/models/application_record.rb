@@ -1,4 +1,6 @@
 class ApplicationRecord < ActiveRecord::Base
+  scope :search,  -> (keyword){ where(["name LIKE?", "%#{keyword}%"]) }
+
   self.abstract_class = true
   def get_image(weight=80, height=80)
     unless self.image.attached?

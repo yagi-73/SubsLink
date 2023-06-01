@@ -6,7 +6,7 @@ $(document).on('turbolinks:load', function() {
           required: true,
           email: true
         },
-        "user[password]": {
+        "admin[password]": {
           required: true
         }
       },

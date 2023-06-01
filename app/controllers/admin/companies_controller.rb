@@ -1,27 +1,43 @@
 class Admin::CompaniesController < ApplicationController
-  def new
+  def index
+    @companies = Company.all.with_attached_image
     @company = Company.new
   end
 
   def create
     @company = Company.new(company_params)
-    @company.save!
-    redirect_to company_path(@company)
+    if @company.save
+      redirect_to company_path(@company)
+    else
+      @companies = Company.all.with_attached_image
+      render :index
+    end
   end
 
-  def edit
+  def show
     @company = Company.find(params[:id])
+    @subscriptions = @company.admin_subscriptions.with_attached_image
   end
 
   def update
     @company = Company.find(params[:id])
-    @company.update(company_params)
-    redirect_to company_path(@company)
+    if @company.update(company_params)
+      redirect_to company_path(@company)
+    else
+      @subscriptions = @company.admin_subscriptions.with_attached_image
+      render :show
+    end
   end
 
   def destroy
     company = Company.find(params[:id])
     company.destroy
+  end
+
+  def search
+    @companies = Company.with_attached_image.search(params[:keyword])
+    @company = Company.new
+    render :index
   end
 
   private

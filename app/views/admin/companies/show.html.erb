@@ -1,0 +1,19 @@
+<div class="d-flex">
+  <%= image_tag @company.get_image(100,100) %>
+  <div class="d-flex align-items-center">
+    <p><%= @company.name %></p>
+  </div>
+  <button type="button" class="btn btn-primary rounded-pill btn_shadow my-auto ms-auto" data-bs-toggle="modal" data-bs-target="#companyModal">
+    <span class="d-none d-xl-block">会社編集</span>
+    <i class="fas fa-plus d-xl-none d-xl-block" style="color: #ffffff;"></i>
+  </button>
+  <div class="modal fade" id="companyModal" tabindex="-1" aria-labelledby="formModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+      <div class="modal-content p-3">
+        <%= render 'admin/companies/edit_form', company: @company %>
+      </div>
+    </div>
+  </div>
+</div>
+<%= render "layouts/error", obj: @company %>
+<%= render 'admin/subscriptions/index', subscriptions: @subscriptions %>

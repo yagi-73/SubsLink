@@ -1,5 +1,5 @@
 <div class="d-flex">
-  <%= form_with url: subscriptions_search_path, method: :get do |f| %>
+  <%= form_with url: admin_subscriptions_search_path, method: :get do |f| %>
   <div class="input-group mx-3">
     <%= f.text_field :keyword, id: "subscriptionSearchForm", placeholder: "サブスク検索", class: "form-control col-9", 'aria-describedby': :"subscriptionSearchButton" %>
     <%= button_tag type: "submit", id: "subscriptionSearchButton", class: "btn btn-primary col-3" do %>
@@ -11,13 +11,13 @@
     <span class="d-none d-xl-block">サブスク登録</span>
     <i class="fas fa-plus d-xl-none d-xl-block" style="color: #ffffff;"></i>
   </button>
-</div>
-<%= render "layouts/error", obj: @subsc %>
-<%= render 'index', subscriptions: @subscriptions %>
-<div class="modal fade" id="adminSubscriptionModal" tabindex="-1" aria-labelledby="formModalLabel" aria-hidden="true">
-  <div class="modal-dialog">
-    <div class="modal-content p-3">
-      <%= render 'admin/subscriptions/new_form', subsc: @subsc %>
+  <div class="modal fade" id="adminSubscriptionModal" tabindex="-1" aria-labelledby="formModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+      <div class="modal-content p-3">
+        <%= render 'admin/subscriptions/new_form', subsc: @subsc %>
+      </div>
     </div>
   </div>
 </div>
+<%= render "layouts/error", obj: @subsc %>
+<%= render 'index', subscriptions: @subscriptions %>

@@ -11,7 +11,7 @@ import "channels"
 import $ from "expose-loader?exposes[]=$&exposes[]=jQuery!jquery";
 import "popper.js"
 import "bootstrap"
-import "../stylesheets/application" 
+import "../stylesheets/application"
 import '@fortawesome/fontawesome-free/js/all'
 import "jquery-validation"
 import 'jquery-validation/dist/additional-methods'
