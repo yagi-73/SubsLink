@@ -1,7 +1,7 @@
 class Admin::SubscriptionsController < ApplicationController
   def index
     @subsc = AdminSubscription.new
-    @subscriptions = AdminSubscription.with_attached_image.no_overlap
+    @subscriptions = AdminSubscription.with_attached_image.where(is_basic: true)
   end
 
   def create
@@ -9,7 +9,7 @@ class Admin::SubscriptionsController < ApplicationController
     if @subsc.save
       redirect_to admin_subscriptions_path
     else
-      @subscriptions = AdminSubscription.with_attached_image.no_overlap
+      @subscriptions = AdminSubscription.with_attached_image.where(is_basic: true)
       render :index
     end
   end
@@ -19,7 +19,7 @@ class Admin::SubscriptionsController < ApplicationController
     if @subsc.update(subsc_params)
       redirect_to admin_subscriptions_path
     else
-      @subscriptions = AdminSubscription.with_attached_image.no_overlap
+      @subscriptions = AdminSubscription.with_attached_image.where(is_basic: true)
       render :index
     end
   end

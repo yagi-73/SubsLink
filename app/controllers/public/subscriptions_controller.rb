@@ -22,16 +22,16 @@ class Public::SubscriptionsController < ApplicationController
 
   def index
     if params[:category].nil?
-      @subscriptions = AdminSubscription.with_attached_image.no_overlap
+      @subscriptions = AdminSubscription.where(is_basic: true)
     else
-      @subscriptions = Category.find_by(name: params[:category]).admin_subscriptions.with_attached_image.no_overlap
+      @subscriptions = Category.find_by(name: params[:category]).admin_subscriptions.where(is_basic: true)
     end
     @categories = Category.all
   end
 
   def show
     @subsc = Subscription.find(params[:id])
-    @subscriptions = AdminSubscription.same_group(@subsc)
+    @subscriptions = AdminSubscription.extension_subscriptions
     @admin_subsc_new = AdminSubscription.new
   end
 
