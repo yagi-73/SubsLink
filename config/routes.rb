@@ -13,6 +13,7 @@ Rails.application.routes.draw do
     get 'companies/search' => 'companies#search'
     resources :companies, only: [:index, :create, :show, :update, :destroy]
     get 'subscriptions/search' => 'subscriptions#search'
+    get 'subscriptions/change-form' => 'subscriptions#change_form'
     resources :subscriptions, only: [:index, :create, :update, :destroy]
     resources :categories, only: [:index, :create, :update, :destroy]
   end

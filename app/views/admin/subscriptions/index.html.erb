@@ -24,9 +24,9 @@
 
 <script>
   $(function() {
-    $('admin_subscription_company_id').change(function() {
+    $('#admin_subscription_company_id').change(function() {
       $.get({
-        url: "#{admin_subscriptions_path}",
+        url: '<%= admin_subscriptions_change_form_path %>',
         data: { company_id: $('#admin_subscription_company_id').has('option:selected').val() }
       });
     });
