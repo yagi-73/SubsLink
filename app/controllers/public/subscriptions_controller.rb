@@ -31,7 +31,12 @@ class Public::SubscriptionsController < ApplicationController
 
   def show
     @subsc = Subscription.find(params[:id])
-    @subscriptions = AdminSubscription.extension_subscriptions
+    if @subsc.is_basic
+      @subscriptions = @subsc.extension_subscriptions
+    else
+      # union
+      # @subscriptions = AdminSubscription.where(basic_subscription_id: @subsc.basic_subscription_id).where.not(id: @subsc.id)
+    end
     @admin_subsc_new = AdminSubscription.new
   end
 
