@@ -12,6 +12,10 @@
       <%= f.select :company_id, options_from_collection_for_select(Company.all, :id, :name), class: 'form-control' %>
     </div>
     <div class="form-group mb-3">
+      <%= f.label :basic_subscription_id, '拡張プランの場合、ベーシックとなるサブスクを選択してください' %>
+      <%= f.collection_select :admin_subscription, :basic_subscription_id, same_company_subscriptions(subsc), :id, :name, include_blank: "ベーシックプラン", class: 'form-control' %>
+    </div>
+    <div class="form-group mb-3">
       <%= f.label :catch_copy, 'キャッチコピー' %>
       <%= f.text_field :catch_copy, class: "form-control" %>
     </div>
