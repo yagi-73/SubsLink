@@ -25,9 +25,11 @@
 <script>
   $(function() {
     $('#admin_subscription_company_id').change(function() {
+      var companyId = $(this).find('option:selected').val();
+
       $.get({
-        url: '<%= admin_subscriptions_change_form_path %>',
-        data: { company_id: $('#admin_subscription_company_id').has('option:selected').val() }
+        url: '/admin/subscriptions/change-form',
+        data: { company_id: companyId }
       });
     });
   });

@@ -11,5 +11,5 @@ class AdminSubscription < Subscription
   validates :description, length: { maximum: 500 }
 
   scope :top_subscribes,  -> { sort_by {|subsc| -subsc.subscribes_count }.take(3) }
-  scope :related_subscriptions, -> (current_subsc){ where(id: current_subsc.basic_subscription_id).or(where(basic_subscription: current_subsc.basic_subscription_id).where.not(id: current_subsc.id)) }
+  scope :related_subscriptions, -> (current_subsc){ where(id: current_subsc.basic_subscription_id).or(where(basic_subscription_id: current_subsc.basic_subscription_id).where.not(id: current_subsc.id)) }
 end

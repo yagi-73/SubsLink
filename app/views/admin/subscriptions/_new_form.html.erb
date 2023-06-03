@@ -9,11 +9,11 @@
     </div>
     <div class="form-group mb-3">
       <%= f.label :company_id, '会社' %>
-      <%= f.collection_select :company_id, Company.all, :id, :name, include_blank: "--選択してください--", class: 'form-control' %>
+      <%= f.select :company_id, options_from_collection_for_select(Company.all, :id, :name), { include_blank: "--選択してください--" } %>
     </div>
     <div class="form-group mb-3">
       <%= f.label :basic_subscription_id, '拡張プランの場合、ベーシックとなるサブスクを選択してください' %>
-      <%= f.select :basic_subscription_id, [], class: 'form-control' %>
+      <%= f.select :basic_subscription_id, [] %>
     </div>
     <div class="form-group mb-3">
       <%= f.label :catch_copy, 'キャッチコピー' %>

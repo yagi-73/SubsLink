@@ -6,7 +6,7 @@ class Admin::SubscriptionsController < ApplicationController
 
   def create
     @subsc = AdminSubscription.new(subsc_params)
-    @subsc.is_basic = @subsc.basic_subscription_id.nil?
+    @subsc.is_basic = params[:basic_subscription_id].nil?
     if @subsc.save
       redirect_to admin_subscriptions_path
     else
@@ -15,10 +15,15 @@ class Admin::SubscriptionsController < ApplicationController
     end
   end
 
+  def show
+    @subsc = AdminSubscription.find(params[:id])
+    @subscriptions = @subsc.is_basic ? @subsc.extension_subscriptions : AdminSubscription.related_subscriptions(@subsc)
+  end
+
   def update
     @subsc = AdminSubscription.find(params[:id])
-    @subsc.is_basic = @subsc.basic_subscription_id.nil?
-    if @subsc.save(subsc_params)
+    @subsc.is_basic = params[:basic_subscription_id].nil?
+    if @subsc.update(subsc_params)
       redirect_to admin_subscriptions_path
     else
       @subscriptions = AdminSubscription.with_attached_image.where(is_basic: true)
