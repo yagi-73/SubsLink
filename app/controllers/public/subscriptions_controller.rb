@@ -1,7 +1,8 @@
 class Public::SubscriptionsController < ApplicationController
-  before_action :check_subscription, only: [:edit, :update]
-  before_action :set_subsc_form, omly: [ :index, :show, :edit,:search]
-  before_action :get_top_subscriptions, omly: [ :index, :show, :edit, :search]
+  before_action :check_subscription, only: [ :update, :destroy]
+  before_action :set_subsc_form, omly: [ :index, :show, :search]
+  before_action :get_top_subscriptions, omly: [ :index, :show, :search]
+  before_action :get_recommended_users, only: [ :index, :show, :search]
 
   def create
     subsc = current_user.user_subscriptions.new(user_subsc_params)
@@ -33,10 +34,6 @@ class Public::SubscriptionsController < ApplicationController
     @subsc = Subscription.find(params[:id])
     @subscriptions = @subsc.is_basic ? @subsc.extension_subscriptions : AdminSubscription.related_subscriptions(@subsc)
     @admin_subsc_new = AdminSubscription.new
-  end
-
-  def edit
-    @subsc = UserSubscription.find(params[:id])
   end
 
   def update

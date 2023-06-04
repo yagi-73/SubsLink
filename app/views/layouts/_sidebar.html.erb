@@ -8,9 +8,9 @@
 		</div>
 	<% end %>
 
-	<div>
-		<h3>人気のサブスク</h3>
-		<% @top_subscriptions.each do |subsc| %>
+	<div class="top_subscriptions">
+		<h4>人気のサブスク</h4>
+		<% top_subscriptions.each do |subsc| %>
 				<div class="card btn btn-hover mb-3">
 					<div class="row">
 						<div class="col-xxl-4 d-none d-xxl-block">
@@ -26,6 +26,10 @@
 					</div>
 				</div>
 		<% end %>
+	</div>
+	<div class="recommended_user my-3">
+		<h4>おすすめユーザー</h4>
+		<%= render 'public/users/index', users: recommended_users %>
 	</div>
 	<div class="d-flex justify-content-center mt-auto">
 		<p>CopyRight Sota Aoyagi</p>

@@ -7,7 +7,7 @@
     <% users.each do |user| %>
       <div class="user btn btn-hover d-flex my-2" data-href="/users/<%= user.id%>">
         <%= link_to user_path(user) do %>
-          <%= image_tag user.get_image(60, 60), class: "rounded-circle mx-2" %>
+          <%= image_tag user.get_image(50, 50), class: "rounded-circle mx-2" %>
         <% end %>
         <div class="col mx-2">
           <div class="d-flex align-items-end">

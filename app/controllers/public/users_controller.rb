@@ -1,6 +1,7 @@
 class Public::UsersController < ApplicationController
-  before_action :set_subsc_form, omly: [ :index, :show, :edit, :search]
-  before_action :get_top_subscriptions, omly: [ :index, :show, :edit, :search]
+  before_action :set_subsc_form, omly: [ :index, :show, :search]
+  before_action :get_top_subscriptions, omly: [ :index, :show, :search]
+  before_action :get_recommended_users, only: [ :index, :show, :search]
 
   def index
     @user = User.find(params[:user_id])
@@ -12,10 +13,6 @@ class Public::UsersController < ApplicationController
   def show
     @user = params[:id].present? ? User.find(params[:id]) : current_user
     @subsc_calender = make_calender_array(get_date)
-  end
-
-  def edit
-    @user = User.find(params[:id])
   end
 
   def update

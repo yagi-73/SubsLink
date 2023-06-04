@@ -11,7 +11,7 @@
         <% if @subsc.update_cycle != 1 %>
           <p>月換算 ￥ <%= (@subsc.price / @subsc.update_cycle).to_s(:delimited) %>/月</p>
         <% end %>
-        <%= link_to @subsc.company.name, company_path(@subsc.company) %>
+        <%= link_to @subsc.company.name, admin_company_path(@subsc.company) %>
       </div>
       <div class='col-md-5 offset-1 d-flex align-items-center'>
         <button class="btn btn-success" type="button" data-bs-toggle="modal" data-bs-target="#subscFormModal-<%= @subsc.id %>">編集</button>

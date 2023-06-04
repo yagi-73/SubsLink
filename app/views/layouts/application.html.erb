@@ -12,7 +12,7 @@
   </head>
 
   <body>
-    <% if admin_signed_in? %>
+    <% if request.fullpath.include?("admin") && admin_signed_in? %>
       <div class="container">
         <div class="row">
           <header class="col-lg-2 col-md-1 p-0 d-none d-md-block">
@@ -40,7 +40,7 @@
                 <%= yield %>
               </div>
               <div class="d-lg-block d-none col-lg-4 p-0 full-height overflow-auto">
-                <%= render 'layouts/sidebar' %>
+                <%= render 'layouts/sidebar', top_subscriptions: @top_subscriptions, recommended_users: @recommended_users %>
               </div>
             </div>
           </main>

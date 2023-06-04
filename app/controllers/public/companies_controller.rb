@@ -1,6 +1,7 @@
 class Public::CompaniesController < ApplicationController
   before_action :set_subsc_form
   before_action :get_top_subscriptions
+  before_action :get_recommended_users
 
   def index
     @companies = Company.all
