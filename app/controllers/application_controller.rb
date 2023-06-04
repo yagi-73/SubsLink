@@ -26,22 +26,6 @@ class ApplicationController < ActionController::Base
       @top_subscriptions = AdminSubscription.with_attached_image.top_subscribes
     end
 
-    def get_recommended_user(recommended_users)
-      random_following_user = current_user.followings.offset( rand(current_user.followings.count) ).take
-      recommended_user = random_following_user.followings.offset( rand(random_following_user.followings.count) ).take
-      if recommended_user == current_user || current_user.following?(recommended_user)
-        get_recommended_user(recommended_user)
-      else
-        recommended_users << recommended_user
-      end
-    end
-
-    def get_recommended_users
-      @recommended_users = []
-      3.times{ get_recommended_user(@recommended_users) }
-      @recommended_users
-    end
-
     def after_sign_in_path_for(resource)
       case resource
       when Admin

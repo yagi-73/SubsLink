@@ -1,0 +1,2 @@
+class RecommendedUser < ApplicationRecord
+end

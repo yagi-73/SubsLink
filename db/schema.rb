@@ -115,6 +115,7 @@ ActiveRecord::Schema.define(version: 2023_05_22_060047) do
     t.string "name", null: false
     t.integer "tag", null: false
     t.string "introduction"
+    t.integer "subscribes_count", default: 0, null: false
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
     t.index ["email"], name: "index_users_on_email", unique: true

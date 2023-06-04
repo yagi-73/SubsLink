@@ -37,6 +37,7 @@ class DeviseCreateUsers < ActiveRecord::Migration[6.1]
       t.string :name, null: false
       t.integer :tag, null: false
       t.string :introduction
+      t.integer :subscribes_count, null: false, default: 0
 
       t.timestamps null: false
     end

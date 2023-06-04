@@ -1,3 +1,1 @@
-<%# options = @subscriptions.map { |subscription| [subscription.name, subscription.id] } %>
-<%# options.unshift(["ベーシックプラン", 0]) %>
 $('#admin_subscription_basic_subscription_id').html('<%= j(collection_select(:admin_subscription, :basic_subscription_id, @subscriptions, :id, :name, include_blank: "ベーシックプラン")) %>');

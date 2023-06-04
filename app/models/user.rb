@@ -20,6 +20,8 @@ class User < ApplicationRecord
   validates :name, length: { in: 2..10 }
   validates :introduction, length: { maximum: 100 }
 
+  scope :top_subscribers, -> { order(subscribes_count: :desc).limit(5) }
+
   def subscriptions
     self.user_subscriptions + self.admin_subscriptions
   end
@@ -62,6 +64,18 @@ class User < ApplicationRecord
 
   def mutually_followings
     followings.with_attached_image & followers.with_attached_image
+  end
+
+  def related_users
+    if followings.empty?
+      if followers.empty?
+        self.class.top_subscribers
+      else
+        followers
+      end
+    else
+      followings
+    end
   end
 
 end
