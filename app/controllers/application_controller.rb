@@ -27,7 +27,16 @@ class ApplicationController < ActionController::Base
     end
 
     def get_recommended_users
-      @recommended_users = current_user.recommended_users
+      if current_user.recommended_users.empty?
+        @recommended_users = []
+        User.top_subscribers.each do |user|
+          unless current_user.following?(user) || current_user == user
+            @recommended_users << user
+          end
+        end
+      else
+        @recommended_users = current_user.recommended_users.with_attached_image
+      end
     end
 
     def after_sign_in_path_for(resource)

@@ -10,10 +10,10 @@ class User < ApplicationRecord
   has_many :admin_subscriptions, through: :subscribes
 
   has_many :recommend_relationships, class_name: "RecommendedUser", foreign_key: "subject_user_id", dependent: :destroy
-  has_many :recommended_users, through: :recommend_relationships
+  has_many :recommended_users, through: :recommend_relationships, source: :recommended_user
 
   has_many :recommend_reverse_of_relationships, class_name: "RecommendedUser", foreign_key: "recommended_user_id", dependent: :destroy
-  has_many :subject_users, through: :recommend_reverse_of_relationships
+  has_many :subject_users, through: :recommend_reverse_of_relationships, source: :subject_user
 
   has_many :relationships, class_name: "Relationship", foreign_key: "follower_id", dependent: :destroy
   has_many :followings, through: :relationships, source: :followed
@@ -26,10 +26,10 @@ class User < ApplicationRecord
   validates :name, length: { in: 2..10 }
   validates :introduction, length: { maximum: 100 }
 
-  scope :top_subscribers, -> { order(subscribes_count: :desc).limit(5) }
+  scope :top_subscribers, -> { order(subscribes_count: :desc).limit(5).with_attached_image }
 
   def subscriptions
-    self.user_subscriptions + self.admin_subscriptions
+    self.user_subscriptions.with_attached_image + self.admin_subscriptions.with_attached_image
   end
 
   def subscribe(params)
@@ -75,7 +75,6 @@ class User < ApplicationRecord
   def related_users
     if followings.empty?
       if followers.empty?
-        # self.class.top_subscribers
         self.class.all
       else
         followers

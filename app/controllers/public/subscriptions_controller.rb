@@ -23,9 +23,9 @@ class Public::SubscriptionsController < ApplicationController
 
   def index
     if params[:category].nil?
-      @subscriptions = AdminSubscription.where(is_basic: true)
+      @subscriptions = AdminSubscription.where(is_basic: true).with_attached_image
     else
-      @subscriptions = Category.find_by(name: params[:category]).admin_subscriptions.where(is_basic: true)
+      @subscriptions = Category.find_by(name: params[:category]).admin_subscriptions.where(is_basic: true).with_attached_image
     end
     @categories = Category.all
   end

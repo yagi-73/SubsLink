@@ -19,8 +19,8 @@ class Public::RelationshipsController < ApplicationController
     current_user.recommended_users.destroy_all
     3.times do
       recommended_user = get_recommended_user
-      unless current_user.recommended_users.include?(recommended_user)
-        current_user.recommended_users.create!(recommended_user_id: recommended_user.id)
+      if recommended_user.present? && !current_user.recommended_users.include?(recommended_user)
+        RecommendedUser.create!(subject_user_id: current_user.id, recommended_user_id: recommended_user.id)
       end
     end
   end
@@ -29,7 +29,7 @@ class Public::RelationshipsController < ApplicationController
     random_related_user = current_user.related_users.offset( rand(current_user.related_users.length) ).take
     recommended_user = random_related_user.related_users.offset( rand(random_related_user.related_users.length) ).take
     if recommended_user == current_user || current_user.following?(recommended_user)
-      get_recommended_user
+      nil
     else
       recommended_user
     end
