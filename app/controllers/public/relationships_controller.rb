@@ -2,26 +2,27 @@ class Public::RelationshipsController < ApplicationController
   def create
     user = User.find(params[:user_id])
     current_user.follow(user)
+    reset_recommended_users
     redirect_to request.referer
   end
 
   def destroy
     user = User.find(params[:user_id])
     current_user.unfollow(user)
+    reset_recommended_users
     redirect_to request.referer
   end
 
   private
 
-  def recommended_users
-    @recommended_users = []
+  def reset_recommended_users
+    current_user.recommended_users.destroy_all
     3.times do
       recommended_user = get_recommended_user
-      unless @recommended_users.include?(recommended_user)
-        @recommended_users << recommended_user
+      unless current_user.recommended_users.include?(recommended_user)
+        current_user.recommended_users.create!(recommended_user_id: recommended_user.id)
       end
     end
-    @recommended_users
   end
 
   def get_recommended_user

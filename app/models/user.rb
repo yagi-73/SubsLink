@@ -5,15 +5,21 @@ class User < ApplicationRecord
   devise :database_authenticatable, :registerable,
          :recoverable, :rememberable, :validatable
 
-  has_many :user_subscriptions
-  has_many :subscribes
+  has_many :user_subscriptions, dependent: :destroy
+  has_many :subscribes, dependent: :destroy
   has_many :admin_subscriptions, through: :subscribes
 
-  has_many :reverse_of_relationships, class_name: "Relationship", foreign_key: "followed_id", dependent: :destroy
-  has_many :followers, through: :reverse_of_relationships, source: :follower
+  has_many :recommend_relationships, class_name: "RecommendedUser", foreign_key: "subject_user_id", dependent: :destroy
+  has_many :recommended_users, through: :recommend_relationships
+
+  has_many :recommend_reverse_of_relationships, class_name: "RecommendedUser", foreign_key: "recommended_user_id", dependent: :destroy
+  has_many :subject_users, through: :recommend_reverse_of_relationships
 
   has_many :relationships, class_name: "Relationship", foreign_key: "follower_id", dependent: :destroy
   has_many :followings, through: :relationships, source: :followed
+
+  has_many :reverse_of_relationships, class_name: "Relationship", foreign_key: "followed_id", dependent: :destroy
+  has_many :followers, through: :reverse_of_relationships, source: :follower
 
   has_one_attached :image
 
@@ -69,7 +75,8 @@ class User < ApplicationRecord
   def related_users
     if followings.empty?
       if followers.empty?
-        self.class.top_subscribers
+        # self.class.top_subscribers
+        self.class.all
       else
         followers
       end

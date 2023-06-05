@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2023_05_22_060047) do
+ActiveRecord::Schema.define(version: 2023_06_04_141229) do
 
   create_table "active_storage_attachments", force: :cascade do |t|
     t.string "name", null: false
@@ -65,6 +65,15 @@ ActiveRecord::Schema.define(version: 2023_05_22_060047) do
     t.datetime "updated_at", precision: 6, null: false
   end
 
+  create_table "recommended_users", force: :cascade do |t|
+    t.string "subject_user_id"
+    t.string "recommended_user_id"
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.index ["recommended_user_id"], name: "index_recommended_users_on_recommended_user_id"
+    t.index ["subject_user_id"], name: "index_recommended_users_on_subject_user_id"
+  end
+
   create_table "relationships", force: :cascade do |t|
     t.string "follower_id"
     t.string "followed_id"
@@ -115,7 +124,6 @@ ActiveRecord::Schema.define(version: 2023_05_22_060047) do
     t.string "name", null: false
     t.integer "tag", null: false
     t.string "introduction"
-    t.integer "subscribes_count", default: 0, null: false
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
     t.index ["email"], name: "index_users_on_email", unique: true
@@ -124,6 +132,8 @@ ActiveRecord::Schema.define(version: 2023_05_22_060047) do
 
   add_foreign_key "active_storage_attachments", "active_storage_blobs", column: "blob_id"
   add_foreign_key "active_storage_variant_records", "active_storage_blobs", column: "blob_id"
+  add_foreign_key "recommended_users", "users", column: "recommended_user_id"
+  add_foreign_key "recommended_users", "users", column: "subject_user_id"
   add_foreign_key "relationships", "users", column: "followed_id"
   add_foreign_key "relationships", "users", column: "follower_id"
   add_foreign_key "subscribes", "subscriptions", column: "admin_subscription_id"

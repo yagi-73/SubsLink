@@ -26,6 +26,10 @@ class ApplicationController < ActionController::Base
       @top_subscriptions = AdminSubscription.with_attached_image.top_subscribes
     end
 
+    def get_recommended_users
+      @recommended_users = current_user.recommended_users
+    end
+
     def after_sign_in_path_for(resource)
       case resource
       when Admin
