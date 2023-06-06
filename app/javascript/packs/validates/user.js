@@ -4,7 +4,7 @@ $(document).on('turbolinks:load', function() {
       rules: {
         "user[name]": {
           required: true,
-          rangelength: [2, 10]
+          rangelength: [2, 5]
         },
         "user[email]": {
           required: true,

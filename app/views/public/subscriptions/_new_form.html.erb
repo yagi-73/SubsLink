@@ -12,7 +12,7 @@
   </div>
   <div class="form-group mb-3">
     <%= f.label :contract_day, '契約日' %>
-    <%= f.date_field :contract_day, class: 'form-control' %>
+    <%= f.date_field :contract_day, value: Time.now.strftime("%Y-%m-%d"), class: 'form-control' %>
   </div>
   <div class="form-group mb-3">
     <%= f.label :update_cycle, '更新周期' %>

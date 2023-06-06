@@ -28,9 +28,9 @@
   <div class="dropdown dropup">
     <a href="#" class="d-flex align-items-center text-reset text-decoration-none dropdown-toggle" data-bs-toggle="dropdown" aria-expanded="false">
       <%= image_tag current_user.get_image(32, 32), class: "rounded-circle me-2" %>
-      <span class="d-none d-xl-block me-2">
-        <strong><%= current_user.name + " #" %></strong>
-        <%= current_user.tag %>
+      <span class="d-none d-xl-block">
+        <strong><%= current_user.name %></strong>
+        #<%= current_user.tag %>
       </span>
     </a>
     <ul class="dropdown-menu text-small shadow">

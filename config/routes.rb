@@ -35,6 +35,7 @@ Rails.application.routes.draw do
     get 'subscriptions/search' => 'subscriptions#search'
     resources :subscriptions, only: [:index, :create, :show, :update, :destroy]
     post 'subscriptions/subscribe' => 'subscriptions#subscribe', as: 'subscribe'
+    delete 'subscriptions/unsubscribe/:id' => 'subscriptions#unsubscribe', as: 'unsubscribe'
     resources :companies, only: [:index, :show]
   end
 end

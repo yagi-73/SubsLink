@@ -11,8 +11,8 @@
         <% end %>
         <div class="col mx-2">
           <div class="d-flex align-items-end">
-            <h5 class="mb-0"><%= user.name%></h5>
-            <small class="ms-1">#<%= user.tag%></small>
+            <h5 class="mb-0 text-truncate"><%= user.name %></h5>
+            <small class="ms-1">#<%= user.tag %></small>
             <div class="ms-auto">
               <%= render "public/relationships/btn", user: user %>
             </div>

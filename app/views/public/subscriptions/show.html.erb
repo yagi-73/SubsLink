@@ -15,7 +15,7 @@
       </div>
       <div class='col-md-5 offset-1 d-flex align-items-center'>
         <% if current_user.subscribing?(@subsc) %>
-          <%= link_to "解約する", subscription_path(@subsc), method: :delete, class: "btn btn-danger btn-lg" %>
+          <%= link_to "解約する", unsubscribe_path(@subsc), method: :delete, class: "btn btn-danger btn-lg" %>
         <% else %>
           <button type="button" class="btn btn-warning btn-lg" data-bs-toggle="modal" data-bs-target="#joinFormModal">
             加入する

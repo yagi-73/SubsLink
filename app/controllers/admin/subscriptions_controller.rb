@@ -18,6 +18,7 @@ class Admin::SubscriptionsController < ApplicationController
   def show
     @subsc = AdminSubscription.find(params[:id])
     @subscriptions = @subsc.is_basic ? @subsc.extension_subscriptions : AdminSubscription.related_subscriptions(@subsc)
+    @edit_form_subscriptions = AdminSubscription.same_company_basic_subscriptions(@subsc)
   end
 
   def update

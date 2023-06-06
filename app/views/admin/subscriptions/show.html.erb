@@ -18,7 +18,7 @@
         <div class="modal fade" id="subscFormModal-<%= @subsc.id %>" tabindex="-1" aria-hidden="true">
         <div class="modal-dialog">
           <div class="modal-content p-3">
-            <%= render 'admin/subscriptions/edit_form', subsc: @subsc %>
+            <%= render 'admin/subscriptions/edit_form', subsc: @subsc, subscriptions: @edit_form_subscriptions %>
           </div>
         </div>
       </div>

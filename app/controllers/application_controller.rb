@@ -58,11 +58,7 @@ class ApplicationController < ActionController::Base
     end
 
     def get_date
-      if params[:start_date].present?
-        Date.parse(params[:start_date])
-      else
-        Date.today
-      end
+      params[:start_date].present? ? Date.parse(params[:start_date]) : Date.today
     end
 
     def diff_month(date1, date2)
@@ -72,7 +68,6 @@ class ApplicationController < ActionController::Base
     def make_calender_array(date)
       subsc_calender = []
       @user.subscriptions.each do |subsc|
-
         if subsc.class == AdminSubscription
           subsc.contract_day = @user.subscribe_day(subsc)
         end

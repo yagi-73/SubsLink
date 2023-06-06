@@ -12,4 +12,5 @@ class AdminSubscription < Subscription
 
   scope :top_subscribes,  -> { order(subscribes_count: :desc).limit(3) }
   scope :related_subscriptions, -> (current_subsc){ where(id: current_subsc.basic_subscription_id).or(where(basic_subscription_id: current_subsc.basic_subscription_id).where.not(id: current_subsc.id)) }
+  scope :same_company_basic_subscriptions, -> (subsc){ where(company_id: subsc.company_id, is_basic: true).where.not(id: subsc.id) }
 end

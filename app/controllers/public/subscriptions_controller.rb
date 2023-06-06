@@ -37,17 +37,27 @@ class Public::SubscriptionsController < ApplicationController
   end
 
   def update
-    if @subsc.update(user_subsc_params)
-      redirect_to user_path(current_user)
+    if @subsc.class == UserSubscription
+      if @subsc.update(user_subsc_params)
+        redirect_to user_path(current_user)
+      else
+        @error_obj = @subsc
+        @user = current_user
+        @subsc_calender = make_calender_array(get_date)
+        render "public/users/show"
+      end
     else
-      @error_obj = @subsc
-      @user = current_user
-      @subsc_calender = make_calender_array(get_date)
-      render "public/users/show"
+      redirect_to request.referer
     end
   end
 
   def destroy
+    @subsc.destroy
+    redirect_to user_path(current_user)
+  end
+
+  def unsubscribe
+    @subsc = AdminSubscription.find(params[:id])
     current_user.unsubscribe(@subsc)
     redirect_to user_path(current_user)
   end

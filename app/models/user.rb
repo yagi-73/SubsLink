@@ -23,7 +23,7 @@ class User < ApplicationRecord
 
   has_one_attached :image
 
-  validates :name, length: { in: 2..10 }
+  validates :name, length: { in: 2..5 }
   validates :introduction, length: { maximum: 100 }
 
   scope :top_subscribers, -> { order(subscribes_count: :desc).limit(5).with_attached_image }
@@ -37,11 +37,7 @@ class User < ApplicationRecord
   end
 
   def unsubscribe(subsc)
-    if subsc.class == UserSubscription
-      subsc.destroy
-    else
-      subscribes.find_by(admin_subscription_id: subsc.id).destroy
-    end
+    subscribes.find_by(admin_subscription_id: subsc.id).destroy
   end
 
   def subscribe_day(subsc)
@@ -73,8 +69,8 @@ class User < ApplicationRecord
   end
 
   def related_users
-    return followers if !followings.empty?
-    return followers.empty? ? self.class.all : followers
+    return followings if !followings.empty?
+    followers.empty? ? self.class.all : followers
   end
 
   def self.guest
