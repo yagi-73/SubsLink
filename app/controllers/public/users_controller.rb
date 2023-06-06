@@ -2,6 +2,7 @@ class Public::UsersController < ApplicationController
   before_action :set_subsc_form, omly: [ :index, :show, :search]
   before_action :get_top_subscriptions, omly: [ :index, :show, :search]
   before_action :get_recommended_users, only: [ :index, :show, :search]
+  before_action :correct_user, only: [ :update]
 
   def index
     @user = User.find(params[:user_id])
@@ -16,7 +17,6 @@ class Public::UsersController < ApplicationController
   end
 
   def update
-    @user = User.find(params[:id])
     if @user.update(user_params)
       redirect_to user_path(@user)
     else
@@ -40,5 +40,12 @@ class Public::UsersController < ApplicationController
   private
   def user_params
     params.require(:user).permit(:name, :introduction, :image)
+  end
+
+  def correct_user
+    @user = User.find(params[:id])
+    if @user != current_user
+      redirect_to root_path
+    end
   end
 end

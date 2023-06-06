@@ -73,14 +73,14 @@ class User < ApplicationRecord
   end
 
   def related_users
-    if followings.empty?
-      if followers.empty?
-        self.class.all
-      else
-        followers
-      end
-    else
-      followings
+    return followers if !followings.empty?
+    return followers.empty? ? self.class.all : followers
+  end
+
+  def self.guest
+    find_or_create_by!(email: 'guest@example.com') do |user|
+      user.password = SecureRandom.urlsafe_base64
+      user.name = "ゲスト"
     end
   end
 

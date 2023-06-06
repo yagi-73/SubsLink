@@ -17,10 +17,12 @@ class Public::RelationshipsController < ApplicationController
 
   def reset_recommended_users
     current_user.recommended_users.destroy_all
+    recommended_users = []
     3.times do
-      recommended_user = get_recommended_user
-      if recommended_user.present? && !current_user.recommended_users.include?(recommended_user)
-        RecommendedUser.create!(subject_user_id: current_user.id, recommended_user_id: recommended_user.id)
+      user = get_recommended_user
+      if user.present? && !recommended_users.include?(user)
+        RecommendedUser.create(subject_user_id: current_user.id, recommended_user_id: user.id)
+        recommended_users << user
       end
     end
   end
@@ -28,10 +30,7 @@ class Public::RelationshipsController < ApplicationController
   def get_recommended_user
     random_related_user = current_user.related_users.offset( rand(current_user.related_users.length) ).take
     recommended_user = random_related_user.related_users.offset( rand(random_related_user.related_users.length) ).take
-    if recommended_user == current_user || current_user.following?(recommended_user)
-      nil
-    else
-      recommended_user
-    end
+    return nil if recommended_user == current_user || current_user.following?(recommended_user)
+    recommended_user
   end
 end

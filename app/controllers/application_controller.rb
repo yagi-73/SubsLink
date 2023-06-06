@@ -70,7 +70,7 @@ class ApplicationController < ActionController::Base
     end
 
     def make_calender_array(date)
-      subsc_calender = Array.new
+      subsc_calender = []
       @user.subscriptions.each do |subsc|
 
         if subsc.class == AdminSubscription

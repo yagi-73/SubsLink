@@ -1,5 +1,5 @@
 class Public::SubscriptionsController < ApplicationController
-  before_action :check_subscription, only: [ :update, :destroy]
+  before_action :correct_user, only: [ :update, :destroy]
   before_action :set_subsc_form, omly: [ :index, :show, :search]
   before_action :get_top_subscriptions, omly: [ :index, :show, :search]
   before_action :get_recommended_users, only: [ :index, :show, :search]
@@ -31,17 +31,16 @@ class Public::SubscriptionsController < ApplicationController
   end
 
   def show
-    @subsc = Subscription.find(params[:id])
+    @subsc = AdminSubscription.find(params[:id])
     @subscriptions = @subsc.is_basic ? @subsc.extension_subscriptions : AdminSubscription.related_subscriptions(@subsc)
     @admin_subsc_new = AdminSubscription.new
   end
 
   def update
-    subsc = UserSubscription.find(params[:id])
-    if subsc.update(user_subsc_params)
+    if @subsc.update(user_subsc_params)
       redirect_to user_path(current_user)
     else
-      @error_obj = subsc
+      @error_obj = @subsc
       @user = current_user
       @subsc_calender = make_calender_array(get_date)
       render "public/users/show"
@@ -49,8 +48,7 @@ class Public::SubscriptionsController < ApplicationController
   end
 
   def destroy
-    subsc = Subscription.find(params[:id])
-    current_user.unsubscribe(subsc)
+    current_user.unsubscribe(@subsc)
     redirect_to user_path(current_user)
   end
 
@@ -69,10 +67,10 @@ class Public::SubscriptionsController < ApplicationController
     params.require(:admin_subscription).permit(:admin_subscription_id, :contract_day)
   end
 
-  def check_subscription
-    subsc = Subscription.find(params[:id])
-    if subsc.class == AdminSubscription
-      redirect_to subscription_path(subsc)
+  def correct_user
+    @subsc = UserSubscription.find(params[:id])
+    if @subsc.user != current_user
+      redirect_to root_path
     end
   end
 end
