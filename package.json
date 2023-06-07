@@ -2,6 +2,7 @@
   "name": "subs-link",
   "private": true,
   "dependencies": {
+    "@babel/plugin-proposal-private-methods": "^7.18.6",
     "@fortawesome/fontawesome-free": "5.15.4",
     "@popperjs/core": "^2.11.7",
     "@rails/actioncable": "^6.0.0",
@@ -22,8 +23,5 @@
   "version": "0.1.0",
   "devDependencies": {
     "webpack-dev-server": "^3"
-  },
-  "engines": {
-    "node": "14.x"
   }
 }
