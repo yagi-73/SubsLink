@@ -58,6 +58,6 @@ button{
 
 @keyframes shadow {
 	0% {box-shadow: 0 0 0 0 #27acd9;}
-	70% {box-shadow: 0 0 0 10px rgb(39, 172, 217, 0%);}
-	100% {box-shadow: 0 0 0 0 rgb(39, 172, 217, 0%);}
+	70% {box-shadow: 0 0 0 10px rgba(39, 172, 217, 0%);}
+	100% {box-shadow: 0 0 0 0 rgba(39, 172, 217, 0%);}
 }
