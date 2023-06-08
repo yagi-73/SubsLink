@@ -1,0 +1,52 @@
+<h2>カテゴリー一覧</h2>
+<div class="categories">
+  <ul class="list-unstyled d-flex flex-wrap">
+    <% @categories.each do |category| %>
+      <li class="me-2 mb-2">
+        <button type="button" class="btn btn-hover rounded-pill text-reset border border-secondary" data-bs-toggle="modal" data-bs-target="#categoryEditModal" data-category-url="<%= admin_category_path(category) %>" data-category-name="<%= category.name %>" data-category-icon="<%= category.icon %>">
+          <i class="fas fa-<%= category.icon %> me-1"></i><%= category.name %>
+        </button>
+      </li>
+    <% end %>
+  </ul>
+  <div class="modal fade" id="categoryEditModal" tabindex="-1" aria-labelledby="formModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+      <div class="modal-content p-3">
+        <%= form_with model: @category, url: "", method: :post, id: "categoryEditForm" do |f| %>
+          <div class="form-group mb-3">
+            <%= f.label :name, 'カテゴリー名' %>
+            <%= f.text_field :name, class: 'form-control' %>
+          </div>
+          <div class="form-group mb-3">
+            <%= f.label :icon, 'アイコン（fontawesomeの"fas fa-"以降を記入してください）' %>
+            <%= f.text_field :icon, class: "form-control" %>
+          </div>
+          <div>
+            <%= f.submit "更新する", class: 'btn btn-success me-5' %>
+            <%= link_to "削除する", "", method: :delete, id: "deleteLink", "data-confirm" => "本当に削除しますか？", class: 'btn btn-danger' %>
+          </div>
+        <% end %>
+      </div>
+    </div>
+  </div>
+</div>
+
+<script>
+  $(document).ready(function() {
+    var categoryModal = $('#categoryEditModal');
+    categoryModal.on('show.bs.modal', function (event) {
+      var button = $(event.relatedTarget);
+      var categoryName = button.data('category-name');
+      var categoryIcon = button.data('category-icon');
+      var categoryUrl = button.data('category-url');
+      var modalNameInput = categoryModal.find('#category_name');
+      var modalIconInput = categoryModal.find('#category_icon');
+      var categoryForm = categoryModal.find('#categoryEditForm');
+      var deleteLink = categoryModal.find('#deleteLink');
+      modalNameInput.val(categoryName);
+      modalIconInput.val(categoryIcon);
+      categoryForm.attr('action', categoryUrl);
+      deleteLink.attr('href', categoryUrl);
+    });
+  });
+</script>

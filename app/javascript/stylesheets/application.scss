@@ -1,1 +1,52 @@
 @import '~bootstrap/scss/bootstrap';
+@import './simple_calender';
+@import 'public/users.scss';
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+label.is-invalid {
+  color: #dc3545;
+}
+
+body {
+  min-height: 100vh;
+}
+
+.full-height {
+  height: 100vh;
+  max-height: 100vh;
+}
+
+.dropdown-toggle { outline: 0; }
+
+button{
+  background-color: transparent;
+  border: none;
+  cursor: pointer;
+  outline: none;
+  padding: 0;
+  appearance: none;
+}
+
+.btn-gray { background-color: $gray-400; }
+
+.btn_shadow {
+  filter: drop-shadow(0px 2px 4px #ccc);
+}
+
+.btn_shadow:hover {
+	background-position: right center;
+	background-size: 200% auto;
+	-webkit-animation: pulse 2s infinite;
+	animation: shadow 1.5s infinite;
+}
+
+@keyframes shadow {
+	0% {box-shadow: 0 0 0 0 #27acd9;}
+	70% {box-shadow: 0 0 0 10px rgba(39, 172, 217, 0%);}
+	100% {box-shadow: 0 0 0 0 rgba(39, 172, 217, 0%);}
+}

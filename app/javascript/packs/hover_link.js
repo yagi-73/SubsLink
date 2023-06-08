@@ -1,10 +1,10 @@
 $(document).on("turbolinks:load", function() {
   $(".btn-hover").hover(
     function() {
-      $(this).addClass("btn-light");
+      $(this).addClass("btn-gray");
     },
     function() {
-      $(this).removeClass("btn-light");
+      $(this).removeClass("btn-gray");
     }
   );
   $(".user").on('click', function() {

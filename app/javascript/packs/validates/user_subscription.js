@@ -22,6 +22,14 @@ $(document).on('turbolinks:load', function() {
           },
         },
 
+        errorPlacement: function(error, element){
+          if(element.attr('data-toggle')=='price'){
+            element.parents(".form-group").append(error)
+          } else{
+            error.insertAfter(element)
+          }
+        },
+
         errorClass: "is-invalid",
         validClass: "is-valid",
       });

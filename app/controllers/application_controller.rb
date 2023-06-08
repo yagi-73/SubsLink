@@ -5,6 +5,10 @@ class ApplicationController < ActionController::Base
   private
     def authenticate_any!
       if request.fullpath.include?("admin")
+        if user_signed_in?
+          reset_session
+          redirect_to new_admin_session_path
+        end
         authenticate_admin!
       elsif action_name == 'top'
         return
