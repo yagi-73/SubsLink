@@ -1,4 +1,4 @@
-<%= form_with model: company, url: admin_companies_path, method: :post, id: "companyForm" do |f| %>
+<%= form_with model: company, url: admin_companies_path, method: :post, id: "companyNewForm" do |f| %>
   <div class="form-group mb-3">
     <%= f.label :name, '会社名' %>
     <%= f.text_field :name, class: 'form-control' %>

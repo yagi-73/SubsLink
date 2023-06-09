@@ -17,6 +17,8 @@ import 'jquery-validation/dist/additional-methods'
 import 'jquery-validation/dist/localization/messages_ja'
 import "bootstrap-show-password"
 
+import "./validates/admin_category"
+import "./validates/admin_company"
 import "./validates/admin_subscription"
 import "./validates/admin"
 import "./validates/user_subscription"

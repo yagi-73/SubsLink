@@ -1,4 +1,18 @@
 <h2>カテゴリー一覧</h2>
+<%= render "layouts/error", obj: @category %>
+<div>
+  <button type="button" class="btn btn-primary rounded-pill btn_shadow my-3 ms-auto" data-bs-toggle="modal" data-bs-target="#categoryNewModal">
+    <span class="d-none d-xl-block">カテゴリー登録</span>
+    <i class="fas fa-plus d-xl-none d-xl-block" style="color: #ffffff;"></i>
+  </button>
+  <div class="modal fade" id="categoryNewModal" tabindex="-1" aria-labelledby="formModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+      <div class="modal-content p-3">
+        <%= render 'admin/categories/new_form', category: @category %>
+      </div>
+    </div>
+  </div>
+</div>
 <div class="categories">
   <ul class="list-unstyled d-flex flex-wrap">
     <% @categories.each do |category| %>
@@ -12,20 +26,7 @@
   <div class="modal fade" id="categoryEditModal" tabindex="-1" aria-labelledby="formModalLabel" aria-hidden="true">
     <div class="modal-dialog">
       <div class="modal-content p-3">
-        <%= form_with model: @category, url: "", method: :post, id: "categoryEditForm" do |f| %>
-          <div class="form-group mb-3">
-            <%= f.label :name, 'カテゴリー名' %>
-            <%= f.text_field :name, class: 'form-control' %>
-          </div>
-          <div class="form-group mb-3">
-            <%= f.label :icon, 'アイコン（fontawesomeの"fas fa-"以降を記入してください）' %>
-            <%= f.text_field :icon, class: "form-control" %>
-          </div>
-          <div>
-            <%= f.submit "更新する", class: 'btn btn-success me-5' %>
-            <%= link_to "削除する", "", method: :delete, id: "deleteLink", "data-confirm" => "本当に削除しますか？", class: 'btn btn-danger' %>
-          </div>
-        <% end %>
+        <%= render 'admin/categories/edit_form', category: @category %>
       </div>
     </div>
   </div>

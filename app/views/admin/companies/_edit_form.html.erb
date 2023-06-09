@@ -1,4 +1,4 @@
-<%= form_with model: company, url: admin_companies_path, method: :post, id: "companyForm" do |f| %>
+<%= form_with model: company, url: admin_companies_path, method: :post, id: "companyEditForm" do |f| %>
   <div class="form-group mb-3">
     <%= f.label :name, '会社名' %>
     <%= f.text_field :name, class: 'form-control' %>
@@ -9,6 +9,6 @@
   </div>
   <div class="m-auto">
     <%= f.submit "更新する", class: 'btn btn-primary mb-3 me-3' %>
-    <%= link_to "削除する", admin_company_path(company), method: :delete, "data-confirm" => "本当に削除しますか？", class: 'btn btn-danger mb-3' %>
+    <%= link_to "削除する", admin_company_path(company), method: :delete, "data-confirm" => "関連したサブスクも削除されます。本当に削除しますか？", class: 'btn btn-danger mb-3' %>
   </div>
 <% end %>

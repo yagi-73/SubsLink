@@ -7,36 +7,26 @@ class Admin::CategoriesController < ApplicationController
   def create
     @category = Category.new(category_params)
     if @category.save
-      redirect_to category_path(@category)
+      redirect_to categories_path
     else
+      @categories = Category.all
       render :index
     end
   end
 
-  def show
-    @company = Company.find(params[:id])
-    @subscriptions = @company.admin_subscriptions.with_attached_image
-  end
-
   def update
-    @company = Company.find(params[:id])
-    if @company.update(company_params)
-      redirect_to company_path(@company)
+    @category = Category.find(params[:id])
+    if @category.update(category_params)
+      redirect_to categories_path
     else
-      @subscriptions = @company.admin_subscriptions.with_attached_image
-      render :show
+      @categories = Category.all
+      render :index
     end
   end
 
   def destroy
-    company = Company.find(params[:id])
-    company.destroy
-  end
-
-  def search
-    @companies = Company.with_attached_image.search(params[:keyword])
-    @company = Company.new
-    render :index
+    category = Category.find(params[:id])
+    category.destroy
   end
 
   private

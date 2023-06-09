@@ -1,0 +1,13 @@
+<%= form_with model: @category, id: "categoryNewForm" do |f| %>
+  <div class="form-group mb-3">
+    <%= f.label :name, 'カテゴリー名' %>
+    <%= f.text_field :name, class: 'form-control' %>
+  </div>
+  <div class="form-group mb-3">
+    <%= f.label :icon, 'アイコン（fontawesomeの"fas fa-"以降を記入してください）' %>
+    <%= f.text_field :icon, class: "form-control" %>
+  </div>
+  <div>
+    <%= f.submit "登録する", class: 'btn btn-success me-5' %>
+  </div>
+<% end %>

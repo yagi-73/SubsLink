@@ -1,0 +1,14 @@
+<%= form_with model: @category, url: "", method: :patch, id: "categoryEditForm" do |f| %>
+  <div class="form-group mb-3">
+    <%= f.label :name, 'カテゴリー名' %>
+    <%= f.text_field :name, class: 'form-control' %>
+  </div>
+  <div class="form-group mb-3">
+    <%= f.label :icon, 'アイコン（fontawesomeの"fas fa-"以降を記入してください）' %>
+    <%= f.text_field :icon, class: "form-control" %>
+  </div>
+  <div>
+    <%= f.submit "更新する", class: 'btn btn-success me-5' %>
+    <%= link_to "削除する", "", method: :delete, id: "deleteLink", "data-confirm" => "関連のサブスクも削除されます。本当に削除しますか？", class: 'btn btn-danger' %>
+  </div>
+<% end %>

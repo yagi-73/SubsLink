@@ -1,7 +1,7 @@
 class AdminSubscription < Subscription
   belongs_to :company
   belongs_to :category
-  has_many :subscribes
+  has_many :subscribes, dependent: :destroy
   has_many :users, through: :subscribes
 
   has_many :extension_subscriptions, class_name: 'Subscription', foreign_key: 'basic_subscription_id'
