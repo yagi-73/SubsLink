@@ -4,7 +4,7 @@ $(document).on('turbolinks:load', function() {
       rules: {
         "admin_company[name]": {
           required: true,
-          rangelength: [2, 20]
+          rangelength: [2, 30]
         },
         "admin_company[image]": {
           accept: "image/*"
