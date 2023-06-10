@@ -1,28 +1,26 @@
-<div class="col-8 offset-2">
-  <h2>ログイン</h2>
-  <%= form_with model: @user, url: user_session_path, id: "userLoginForm" do |f| %>
+<h2>ログイン</h2>
+<%= form_with model: @user, url: user_session_path, id: "userLoginForm" do |f| %>
+  <div class="form-group mb-3">
+    <label for="inputEmail" class="form-label">メールアドレス</label>
+    <%= f.email_field :email, autofocus: true, autocomplete: "email", id: "inputEmail", class: "form-control", placeholder: "メールアドレス" %>
+  </div>
+  <div class="form-group mb-3">
+    <label for="inputPassword" class="form-label">パスワード</label>
+    <%= f.password_field :password, autocomplete: "current-password",id: "inputPassword", 'data-toggle': "password", class: "form-control", placeholder: "パスワード" %>
+  </div>
+  <% if devise_mapping.rememberable? %>
     <div class="form-group mb-3">
-      <label for="inputEmail" class="form-label">メールアドレス</label>
-      <%= f.email_field :email, autofocus: true, autocomplete: "email", id: "inputEmail", class: "form-control", placeholder: "メールアドレス" %>
-    </div>
-    <div class="form-group mb-3">
-      <label for="inputPassword" class="form-label">パスワード</label>
-      <%= f.password_field :password, autocomplete: "current-password",id: "inputPassword", 'data-toggle': "password", class: "form-control", placeholder: "パスワード" %>
-    </div>
-    <% if devise_mapping.rememberable? %>
-      <div class="form-group mb-3">
-        <%= f.check_box :remember_me %>
-        <%= f.label :remember_me, "ログインを記憶する" %>
-      </div>
-    <% end %>
-    <div class="form-group mb-5">
-      <%= f.submit "ログイン", class: "btn btn-success" %>
-    </div>
-    <div class="mb-3">
-      <div>
-        <span>初回登録の方は</span>
-        <%= link_to "こちら", new_user_registration_path, 'data-turbolinks': false %>
-      </div>
+      <%= f.check_box :remember_me %>
+      <%= f.label :remember_me, "ログインを記憶する" %>
     </div>
   <% end %>
-</div>
+  <div class="form-group mb-5">
+    <%= f.submit "ログイン", class: "btn btn-success" %>
+  </div>
+  <div class="mb-3">
+    <div>
+      <span>初回登録の方は</span>
+      <%= link_to "こちら", new_user_registration_path, 'data-turbolinks': false %>
+    </div>
+  </div>
+<% end %>
