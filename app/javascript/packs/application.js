@@ -25,7 +25,6 @@ import "./validates/user_subscription"
 import "./validates/user"
 
 import "./switch_tab"
-import "./hover_link"
 
 Rails.start()
 Turbolinks.start()
