@@ -32,10 +32,6 @@ class User < ApplicationRecord
     self.user_subscriptions.with_attached_image + self.admin_subscriptions.with_attached_image
   end
 
-  def subscribe(params)
-    subscribes.create!(params)
-  end
-
   def unsubscribe(subsc)
     subscribes.find_by(admin_subscription_id: subsc.id).destroy
   end

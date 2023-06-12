@@ -21,6 +21,7 @@ import "./validates/admin_category"
 import "./validates/admin_company"
 import "./validates/admin_subscription"
 import "./validates/admin"
+import "./validates/user_subscribe"
 import "./validates/user_subscription"
 import "./validates/user"
 

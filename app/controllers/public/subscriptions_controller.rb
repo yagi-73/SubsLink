@@ -17,8 +17,14 @@ class Public::SubscriptionsController < ApplicationController
   end
 
   def subscribe
-    current_user.subscribe(admin_subsc_params)
-    redirect_to user_path(current_user)
+    @new_subscribe = current_user.subscribes.new(subscribe_params)
+    if @new_subscribe.save
+      redirect_to user_path(current_user)
+    else
+      @subsc = AdminSubscription.find(params[:subscribe][:admin_subscription_id])
+      @subscriptions = @subsc.is_basic ? @subsc.extension_subscriptions : AdminSubscription.related_subscriptions(@subsc)
+      render :show
+    end
   end
 
   def index
@@ -33,7 +39,7 @@ class Public::SubscriptionsController < ApplicationController
   def show
     @subsc = AdminSubscription.find(params[:id])
     @subscriptions = @subsc.is_basic ? @subsc.extension_subscriptions : AdminSubscription.related_subscriptions(@subsc)
-    @admin_subsc_new = AdminSubscription.new
+    @new_subscribe = Subscribe.new
   end
 
   def update
@@ -73,8 +79,8 @@ class Public::SubscriptionsController < ApplicationController
     params.require(:user_subscription).permit(:name, :price, :contract_day, :update_cycle)
   end
 
-  def admin_subsc_params
-    params.require(:admin_subscription).permit(:admin_subscription_id, :contract_day)
+  def subscribe_params
+    params.require(:subscribe).permit(:admin_subscription_id, :contract_day)
   end
 
   def correct_user

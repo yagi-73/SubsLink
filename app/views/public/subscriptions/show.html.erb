@@ -1,4 +1,5 @@
 <h2 class="mb-3">サブスク詳細</h2>
+<%= render "layouts/error", obj: @new_subscribe %>
 <div class="row">
   <div class='col-4'>
     <%= image_tag @subsc.get_image(150, 150) %>
@@ -17,20 +18,20 @@
         <% if current_user.subscribing?(@subsc) %>
           <%= link_to "解約する", unsubscribe_path(@subsc), method: :delete, class: "btn btn-danger btn-lg" %>
         <% else %>
-          <button type="button" class="btn btn-warning btn-lg" data-bs-toggle="modal" data-bs-target="#joinFormModal">
+          <button type="button" class="btn btn-warning btn-lg" data-bs-toggle="modal" data-bs-target="#subscribeNewModal">
             加入する
           </button>
-          <div class="modal fade" id="joinFormModal" tabindex="-1" aria-labelledby="joinFormModalLabel" aria-hidden="true">
+          <div class="modal fade" id="subscribeNewModal" tabindex="-1" aria-labelledby="formModalLabel" aria-hidden="true">
             <div class="modal-dialog">
               <div class="modal-content">
-                <%= form_with model: @admin_subsc_new, url: subscribe_path, method: :post do |f| %>
+                <%= form_with model: @new_subscribe, url: subscribe_path, method: :post, id: "subscribeNewForm" do |f| %>
                   <div class="modal-header">
                     <h5 class="modal-title">加入日を選択してください</h5>
                     <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                   </div>
                   <div class="modal-body">
                     <%= f.label :契約日 %>
-                    <%= f.date_field :contract_day, class: 'form-control' %>
+                    <%= f.date_field :contract_day, value: Time.now.strftime("%Y-%m-%d"), class: 'form-control' %>
                     <%= f.hidden_field :admin_subscription_id, :value => @subsc.id %>
                   </div>
                   <div class="modal-footer">

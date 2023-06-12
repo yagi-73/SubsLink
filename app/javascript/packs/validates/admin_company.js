@@ -1,6 +1,6 @@
 $(document).on('turbolinks:load', function() {
   $(function () {
-    $("#companyNewForm, #companyEdit").validate({
+    $("#companyNewForm, #companyEditForm").validate({
       rules: {
         "admin_company[name]": {
           required: true,

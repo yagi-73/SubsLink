@@ -3,10 +3,10 @@
   <% subscriptions.each do |subsc| %>
     <div class="subscription mb-md-2">
       <% if user == current_user && subsc.class == UserSubscription %>
-        <button type="button" class="btn btn-info w-100" data-bs-toggle="modal" data-bs-target="#formModal<%= subsc.id %>">
+        <button type="button" class="btn btn-info w-100" data-bs-toggle="modal" data-bs-target="#subscEditModal<%= subsc.id %>">
           <span class="d-none d-md-block"><%= subsc.name %></span>
         </button>
-        <div class="modal fade" id="formModal<%= subsc.id %>" tabindex="-1" aria-labelledby="formModalLabel" aria-hidden="true">
+        <div class="modal fade" id="subscEditModal<%= subsc.id %>" tabindex="-1" aria-labelledby="formModalLabel" aria-hidden="true">
           <div class="modal-dialog modal-dialog-centered">
             <div class="modal-content p-3">
               <%= render 'public/subscriptions/edit_form', subsc: subsc %>
@@ -18,10 +18,33 @@
           <span class="d-none d-md-block"><%= subsc.name %></span>
         </div>
       <% else %>
-        <%= link_to subscription_path(subsc), class: "btn btn-success w-100" do %>
+        <button type="button" class="btn btn-success w-100" data-bs-toggle="modal" data-bs-target="#adminSubscModal<%= subsc.id %>">
           <span class="d-none d-md-block"><%= subsc.name %></span>
-        <% end %>
-        <br>
+        </button>
+        <div class="modal fade" id="adminSubscModal<%= subsc.id %>" tabindex="-1" aria-labelledby="formModalLabel" aria-hidden="true">
+          <div class="modal-dialog modal-dialog-centered">
+            <div class="modal-content p-3">
+              <div class="modal-header">
+                <h5 class="modal-title"><%= subsc.name %></h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+              </div>
+              <div class="modal-body">
+                <h6>
+                  ￥<%= subsc.price.to_s(:delimited) %>/<%= subsc.update_cycle %>ヵ月
+                  <% if subsc.update_cycle != 1 %>
+                    , ￥<%= (subsc.price / subsc.update_cycle).to_s(:delimited) %>/月
+                  <% end %>
+                </h6>
+                <p class="mt-2">次回更新日： <%= l subsc.next_update_day, format: :date %></p>
+              </div>
+              <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">閉じる</button>
+                <%= link_to  "詳細", subscription_path(subsc), class: "btn btn-primary", 'data-turbolinks': false %>
+              </div>
+            </div>
+            </div>
+          </div>
+        </div>
       <% end%>
     </div>
   <% end %>
