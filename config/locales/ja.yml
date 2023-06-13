@@ -1,5 +1,5 @@
 ja:
-  time:
+  date:
     formats:
       default: "%Y/%m/%d %H:%M:%S"
       date: "%Y/%m/%d"
@@ -8,7 +8,7 @@ ja:
     next: ">>"
 
   activerecord:
-    models: 
+    models:
       admin: 管理者
       category: カテゴリー
       company: 会社
@@ -22,7 +22,7 @@ ja:
       admin:
         email: メールアドレス
         password: パスワード
-      category: 
+      category:
         name: カテゴリー名
         icon: アイコン
       company:
@@ -42,7 +42,7 @@ ja:
         password: パスワード
         introduction: プロフィール文
         tag: タグ
-        
+
     errors:
       messages:
         record_invalid: 'バリデーションに失敗しました: %{errors}'

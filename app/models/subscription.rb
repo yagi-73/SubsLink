@@ -7,7 +7,11 @@ class Subscription < ApplicationRecord
   validates :update_cycle, numericality: { in: 1..12 }
 
   def next_update_day
-    contract_day.since(self.update_cycle.month)
+    date = self.contract_day
+    while date < Date.today
+      date = date.since(self.update_cycle.month).to_date
+    end
+    date
   end
 
   def update_this_month?(date)
