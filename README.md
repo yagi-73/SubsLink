@@ -9,5 +9,20 @@
 
 https://subslink.onrender.com
 
-Ruby 3.1.2<br>
-Rails 6.1.4
+## 主な使用技術
+
+### フロントエンド
+- jQuery
+- Bootstrap
+
+### バックエンド
+- Ruby
+- Ruby on Rails
+
+### インフラ
+- render.com
+- PostgreSQL
+- AWS（S3）
+
+![](https://img.shields.io/badge/Ruby-v3.1.2-red)
+![](https://img.shields.io/badge/Rails-v6.1.4-red)
