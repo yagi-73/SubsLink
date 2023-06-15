@@ -2,11 +2,11 @@ $(document).on('turbolinks:load', function() {
   $(function () {
     $("#categoryNewForm, #categoryEditForm").validate({
       rules: {
-        "admin_category[name]": {
+        "category[name]": {
           required: true,
           rangelength: [2, 10]
         },
-        "admin_category[icon]": {
+        "category[icon]": {
           required: true,
           rangelength: [2, 20]
         }

@@ -1,12 +1,26 @@
-<h1 class="text-center"><strong>SubsLink</strong></h1>
-<div class="btn-wrapper">
+<div class="container">
   <div class="row">
-    <%= link_to 'Log in',new_user_session_path, 'data-turbolinks': false, class: "btn btn-info mb-3 sign_in" %>
+    <div class="mt-5 mx-auto" style="width: 300px;">
+      <h1 class="text-center"><strong>SubsLink</strong></h1>
+      <div class="btn-wrapper">
+        <div class="row">
+          <%= link_to 'Log in',new_user_session_path, 'data-turbolinks': false, class: "btn btn-info mb-3 sign_in" %>
+        </div>
+        <div class="row">
+          <%= link_to 'Sign Up',new_user_registration_path, 'data-turbolinks': false, class: "btn btn-success mb-3 sign_up" %>
+        </div>
+        <div class="row">
+          <%= link_to 'ゲストログイン（閲覧用）', users_guest_sign_in_path, class: "btn btn-secondary mb-3 sign_in", method: :post %>
+        </div>
+      </div>
+    </div>
   </div>
-  <div class="row">
-    <%= link_to 'Sign Up',new_user_registration_path, 'data-turbolinks': false, class: "btn btn-success mb-3 sign_up" %>
-  </div>
-  <div class="row">
-    <%= link_to 'ゲストログイン（閲覧用）', users_guest_sign_in_path, class: "btn btn-secondary mb-3 sign_in", method: :post %>
-  </div>
+  <%# <div class="row">
+    <div class="col-5">
+      <h3>自分が登録しているサブスク、きちんと把握できていますか？</h3>
+      <p>SubsLinkは自分登録したサブスクをカレンダーで管理することができるサービスです。</p>
+      <p>他の人がどんなサブスクを利用しているのか確認し、世の中にある便利なサブスクを発見することができます。</p>
+      <h3>サブスクとSNSをリンクしたSubsLinkで、素敵なサブスクライフをお過ごしください！</h3>
+    </div>
+  </div> %>
 </div>

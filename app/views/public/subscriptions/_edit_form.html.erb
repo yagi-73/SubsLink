@@ -18,8 +18,8 @@
       <p class="mt-2">次回更新日： <%= l subsc.next_update_day, format: :date %></p>
     </div>
     <div class="m-auto">
-      <%= f.submit "更新する", class: 'btn btn-primary me-3' %>
-      <%= link_to "削除する", subscription_path(subsc), method: :delete, "data-confirm" => "本当に削除しますか？", class: 'btn btn-danger' %>
+      <%= f.submit "更新する", class: 'btn btn-primary mb-2 me-3' %>
+      <%= link_to "削除する", subscription_path(subsc), method: :delete, "data-confirm" => "本当に削除しますか？", class: 'btn btn-danger mb-2' %>
     </div>
   </div>
 <% end %>
