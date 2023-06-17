@@ -69,11 +69,11 @@ class ApplicationController < ActionController::Base
       ((date2.year * 12 + date2.month) - (date1.year * 12 + date1.month)).abs
     end
 
-    def make_calender_array(date)
+    def make_calender_array(user, date)
       subsc_calender = []
-      @user.subscriptions.each do |subsc|
+      user.subscriptions.each do |subsc|
         if subsc.class == AdminSubscription
-          subsc.contract_day = @user.subscribe_day(subsc)
+          subsc.contract_day = user.subscribe_day(subsc)
         end
         if subsc.update_this_month?(date)
           subsc.calender_day = subsc.contract_day.months_since(diff_month(date, subsc.contract_day))

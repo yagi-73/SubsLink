@@ -13,7 +13,7 @@ class Public::UsersController < ApplicationController
 
   def show
     @user = params[:id].present? ? User.find(params[:id]) : current_user
-    @subsc_calender = make_calender_array(get_date)
+    @subsc_calender = make_calender_array(@user, get_date)
   end
 
   def update
