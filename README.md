@@ -9,6 +9,9 @@
 
 https://subslink.onrender.com
 
+## ER図
+<image src="./erd.png" width="800px">
+
 ## 主な使用技術
 
 ### フロントエンド
