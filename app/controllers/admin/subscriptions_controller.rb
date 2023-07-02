@@ -50,6 +50,6 @@ class Admin::SubscriptionsController < ApplicationController
 
   private
   def subsc_params
-    params.require(:admin_subscription).permit(:name, :image, :catch_copy, :description, :price, :company_id, :basic_subscription_id, :update_cycle)
+    params.require(:admin_subscription).permit(:name, :image, :catch_copy, :description, :price, :company_id, :basic_subscription_id, :category_id, :update_cycle)
   end
 end

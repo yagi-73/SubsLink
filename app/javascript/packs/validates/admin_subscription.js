@@ -14,6 +14,9 @@ $(document).on('turbolinks:load', function() {
             required: true,
             digits: true
           },
+          "admin_subscription[category_id]": {
+            required: true
+          },
           "admin_subscription[catch_copy]": {
             maxlength: 50
           },
