@@ -11,7 +11,7 @@ class Public::SubscriptionsController < ApplicationController
     else
       @error_obj = subsc
       @user = current_user
-      @subsc_calender = make_calender_array(get_date)
+      @subsc_calender = make_calender_array(@user, get_date)
       render "public/users/show"
     end
   end

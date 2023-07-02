@@ -22,7 +22,7 @@ class Public::UsersController < ApplicationController
     else
       @user.reload
       @error_obj = @user
-      @subsc_calender = make_calender_array(get_date)
+      @subsc_calender = make_calender_array(@user, get_date)
       render :show
     end
   end
@@ -30,7 +30,7 @@ class Public::UsersController < ApplicationController
   def search
     @user = User.find_by(tag: params[:user_tag])
     if @user
-      @subsc_calender = make_calender_array(get_date)
+      @subsc_calender = make_calender_array(@user, get_date)
       render :show
     else
       redirect_to user_relationships_path(current_user)
