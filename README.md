@@ -7,7 +7,7 @@
 また、他の人がどんなサブスクを利用しているのか確認し、世の中にある便利なサブスクを発見することができます。<br>
 サブスクとSNSをリンクしたSubsLinkで、素敵なサブスクライフをお過ごしください！
 
-サイト：https://subslink.onrender.com <br>
+サイト：~~https://subslink.onrender.com~~ （現在停止中）<br>
 デモ動画：https://youtu.be/Hu3IivnrQd4
 
 ## ER図
